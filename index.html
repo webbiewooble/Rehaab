@@ -1,33 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rehab Physiotherapy & Wellness Centre</title>
+    <title>Rehab | Advanced Physiotherapy & Wellness</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        }
+                    }
+                }
+            }
         }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
         .spine-dot {
-            width: 3px;
-            height: 3px;
-            background-color: white;
-            border-radius: 9999px;
+            width: 3px; height: 3px;
+            background-color: white; border-radius: 9999px;
+        }
+        
+        /* Custom scrollbar for horizontal lists if needed */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Accordion transition styles */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
-<body class="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-cyan-100">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-100 selection:text-brand-900">
 
-    <!-- Navbar -->
-    <nav class="bg-black text-white py-4 px-6 md:px-12 sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <!-- Top Utility Bar -->
+    <div class="bg-slate-900 text-slate-300 py-2 px-6 text-xs md:text-sm border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <a href="tel:+15551234567" class="flex items-center gap-2 hover:text-white transition-colors">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-400"></i> (555) 123-4567
+                </a>
+                <a href="mailto:hello@rehabphysio.com" class="flex items-center gap-2 hover:text-white transition-colors">
+                    <i data-lucide="mail" class="w-3.5 h-3.5 text-brand-400"></i> hello@rehabphysio.com
+                </a>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden sm:inline-block text-slate-500">Follow us:</span>
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="bg-slate-950 sticky top-0 z-50 shadow-2xl shadow-black/5">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
+            
             <!-- Logo -->
-            <div class="flex flex-col items-center justify-center scale-75 origin-left">
+            <a href="#" class="flex flex-col items-center justify-center scale-75 origin-left md:scale-90 lg:scale-100 transition-transform">
                 <div class="relative flex items-end">
-                    <!-- Spine dots next to R -->
+                    <!-- Spine dots -->
                     <div class="absolute -left-3 bottom-1 flex flex-col gap-[2px] mb-1">
                         <div class="spine-dot" style="transform: translateX(0px)"></div>
                         <div class="spine-dot" style="transform: translateX(0.95px)"></div>
@@ -39,13 +92,8 @@
                         <div class="spine-dot" style="transform: translateX(-0.7px)"></div>
                         <div class="spine-dot" style="transform: translateX(-1.51px)"></div>
                     </div>
-
-                    <!-- Text and stylized elements -->
                     <div class="flex items-baseline text-white font-bold text-5xl tracking-tighter">
-                        <span>R</span>
-                        <span class="ml-0.5">e</span>
-                        
-                        <!-- Stylized 'h' with person -->
+                        <span>R</span><span class="ml-0.5">e</span>
                         <div class="relative ml-0.5">
                             <span>h</span>
                             <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-6 h-8 text-[#70C1E3] flex justify-center items-end pb-1">
@@ -55,8 +103,6 @@
                                 </svg>
                             </div>
                         </div>
-
-                        <!-- Stylized 'A' -->
                         <div class="relative ml-1 mr-1 flex items-end justify-center w-12 h-[40px]">
                             <svg width="48" height="50" viewBox="0 0 48 50" class="absolute bottom-1 text-[#70C1E3] overflow-visible">
                                 <path d="M 20 48 L 26 15" stroke="white" stroke-width="4" stroke-linecap="square" />
@@ -65,189 +111,440 @@
                                 <path d="M 28 6 L 25 18 L 18 20 M 25 18 L 29 28 M 28 6 L 22 10 L 22 14 M 28 6 L 34 10 L 34 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
                             </svg>
                         </div>
-
                         <span>B</span>
                     </div>
                 </div>
+                <div class="h-[2px] w-full max-w-[280px] bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-400 mt-2 mb-1 rounded-full"></div>
+                <div class="text-white text-xs tracking-wider font-medium">Physiotherapy & Wellness Centre</div>
+            </a>
 
-                <!-- Gradient Line -->
-                <div class="h-[2px] w-full bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-400 mt-2 mb-1 rounded-full"></div>
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-brand-400 transition-colors">About Us</a>
+                <a href="#expertise" class="hover:text-brand-400 transition-colors">Our Offerings</a>
+                <a href="#team" class="hover:text-brand-400 transition-colors">Team</a>
+                <a href="#testimonials" class="hover:text-brand-400 transition-colors">Patient Education</a>
+                <a href="#contact" class="hover:text-brand-400 transition-colors">Contact</a>
                 
-                <!-- Subtitle -->
-                <div class="text-white text-xs tracking-wider font-medium">
-                    Physiotherapy & Wellness Centre
-                </div>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
-                <a href="#about" class="hover:text-cyan-400 transition-colors">About Us</a>
-                <a href="#testimonials" class="hover:text-cyan-400 transition-colors">Testimonials</a>
-                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
-                <a href="#contact" class="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white px-5 py-2.5 rounded-full transition-all shadow-lg hover:shadow-cyan-500/25">
-                    Book Appointment
+                <a href="#contact" class="bg-white text-slate-950 px-6 py-2.5 rounded-full font-bold hover:bg-brand-50 transition-all flex items-center gap-2 group shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+                    Book Session <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="lg:hidden text-white p-2">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative bg-black text-white overflow-hidden">
-        <div class="absolute inset-0 opacity-50">
-            <img 
-                src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=2000&q=80" 
-                alt="Physiotherapy session" 
-                class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
-        </div>
-        
-        <div class="relative max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32 flex flex-col md:w-2/3">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-sm font-semibold mb-6 border border-cyan-500/30 w-max">
-                <i data-lucide="activity" class="w-4 h-4"></i>
-                <span>Expert Care, Proven Results</span>
-            </div>
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
-                Restore Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Mobility</span>.<br />
-                Reclaim Your Life.
-            </h1>
-            <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed">
-                Experience personalized physiotherapy tailored to your unique needs. We blend advanced techniques with compassionate care to help you move freely and live pain-free.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="#contact" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all">
-                    Book a Consultation <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                </a>
-                <a href="#services" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full flex items-center justify-center transition-all backdrop-blur-sm">
-                    Explore Services
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- Creative Hero Section -->
+    <section class="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden bg-slate-100">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute top-0 right-0 -mr-40 -mt-40 w-[600px] h-[600px] bg-brand-200/50 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] bg-purple-200/40 rounded-full blur-[80px] pointer-events-none"></div>
 
-    <!-- Features/Stats Bar -->
-    <section class="bg-white border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 py-10">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-slate-100">
-                <div class="flex flex-col items-center pt-4 md:pt-0">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4">
-                        <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Expert Therapists</h3>
-                    <p class="text-slate-500 text-sm max-w-xs">Highly qualified professionals dedicated to your recovery journey.</p>
-                </div>
-                <div class="flex flex-col items-center pt-8 md:pt-0">
-                    <div class="w-12 h-12 bg-cyan-50 text-cyan-600 rounded-full flex items-center justify-center mb-4">
-                        <i data-lucide="heart" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Personalized Care</h3>
-                    <p class="text-slate-500 text-sm max-w-xs">Custom treatment plans designed specifically for your body and goals.</p>
-                </div>
-                <div class="flex flex-col items-center pt-8 md:pt-0">
-                    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-4">
-                        <i data-lucide="activity" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Modern Facility</h3>
-                    <p class="text-slate-500 text-sm max-w-xs">State-of-the-art equipment to ensure optimal rehabilitation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-24 max-w-7xl mx-auto px-6 md:px-12">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Specialized Services</h2>
-            <p class="text-slate-500 max-w-2xl mx-auto">Comprehensive therapies designed to address the root cause of your pain and improve your overall physical well-being.</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-cyan-100 transition-all group">
-                <div class="w-14 h-14 bg-slate-50 group-hover:bg-cyan-50 rounded-xl flex items-center justify-center mb-6 transition-colors">
-                    <i data-lucide="activity" class="text-slate-400 group-hover:text-cyan-500 transition-colors w-7 h-7"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Manual Therapy</h3>
-                <p class="text-slate-500 leading-relaxed mb-6">Hands-on techniques to mobilize joints and soft tissues, reducing pain and increasing range of motion.</p>
-                <a href="#contact" class="text-cyan-600 font-semibold inline-flex items-center gap-1 hover:text-cyan-700">
-                    Learn more <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </a>
-            </div>
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
             
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-cyan-100 transition-all group">
-                <div class="w-14 h-14 bg-slate-50 group-hover:bg-cyan-50 rounded-xl flex items-center justify-center mb-6 transition-colors">
-                    <i data-lucide="activity" class="text-slate-400 group-hover:text-cyan-500 transition-colors w-7 h-7"></i>
+            <!-- Left: Typography & CTA -->
+            <div class="max-w-xl">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-brand-600 text-sm font-semibold mb-6 shadow-sm">
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-500"></span>
+                    </span>
+                    Accepting New Patients
                 </div>
-                <h3 class="text-xl font-bold mb-3">Sports Rehabilitation</h3>
-                <p class="text-slate-500 leading-relaxed mb-6">Targeted recovery programs for athletes to return to peak performance safely and prevent future injuries.</p>
-                <a href="#contact" class="text-cyan-600 font-semibold inline-flex items-center gap-1 hover:text-cyan-700">
-                    Learn more <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-            
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-cyan-100 transition-all group">
-                <div class="w-14 h-14 bg-slate-50 group-hover:bg-cyan-50 rounded-xl flex items-center justify-center mb-6 transition-colors">
-                    <i data-lucide="activity" class="text-slate-400 group-hover:text-cyan-500 transition-colors w-7 h-7"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Post-Surgical Care</h3>
-                <p class="text-slate-500 leading-relaxed mb-6">Guided rehabilitation following orthopedic surgeries to ensure optimal healing and functional recovery.</p>
-                <a href="#contact" class="text-cyan-600 font-semibold inline-flex items-center gap-1 hover:text-cyan-700">
-                    Learn more <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-            
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-cyan-100 transition-all group">
-                <div class="w-14 h-14 bg-slate-50 group-hover:bg-cyan-50 rounded-xl flex items-center justify-center mb-6 transition-colors">
-                    <i data-lucide="activity" class="text-slate-400 group-hover:text-cyan-500 transition-colors w-7 h-7"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Vestibular Therapy</h3>
-                <p class="text-slate-500 leading-relaxed mb-6">Specialized exercises to improve balance and reduce dizziness related to inner ear disorders.</p>
-                <a href="#contact" class="text-cyan-600 font-semibold inline-flex items-center gap-1 hover:text-cyan-700">
-                    Learn more <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-            
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-cyan-100 transition-all group">
-                <div class="w-14 h-14 bg-slate-50 group-hover:bg-cyan-50 rounded-xl flex items-center justify-center mb-6 transition-colors">
-                    <i data-lucide="activity" class="text-slate-400 group-hover:text-cyan-500 transition-colors w-7 h-7"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Ergonomic Assessment</h3>
-                <p class="text-slate-500 leading-relaxed mb-6">Workplace evaluation and posture correction to prevent repetitive strain injuries.</p>
-                <a href="#contact" class="text-cyan-600 font-semibold inline-flex items-center gap-1 hover:text-cyan-700">
-                    Learn more <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-            
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-cyan-100 transition-all group">
-                <div class="w-14 h-14 bg-slate-50 group-hover:bg-cyan-50 rounded-xl flex items-center justify-center mb-6 transition-colors">
-                    <i data-lucide="activity" class="text-slate-400 group-hover:text-cyan-500 transition-colors w-7 h-7"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Dry Needling</h3>
-                <p class="text-slate-500 leading-relaxed mb-6">Modern technique to treat muscular tension and spasms by releasing trigger points.</p>
-                <a href="#contact" class="text-cyan-600 font-semibold inline-flex items-center gap-1 hover:text-cyan-700">
-                    Learn more <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Banner -->
-    <section class="bg-gradient-to-r from-black to-slate-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-                <h2 class="text-3xl font-bold mb-2">Ready to start your recovery?</h2>
-                <p class="text-slate-300 text-lg">Schedule your initial assessment today and take the first step towards a pain-free life.</p>
-            </div>
-            <a href="#contact" class="bg-white text-slate-900 font-bold px-8 py-4 rounded-full flex items-center gap-2 hover:bg-slate-100 transition-all shrink-0">
-                Book Appointment <i data-lucide="calendar" class="w-5 h-5"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer / Contact -->
-    <footer id="contact" class="bg-black text-slate-300 py-16 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div class="col-span-1 md:col-span-2">
                 
+                <h1 class="text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.1]">
+                    Advanced Ortho, Spine & Sports <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600">Rehab Center</span>
+                </h1>
+                
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                    We deliver high-quality, personalized treatments by seamlessly integrating clinic, home & tele-rehab services to help you achieve optimal physical health.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all shadow-lg shadow-brand-500/30">
+                        Schedule Appointment <i data-lucide="calendar" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#expertise" class="bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-semibold px-8 py-4 rounded-full flex items-center justify-center transition-all shadow-sm">
+                        Explore Therapies
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Creative Image & Info Card Layout -->
+            <div class="relative lg:ml-auto w-full max-w-lg lg:max-w-none mx-auto mt-10 lg:mt-0">
+                <!-- Main Image -->
+                <div class="rounded-[2.5rem] overflow-hidden shadow-2xl relative aspect-[4/5] lg:aspect-[3/4] border-8 border-white">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173ff9e5eb3?auto=format&fit=crop&w=1200&q=80" alt="Physiotherapy Treatment" class="w-full h-full object-cover" referrerpolicy="no-referrer">
+                    <!-- Overlay Gradient -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+                </div>
+
+                <!-- Floating Glass Info Card (Inspired by reference, executed creatively) -->
+                <div class="absolute -bottom-8 -left-4 lg:-left-12 right-4 lg:right-auto glass-panel p-6 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] max-w-sm">
+                    <div class="flex items-center gap-1 mb-2">
+                        <div class="flex text-amber-400">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <span class="font-bold text-slate-900 ml-2">5.0</span>
+                        <span class="text-xs text-slate-500 font-medium">(129 Reviews)</span>
+                    </div>
+                    
+                    <h3 class="font-bold text-slate-900 mb-4 text-lg">Rehab Physiotherapy Center</h3>
+                    
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-brand-500 shrink-0 mt-0.5"></i>
+                            <span>LG Floor, S-210, Block S, Greater Kailash II, Delhi 110048</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="clock" class="w-4 h-4 text-brand-500 shrink-0"></i>
+                            <span>Opening Hours: 8am - 8pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Bento Grid: About & Location -->
+    <section id="about" class="py-24 max-w-7xl mx-auto px-6 md:px-12">
+        <div class="grid lg:grid-cols-3 gap-6">
+            
+            <!-- About Box -->
+            <div class="lg:col-span-2 bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-slate-100 flex flex-col justify-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-32 bg-slate-50 rounded-bl-full -z-10"></div>
+                <div class="w-12 h-12 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mb-6">
+                    <i data-lucide="info" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-6 text-slate-900">About Our Practice</h2>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                    We are a premier Physiotherapy Clinic for Ortho Pain & Sports Injury Rehab. Our highly experienced team of Physiotherapists have been thoroughly vetted to ensure that we provide the best possible care to our patients.
+                </p>
+                <p class="text-slate-600 leading-relaxed mb-8">
+                    In addition to our clinic-based treatments, we also provide home care services for physiotherapy in the surrounding areas. We offer advanced physiotherapy treatments for a wide range of conditions, ensuring that our expertise is easily accessible to a broader audience.
+                </p>
+                <div class="mt-auto">
+                    <a href="#contact" class="inline-flex items-center gap-2 font-bold text-brand-600 hover:text-brand-700 group">
+                        Book a consultation <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Location & Map Box -->
+            <div class="bg-slate-900 rounded-[2rem] overflow-hidden shadow-lg relative flex flex-col">
+                <!-- Faux Map Header Image -->
+                <div class="h-48 bg-slate-800 relative w-full overflow-hidden border-b border-slate-700">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Map View" class="w-full h-full object-cover opacity-50 grayscale mix-blend-overlay" referrerpolicy="no-referrer">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="bg-white/10 backdrop-blur p-3 rounded-full border border-white/20">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-brand-400"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-8 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-white mb-6">Clinic Location</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow">
+                        LG Floor, S-210, 80 Feet Rd, Block S, Greater Kailash II, Greater Kailash, New Delhi, Delhi 110048
+                    </p>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+                            <span class="text-slate-400">Areas Served</span>
+                            <span class="text-white font-medium text-right">South Delhi,<br>Kalkaji, GK</span>
+                        </div>
+                        <a href="#" class="w-full py-3 mt-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium flex items-center justify-center gap-2 transition-colors border border-white/5">
+                            Get Directions <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Expertise & Therapies -->
+    <section id="expertise" class="py-24 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Comprehensive Care & Therapies</h2>
+                <p class="text-slate-500">Discover our wide array of specialized treatments designed to alleviate pain, restore mobility, and enhance your quality of life.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
+                
+                <!-- Therapies List -->
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-50 rounded-[2rem] p-8 md:p-10 border border-slate-100 h-full">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                            <div class="p-2 bg-brand-100 text-brand-600 rounded-lg"><i data-lucide="activity" class="w-5 h-5"></i></div>
+                            Therapies Offered
+                        </h3>
+                        
+                        <ul class="grid sm:grid-cols-2 lg:grid-cols-1 gap-y-4 gap-x-6">
+                            {[
+                                "Ultrasound Therapy", "Interferential Therapy (IFT)", "TENS Therapy",
+                                "Laser Therapy", "Manual Therapy", "Dry Needling Therapy",
+                                "Spinal Decompression", "Chiropractic Therapy", "Kinesio Taping",
+                                "Cupping Therapy", "Acupuncture", "Myofascial Release"
+                            ].map((item) => `
+                            <li class="flex items-center gap-3 text-slate-700 font-medium text-sm">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></div>
+                                ${item}
+                            </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Treatment Expertise (Pills Layout for creativity) -->
+                <div class="lg:col-span-7">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                        <div class="p-2 bg-purple-100 text-purple-600 rounded-lg"><i data-lucide="crosshair" class="w-5 h-5"></i></div>
+                        Treatment Expertise
+                    </h3>
+                    
+                    <div class="flex flex-wrap gap-3">
+                        {[
+                            "Cervical Spondylosis", "Frozen Shoulder", "Vertigo", "Achilles Tendon Rupture",
+                            "Carpal Tunnel Syndrome", "Arthritis", "Knee Bursitis", "Anterior Cruciate Ligament",
+                            "Ankle Sprain", "Cerebral Palsy", "Sciatica", "Parkinson's Disease",
+                            "Tennis Elbow", "Osteoarthritis", "Cervical Myelopathy", "Scoliosis",
+                            "Plantar Fasciitis", "Spinal Stenosis", "Rheumatoid Arthritis"
+                        ].map((item) => `
+                        <span class="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium hover:border-brand-300 hover:text-brand-600 hover:shadow-sm cursor-default transition-all">
+                            ${item}
+                        </span>
+                        `).join('')}
+                    </div>
+
+                    <div class="mt-12 p-6 bg-brand-50 rounded-2xl border border-brand-100 flex items-start gap-4">
+                        <i data-lucide="info" class="w-6 h-6 text-brand-600 shrink-0 mt-0.5"></i>
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-1">Don't see your condition?</h4>
+                            <p class="text-sm text-slate-600">Our experienced team treats a vast variety of orthopedic and neurological conditions. Contact us for a personalized consultation.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Expertise -->
+    <section id="team" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Team Expertise</h2>
+                    <p class="text-slate-500">We have a team of highly qualified and experienced physiotherapists who specialize in Orthopaedic, Sports Injury & Sports Performance.</p>
+                </div>
+                <a href="#contact" class="hidden md:inline-flex items-center gap-2 font-bold text-brand-600 hover:text-brand-700 whitespace-nowrap">
+                    View All Experts <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Team Card 1 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6">
+                        <i data-lucide="user" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-1">Dr. Monika Bhardwaj</h3>
+                    <p class="text-brand-600 text-sm font-medium mb-4">Head Of The Clinic</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Specialization</p>
+                        <p class="text-sm text-slate-700">Ortho Physiotherapist</p>
+                    </div>
+                </div>
+
+                <!-- Team Card 2 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center mb-6">
+                        <i data-lucide="user" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-1">Dr. Rushda Sabir</h3>
+                    <p class="text-brand-600 text-sm font-medium mb-4">Jr. Consultant</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Specialization</p>
+                        <p class="text-sm text-slate-700">Physiotherapist</p>
+                    </div>
+                </div>
+
+                <!-- Team Card 3 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6">
+                        <i data-lucide="user" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-1">Dr. Nitish Kumar</h3>
+                    <p class="text-brand-600 text-sm font-medium mb-4">Jr. Consultant</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Specialization</p>
+                        <p class="text-sm text-slate-700">Physiotherapist</p>
+                    </div>
+                </div>
+
+                <!-- Team Card 4 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center mb-6">
+                        <i data-lucide="user" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-1">Dr. Kinjal Sharma</h3>
+                    <p class="text-brand-600 text-sm font-medium mb-4">Senior Physiotherapist</p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Specialization</p>
+                        <p class="text-sm text-slate-700">Physiotherapist</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center md:hidden">
+                 <a href="#contact" class="inline-flex items-center gap-2 font-bold text-brand-600 hover:text-brand-700">
+                    View All Experts <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (Creative Layout) -->
+    <section id="testimonials" class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Patient Testimonials</h2>
+                <p class="text-slate-400">Our patient-centric approach to Physiotherapy services is duly validated by reviews from patients across clinic care and home care settings.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <!-- Review 1 -->
+                <div class="bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 relative hover:bg-slate-800 transition-colors">
+                    <i data-lucide="quote" class="absolute top-8 right-8 w-12 h-12 text-slate-700 opacity-50"></i>
+                    <div class="flex text-amber-400 mb-6">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-300 mb-8 relative z-10 leading-relaxed text-sm">
+                        "I had lower back pain all the time when I ran. The manual therapy and focused exercises offered by the Rehab Physiotherapy Clinic were exceptional. With the skills of his team and a targeted approach, I am pain-free."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-slate-700/50 pt-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold">UH</div>
+                        <div>
+                            <h4 class="font-bold text-white">Umer Hashmi</h4>
+                            <p class="text-xs text-slate-400">Patient</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 relative hover:bg-slate-800 transition-colors md:-translate-y-4">
+                    <i data-lucide="quote" class="absolute top-8 right-8 w-12 h-12 text-slate-700 opacity-50"></i>
+                    <div class="flex text-amber-400 mb-6">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-300 mb-8 relative z-10 leading-relaxed text-sm">
+                        "I had an outstanding experience! The staff is not only highly skilled but also incredibly friendly and welcoming. The personalized care I received was top-notch, and the state-of-the-art facility made a big difference."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-slate-700/50 pt-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold">AB</div>
+                        <div>
+                            <h4 class="font-bold text-white">Abhishek Bindlish</h4>
+                            <p class="text-xs text-slate-400">Patient</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 relative hover:bg-slate-800 transition-colors">
+                    <i data-lucide="quote" class="absolute top-8 right-8 w-12 h-12 text-slate-700 opacity-50"></i>
+                    <div class="flex text-amber-400 mb-6">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-300 mb-8 relative z-10 leading-relaxed text-sm">
+                        "Had a lingering back pain and visited many Physiotherapists without any relief but thanks to the dedicated team here I received a lot of relief. Highly recommended for anyone suffering from chronic issues."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-slate-700/50 pt-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold">AD</div>
+                        <div>
+                            <h4 class="font-bold text-white">Adittya Dhingra</h4>
+                            <p class="text-xs text-slate-400">Patient</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#contact" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium px-6 py-3 rounded-full transition-colors border border-white/10">
+                    Write a Review <i data-lucide="pen-line" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 max-w-4xl mx-auto px-6 md:px-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">FAQ</h2>
+            <p class="text-slate-500">Some frequently asked questions regarding physiotherapy services.</p>
+        </div>
+
+        <div class="space-y-4">
+            <details class="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm open:shadow-md transition-all">
+                <summary class="flex justify-between items-center font-bold cursor-pointer p-6 text-slate-900">
+                    <span>Where is Rehab Physiotherapy located and how to contact?</span>
+                    <span class="transition group-open:rotate-180 bg-slate-100 p-2 rounded-full text-slate-500 group-open:bg-brand-100 group-open:text-brand-600">
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </span>
+                </summary>
+                <div class="text-slate-600 px-6 pb-6 pt-2 text-sm leading-relaxed border-t border-slate-100 mt-2">
+                    Our clinic is located in Greater Kailash II. Kindly connect with us over Call (555) 123-4567 or email us to know more about our schedule and book your appointment in advance.
+                </div>
+            </details>
+
+            <details class="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm open:shadow-md transition-all">
+                <summary class="flex justify-between items-center font-bold cursor-pointer p-6 text-slate-900">
+                    <span>What are the localities serviced by Rehab Physiotherapy?</span>
+                    <span class="transition group-open:rotate-180 bg-slate-100 p-2 rounded-full text-slate-500 group-open:bg-brand-100 group-open:text-brand-600">
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </span>
+                </summary>
+                <div class="text-slate-600 px-6 pb-6 pt-2 text-sm leading-relaxed border-t border-slate-100 mt-2">
+                    We primarily service Greater Kailash, South Delhi, Kalkaji, CR Park, and surrounding areas. For specific location inquiries regarding home visits, please contact our reception.
+                </div>
+            </details>
+
+            <details class="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm open:shadow-md transition-all">
+                <summary class="flex justify-between items-center font-bold cursor-pointer p-6 text-slate-900">
+                    <span>Is Home Service available in my area?</span>
+                    <span class="transition group-open:rotate-180 bg-slate-100 p-2 rounded-full text-slate-500 group-open:bg-brand-100 group-open:text-brand-600">
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </span>
+                </summary>
+                <div class="text-slate-600 px-6 pb-6 pt-2 text-sm leading-relaxed border-t border-slate-100 mt-2">
+                    Yes, we provide extensive home care physiotherapy services. Please call our clinic to confirm if your specific residential area falls within our operational radius for home visits.
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+            
+            <div class="md:col-span-5">
+                <!-- Footer Logo -->
                 <div class="flex flex-col items-start justify-center scale-75 origin-left mb-6">
                     <div class="relative flex items-end">
                         <div class="absolute -left-3 bottom-1 flex flex-col gap-[2px] mb-1">
@@ -261,10 +558,8 @@
                             <div class="spine-dot" style="transform: translateX(-0.7px)"></div>
                             <div class="spine-dot" style="transform: translateX(-1.51px)"></div>
                         </div>
-
                         <div class="flex items-baseline text-white font-bold text-5xl tracking-tighter">
-                            <span>R</span>
-                            <span class="ml-0.5">e</span>
+                            <span>R</span><span class="ml-0.5">e</span>
                             <div class="relative ml-0.5">
                                 <span>h</span>
                                 <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-6 h-8 text-[#70C1E3] flex justify-center items-end pb-1">
@@ -285,64 +580,62 @@
                             <span>B</span>
                         </div>
                     </div>
-                    <div class="h-[2px] w-full max-w-[300px] bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-400 mt-2 mb-1 rounded-full"></div>
-                    <div class="text-white text-xs tracking-wider font-medium">Physiotherapy & Wellness Centre</div>
+                    <div class="h-[2px] w-full max-w-[280px] bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-400 mt-2 mb-1 rounded-full"></div>
                 </div>
 
-                <p class="max-w-md text-slate-400 mb-8 leading-relaxed">
-                    Rehab Physiotherapy & Wellness Centre is dedicated to providing evidence-based, compassionate care to help you achieve your physical best.
+                <p class="max-w-sm mb-8 leading-relaxed text-sm">
+                    New-age physio care delivering high-quality personalized treatments by seamlessly integrating clinic, home & tele-rehab.
                 </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-brand-600 hover:border-brand-500 hover:text-white transition-all"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-brand-600 hover:border-brand-500 hover:text-white transition-all"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-brand-600 hover:border-brand-500 hover:text-white transition-all"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                </div>
             </div>
             
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Contact Us</h4>
-                <ul class="space-y-4">
+            <div class="md:col-span-3">
+                <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#about" class="hover:text-brand-400 transition-colors">About Us</a></li>
+                    <li><a href="#expertise" class="hover:text-brand-400 transition-colors">Our Services</a></li>
+                    <li><a href="#team" class="hover:text-brand-400 transition-colors">For Physiotherapists</a></li>
+                    <li><a href="#faq" class="hover:text-brand-400 transition-colors">FAQ</a></li>
+                    <li><a href="#contact" class="hover:text-brand-400 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-4">
+                <h4 class="text-white font-bold text-lg mb-6">Contact Details</h4>
+                <ul class="space-y-4 text-sm">
                     <li class="flex items-start gap-3">
-                        <i data-lucide="map-pin" class="text-cyan-500 shrink-0 mt-1 w-[18px] h-[18px]"></i>
-                        <span>123 Wellness Avenue,<br />Medical District, MD 12345</span>
+                        <i data-lucide="map-pin" class="text-brand-500 shrink-0 mt-0.5 w-[18px] h-[18px]"></i>
+                        <span>LG Floor, S-210, Block S,<br />Greater Kailash II, Delhi 110048</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <i data-lucide="phone" class="text-cyan-500 shrink-0 w-[18px] h-[18px]"></i>
+                        <i data-lucide="phone" class="text-brand-500 shrink-0 w-[18px] h-[18px]"></i>
                         <span>(555) 123-4567</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <i data-lucide="mail" class="text-cyan-500 shrink-0 w-[18px] h-[18px]"></i>
+                        <i data-lucide="mail" class="text-brand-500 shrink-0 w-[18px] h-[18px]"></i>
                         <span>hello@rehabphysio.com</span>
                     </li>
                 </ul>
             </div>
             
-            <div>
-                <h4 class="text-white font-bold text-lg mb-6">Hours</h4>
-                <ul class="space-y-3">
-                    <li class="flex justify-between border-b border-slate-800 pb-2">
-                        <span>Mon - Fri</span>
-                        <span class="text-white">8:00 AM - 7:00 PM</span>
-                    </li>
-                    <li class="flex justify-between border-b border-slate-800 pb-2">
-                        <span>Saturday</span>
-                        <span class="text-white">9:00 AM - 2:00 PM</span>
-                    </li>
-                    <li class="flex justify-between pb-2">
-                        <span>Sunday</span>
-                        <span class="text-cyan-500">Closed</span>
-                    </li>
-                </ul>
-            </div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-slate-800 text-sm text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>&copy; 2026 Rehab Physiotherapy & Wellness Centre. All rights reserved.</p>
+        <div class="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-slate-900 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Rehab Physiotherapy Services Pvt. Ltd. All Rights Reserved.</p>
             <div class="flex gap-6">
+                <a href="#" class="hover:text-white transition-colors">Terms And Conditions</a>
                 <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // Initialize Lucide icons
         lucide.createIcons();
     </script>
 </body>
 </html>
-
