@@ -77,9 +77,24 @@
                 </div>
             </div>
             
-            <button class="lg:hidden text-white p-2">
-                <i data-lucide="menu" class="w-6 h-6"></i>
+            <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="lg:hidden text-white p-2 focus:outline-none">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
             </button>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-b border-slate-800 px-6 py-5 space-y-4">
+            <a href="/" class="block text-white font-medium hover:text-brand-400">Home</a>
+            <a href="#about" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">About RehAAB</a>
+            <a href="#services" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">Our Services</a>
+            <a href="#team" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">Our Team</a>
+            <a href="#conditions" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">Conditions We Treat</a>
+            <a href="#contact" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">Contact & Directions</a>
+            <div class="pt-2">
+                <a href="#contact" class="mobile-nav-link w-full text-center block bg-brand-600 text-white py-3 rounded-full font-bold hover:bg-brand-700">
+                    Book an Appointment
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -528,26 +543,264 @@
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="py-24 bg-brand-900 text-white text-center border-b-4 border-brand-500">
-        <div class="max-w-3xl mx-auto px-6 md:px-12">
-            <h2 class="text-4xl font-bold mb-6">Ready to Move Better?</h2>
-            <p class="text-lg text-brand-100 mb-10 leading-relaxed">
-                Whether you're recovering from an injury, managing persistent pain or looking to improve your movement and function, our team is here to help.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="bg-white text-brand-900 font-bold px-8 py-4 rounded-full flex items-center justify-center gap-2 hover:bg-brand-50 transition-all shadow-lg">
-                    Book an Appointment
-                </a>
-                <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20consult%20with%20a%20physiotherapist." target="_blank" rel="noopener noreferrer" class="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all shadow-lg">
-                    <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp RehAAB
-                </a>
+    <!-- Book Appointment & Contact Us Section -->
+    <section id="contact" class="py-24 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-white relative overflow-hidden">
+        <!-- Subtle background glow -->
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="inline-flex items-center gap-2 bg-brand-500/10 text-brand-400 border border-brand-500/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                    <i data-lucide="calendar-check" class="w-4 h-4"></i> Simple & Fast Booking
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">Book Your Appointment</h2>
+                <p class="text-slate-300 text-base md:text-lg leading-relaxed">
+                    Schedule your consultation with our expert physiotherapists at our Vasant Kunj clinic or request convenient home physiotherapy.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 items-start">
+                <!-- Left Info Card -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div class="bg-slate-800/80 backdrop-blur-md rounded-3xl p-8 border border-slate-700/60 shadow-xl">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                            <span class="p-2.5 bg-brand-500/20 rounded-xl text-brand-400">
+                                <i data-lucide="stethoscope" class="w-5 h-5"></i>
+                            </span>
+                            Why Choose RehAAB?
+                        </h3>
+
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400 shrink-0 mt-0.5"></i>
+                                <span><strong class="text-white">1-on-1 Dedicated Care:</strong> Comprehensive evaluation and undivided therapist attention.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400 shrink-0 mt-0.5"></i>
+                                <span><strong class="text-white">Evidence-Based Treatment:</strong> Modern manual therapy, exercise prescription, and electro-modalities.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400 shrink-0 mt-0.5"></i>
+                                <span><strong class="text-white">In-Clinic & Home Visits:</strong> Flexible options tailored to your mobility and convenience.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400 shrink-0 mt-0.5"></i>
+                                <span><strong class="text-white">Fast Response:</strong> Clinic team verifies and confirms your slot promptly.</span>
+                            </li>
+                        </ul>
+
+                        <div class="mt-8 pt-8 border-t border-slate-700 space-y-4">
+                            <div class="flex items-center gap-4 text-sm text-slate-300">
+                                <div class="p-2.5 bg-slate-900 rounded-xl text-brand-400 shrink-0 border border-slate-700">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400 font-medium">Direct Call / Helpline</div>
+                                    <a href="tel:+919319933875" class="text-white font-bold hover:text-brand-400 transition-colors">+91 93199 33875</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 text-sm text-slate-300">
+                                <div class="p-2.5 bg-slate-900 rounded-xl text-green-400 shrink-0 border border-slate-700">
+                                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400 font-medium">Instant WhatsApp Support</div>
+                                    <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener noreferrer" class="text-white font-bold hover:text-green-400 transition-colors">+91 93199 33875 (Chat Now)</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 text-sm text-slate-300">
+                                <div class="p-2.5 bg-slate-900 rounded-xl text-emerald-400 shrink-0 border border-slate-700">
+                                    <i data-lucide="clock" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400 font-medium">Clinic Timings</div>
+                                    <div class="text-white font-semibold">Open Daily · 9:00 AM – 10:00 PM</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 text-sm text-slate-300">
+                                <div class="p-2.5 bg-slate-900 rounded-xl text-brand-400 shrink-0 border border-slate-700 mt-0.5">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400 font-medium">Clinic Location</div>
+                                    <div class="text-white leading-relaxed">Shop No.1, OPD Block Nao Healthcare, opp. Fortis, Pocket 1, Sector B, Vasant Kunj, New Delhi 110070</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Interactive Booking Form Card -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white text-slate-900 rounded-3xl p-8 md:p-10 shadow-2xl border border-slate-100 relative">
+                        
+                        <!-- Form Header -->
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-slate-900 mb-2">Request an Appointment</h3>
+                            <p class="text-slate-600 text-sm">Fill in your details below and our team will get in touch to confirm your appointment time.</p>
+                        </div>
+
+                        <!-- Success Message Banner (Hidden by default) -->
+                        <div id="booking-success" class="hidden mb-8 p-6 bg-emerald-50 border border-emerald-200 rounded-2xl">
+                            <div class="flex items-start gap-4">
+                                <div class="p-2.5 bg-emerald-500 text-white rounded-full shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-bold text-emerald-900 mb-1">Appointment Request Received!</h4>
+                                    <p class="text-sm text-emerald-800 mb-4 leading-relaxed">
+                                        Thank you, <strong id="summary-name"></strong>. We have logged your request for <strong id="summary-service"></strong> on <strong id="summary-date"></strong> (<span id="summary-time"></span>).
+                                    </p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a id="whatsapp-confirm-btn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold text-sm px-5 py-2.5 rounded-full transition-all shadow-sm">
+                                            <i data-lucide="message-circle" class="w-4 h-4"></i> Confirm via WhatsApp Instantly
+                                        </a>
+                                        <button id="book-another-btn" type="button" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-sm px-4 py-2.5 rounded-full transition-all">
+                                            Book Another
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Booking Form -->
+                        <form id="appointment-form" class="space-y-6">
+                            <!-- Consultation Type Selector -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Consultation Type</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="flex items-center justify-center gap-2.5 p-3.5 border-2 border-brand-600 bg-brand-50/50 rounded-2xl cursor-pointer text-sm font-bold text-brand-900 transition-all consultation-type-option" data-type="In-Clinic">
+                                        <input type="radio" name="consultationType" value="In-Clinic (Vasant Kunj)" checked class="text-brand-600 focus:ring-brand-500">
+                                        <i data-lucide="building-2" class="w-4 h-4 text-brand-600"></i> In-Clinic (Vasant Kunj)
+                                    </label>
+                                    <label class="flex items-center justify-center gap-2.5 p-3.5 border-2 border-slate-200 hover:border-slate-300 rounded-2xl cursor-pointer text-sm font-semibold text-slate-700 transition-all consultation-type-option" data-type="Home-Visit">
+                                        <input type="radio" name="consultationType" value="Home Physiotherapy Visit" class="text-brand-600 focus:ring-brand-500">
+                                        <i data-lucide="home" class="w-4 h-4 text-slate-500"></i> Home Visit
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Name & Phone -->
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="client-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        Full Name <span class="text-rose-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <i data-lucide="user" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                                        <input type="text" id="client-name" name="clientName" required placeholder="e.g. Rahul Sharma" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="client-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        Phone / WhatsApp Number <span class="text-rose-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <i data-lucide="phone" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                                        <input type="tel" id="client-phone" name="clientPhone" required placeholder="e.g. +91 98765 43210" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Email & Service -->
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="client-email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        Email Address <span class="text-xs font-normal text-slate-400">(Optional)</span>
+                                    </label>
+                                    <div class="relative">
+                                        <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                                        <input type="email" id="client-email" name="clientEmail" placeholder="e.g. rahul@example.com" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="client-service" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        Service / Specialty <span class="text-rose-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <i data-lucide="activity" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                                        <select id="client-service" name="clientService" required class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all appearance-none cursor-pointer">
+                                            <option value="" disabled selected>Select a Service</option>
+                                            <option value="Initial Physiotherapy Assessment">Initial Physiotherapy Assessment</option>
+                                            <option value="Musculoskeletal & Joint Pain (Back, Knee, Shoulder)">Musculoskeletal &amp; Joint Pain (Back, Knee, Shoulder)</option>
+                                            <option value="Sports Injury Rehabilitation">Sports Injury Rehabilitation</option>
+                                            <option value="Women's Health & Pelvic Floor">Women's Health &amp; Pelvic Floor</option>
+                                            <option value="Antenatal & Postnatal Care">Antenatal &amp; Postnatal Care</option>
+                                            <option value="Post-Surgical / Orthopaedic Rehab">Post-Surgical / Orthopaedic Rehab</option>
+                                            <option value="Vestibular & Balance Rehabilitation">Vestibular &amp; Balance Rehabilitation</option>
+                                            <option value="Geriatric Mobility & Fall Prevention">Geriatric Mobility &amp; Fall Prevention</option>
+                                            <option value="Home Physiotherapy Session">Home Physiotherapy Session</option>
+                                            <option value="General Consultation">General Consultation</option>
+                                        </select>
+                                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Preferred Date & Time Slot -->
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="client-date" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        Preferred Date <span class="text-rose-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <input type="date" id="client-date" name="clientDate" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all cursor-pointer">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="client-time" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        Preferred Time Slot <span class="text-rose-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <i data-lucide="clock" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                                        <select id="client-time" name="clientTime" required class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all appearance-none cursor-pointer">
+                                            <option value="" disabled selected>Choose Time of Day</option>
+                                            <option value="Morning (09:00 AM - 01:00 PM)">Morning (09:00 AM - 01:00 PM)</option>
+                                            <option value="Afternoon (01:00 PM - 05:00 PM)">Afternoon (01:00 PM - 05:00 PM)</option>
+                                            <option value="Evening (05:00 PM - 09:30 PM)">Evening (05:00 PM - 09:30 PM)</option>
+                                        </select>
+                                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notes / Description -->
+                            <div>
+                                <label for="client-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                    Describe Your Symptoms or Goals <span class="text-xs font-normal text-slate-400">(Optional)</span>
+                                </label>
+                                <textarea id="client-notes" name="clientNotes" rows="3" placeholder="Tell us about your pain area, recent injury, duration of discomfort, or doctor's recommendation..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all resize-none"></textarea>
+                            </div>
+
+                            <!-- Submit Buttons -->
+                            <div class="pt-2 flex flex-col sm:flex-row gap-4">
+                                <button type="submit" id="submit-booking-btn" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 shadow-lg hover:shadow-brand-600/30 transition-all text-base">
+                                    <i data-lucide="calendar-plus" class="w-5 h-5"></i> Confirm Appointment Request
+                                </button>
+                                <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20book%20a%20physiotherapy%20appointment." target="_blank" rel="noopener noreferrer" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-full flex items-center justify-center gap-2 transition-all shadow-md text-base">
+                                    <i data-lucide="message-circle" class="w-5 h-5"></i> Book via WhatsApp
+                                </a>
+                            </div>
+
+                            <p class="text-xs text-slate-400 text-center flex items-center justify-center gap-1.5 pt-1">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Your details are private and confidential. No advance online payment required.
+                            </p>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-slate-950 text-slate-400 pt-20 pb-24 lg:pb-12">
+    <footer class="bg-slate-950 text-slate-400 pt-20 pb-24 lg:pb-12">
         <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 border-b border-slate-800 pb-12">
             <div>
                 <a href="/" class="flex items-center justify-start mb-6 transition-transform">
@@ -580,14 +833,14 @@
             <div>
                 <h4 class="text-white font-bold mb-6 text-lg">Services</h4>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="#" class="hover:text-brand-400 transition-colors">Musculoskeletal Physiotherapy</a></li>
-                    <li><a href="#" class="hover:text-brand-400 transition-colors">Sports Rehabilitation</a></li>
-                    <li><a href="#" class="hover:text-brand-400 transition-colors">Women's Health</a></li>
-                    <li><a href="#" class="hover:text-brand-400 transition-colors">Antenatal & Postnatal</a></li>
-                    <li><a href="#" class="hover:text-brand-400 transition-colors">Pelvic Floor Rehabilitation</a></li>
-                    <li><a href="#" class="hover:text-brand-400 transition-colors">Vestibular Rehabilitation</a></li>
-                    <li><a href="#" class="hover:text-brand-400 transition-colors">Geriatric Rehabilitation</a></li>
-                    <li><a href="#" class="hover:text-brand-400 transition-colors">Home Physiotherapy</a></li>
+                    <li><a href="#services" class="hover:text-brand-400 transition-colors">Musculoskeletal Physiotherapy</a></li>
+                    <li><a href="#services" class="hover:text-brand-400 transition-colors">Sports Rehabilitation</a></li>
+                    <li><a href="#services" class="hover:text-brand-400 transition-colors">Women's Health</a></li>
+                    <li><a href="#services" class="hover:text-brand-400 transition-colors">Antenatal & Postnatal</a></li>
+                    <li><a href="#services" class="hover:text-brand-400 transition-colors">Pelvic Floor Rehabilitation</a></li>
+                    <li><a href="#services" class="hover:text-brand-400 transition-colors">Vestibular Rehabilitation</a></li>
+                    <li><a href="#services" class="hover:text-brand-400 transition-colors">Geriatric Rehabilitation</a></li>
+                    <li><a href="#contact" class="hover:text-brand-400 transition-colors">Home Physiotherapy</a></li>
                 </ul>
             </div>
 
@@ -649,7 +902,120 @@
     </div>
 
     <script>
+        // Initialize Lucide icons
         lucide.createIcons();
+
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Set minimum date for appointment to today
+        const dateInput = document.getElementById('client-date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+            dateInput.value = today;
+        }
+
+        // Consultation type radio UI styling
+        const radioOptions = document.querySelectorAll('.consultation-type-option');
+        radioOptions.forEach(option => {
+            const radio = option.querySelector('input[type="radio"]');
+            radio.addEventListener('change', () => {
+                radioOptions.forEach(opt => {
+                    opt.classList.remove('border-brand-600', 'bg-brand-50/50', 'text-brand-900');
+                    opt.classList.add('border-slate-200', 'text-slate-700');
+                });
+                if (radio.checked) {
+                    option.classList.remove('border-slate-200', 'text-slate-700');
+                    option.classList.add('border-brand-600', 'bg-brand-50/50', 'text-brand-900');
+                }
+            });
+        });
+
+        // Booking form submission & WhatsApp formatting
+        const appointmentForm = document.getElementById('appointment-form');
+        const bookingSuccess = document.getElementById('booking-success');
+        const summaryName = document.getElementById('summary-name');
+        const summaryService = document.getElementById('summary-service');
+        const summaryDate = document.getElementById('summary-date');
+        const summaryTime = document.getElementById('summary-time');
+        const whatsappConfirmBtn = document.getElementById('whatsapp-confirm-btn');
+        const bookAnotherBtn = document.getElementById('book-another-btn');
+
+        if (appointmentForm) {
+            appointmentForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('client-name').value.trim();
+                const phone = document.getElementById('client-phone').value.trim();
+                const email = document.getElementById('client-email').value.trim();
+                const service = document.getElementById('client-service').value;
+                const date = document.getElementById('client-date').value;
+                const time = document.getElementById('client-time').value;
+                const notes = document.getElementById('client-notes').value.trim();
+                const typeRadio = document.querySelector('input[name="consultationType"]:checked');
+                const consultationType = typeRadio ? typeRadio.value : 'In-Clinic (Vasant Kunj)';
+
+                if (!name || !phone || !service || !date || !time) {
+                    return;
+                }
+
+                // Update summary UI
+                summaryName.textContent = name;
+                summaryService.textContent = service;
+                summaryDate.textContent = date;
+                summaryTime.textContent = time;
+
+                // Format WhatsApp Message
+                let message = `*New Appointment Request - RehAAB Physiotherapy*\n\n`;
+                message += `*Patient Name:* ${name}\n`;
+                message += `*Phone:* ${phone}\n`;
+                if (email) message += `*Email:* ${email}\n`;
+                message += `*Consultation Type:* ${consultationType}\n`;
+                message += `*Service:* ${service}\n`;
+                message += `*Preferred Date:* ${date}\n`;
+                message += `*Time Slot:* ${time}\n`;
+                if (notes) message += `*Symptoms/Notes:* ${notes}\n`;
+
+                const waUrl = `https://wa.me/919319933875?text=${encodeURIComponent(message)}`;
+                whatsappConfirmBtn.href = waUrl;
+
+                // Show success, hide form
+                bookingSuccess.classList.remove('hidden');
+                appointmentForm.classList.add('hidden');
+                lucide.createIcons();
+
+                // Smooth scroll to top of booking card
+                bookingSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        }
+
+        if (bookAnotherBtn) {
+            bookAnotherBtn.addEventListener('click', () => {
+                appointmentForm.reset();
+                if (dateInput) {
+                    const today = new Date().toISOString().split('T')[0];
+                    dateInput.value = today;
+                }
+                bookingSuccess.classList.add('hidden');
+                appointmentForm.classList.remove('hidden');
+                lucide.createIcons();
+            });
+        }
     </script>
 </body>
 </html>
