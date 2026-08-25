@@ -39,8 +39,9 @@
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .app-container { max-width: 480px; margin: 0 auto; min-height: 100vh; background-color: #ffffff; box-shadow: 0 0 40px rgba(0,0,0,0.05); position: relative; display: flex; flex-direction: column; }
+        body { font-family: 'Inter', sans-serif; background-color: #eef2f6; }
+        .app-container { max-width: 440px; margin: 0 auto; min-height: 100vh; background-color: #f3f6fa; box-shadow: 0 0 35px rgba(0,0,0,0.08); position: relative; display: flex; flex-direction: column; }
+        @media (min-width: 640px) { .app-container { max-width: 480px; } }
         .screen { display: none; flex: 1; flex-direction: column; opacity: 0; transition: opacity 0.3s ease-in-out; }
         .screen.active { display: flex; opacity: 1; animation: fadeIn 0.4s ease-out forwards; }
         
@@ -137,66 +138,126 @@
         }
     </style>
 </head>
-<body class="text-slate-800 antialiased bg-slate-100">
+<body class="text-slate-800 antialiased bg-[#eef2f6]">
 
 <div class="app-container">
 
-    <!-- Return Banner -->
-    <div class="bg-slate-900 text-white text-xs font-medium py-2 px-4 flex justify-between items-center z-50">
-        <a href="index.html" class="flex items-center gap-2 hover:text-brand-400 transition-colors">
-            <i data-lucide="chevron-left" class="w-4 h-4"></i> Return to Clinic
-        </a>
-        <div class="flex items-center gap-1 text-brand-400 text-[10px] tracking-wider uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span> Clinical Active
-        </div>
+    <!-- Top Location Banner (Navy Bar) -->
+    <div class="bg-[#0b132b] text-slate-200 text-[11px] sm:text-xs py-2 px-4 flex items-center justify-center gap-2 text-center leading-snug border-b border-slate-800">
+        <i data-lucide="map-pin" class="w-4 h-4 text-sky-400 shrink-0"></i>
+        <span class="leading-tight">Shop No.1, OPD Block Nao Healthcare, opp. Fortis,<br class="hidden sm:inline"> Pocket 1, Sector B, Vasant Kunj, New Delhi</span>
     </div>
 
-    <!-- Main Header -->
-    <header class="px-6 py-4 border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-40 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
-                <i data-lucide="sparkles" class="w-4 h-4"></i>
-            </div>
-            <h1 class="font-bold text-lg text-slate-900">RehAAB <span class="font-normal text-slate-500">Assessment</span></h1>
-        </div>
-        <button class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200">
-            <i data-lucide="user" class="w-4 h-4"></i>
+    <!-- Main Header (Black Navbar with Logo and Hamburger Menu) -->
+    <header class="bg-black px-4 sm:px-5 py-3 flex items-center justify-between sticky top-0 z-40 border-b border-slate-900 shadow-sm">
+        <a href="index.html" class="flex items-center">
+            <img src="C2EB3874-13AE-4BEB-B6E9-36D8D11813AE.png" alt="RehAAB Physiotherapy & Wellness Centre" class="h-11 sm:h-12 w-auto object-contain" referrerpolicy="no-referrer">
+        </a>
+        <button id="app-menu-btn" onclick="toggleAppMenu()" class="text-white p-1.5 hover:bg-slate-900 rounded-lg transition-colors cursor-pointer" aria-label="Toggle navigation menu">
+            <i data-lucide="menu" class="w-7 h-7 stroke-[2.2]"></i>
         </button>
     </header>
 
+    <!-- Mobile Dropdown Navigation Drawer -->
+    <div id="app-menu-dropdown" class="hidden bg-black border-b border-slate-800 px-5 py-3 space-y-2.5 text-sm z-30 transition-all">
+        <a href="index.html" class="block text-white hover:text-sky-400 font-semibold py-1">Home</a>
+        <a href="index.html#about" class="block text-slate-300 hover:text-sky-400 py-1">About RehAAB</a>
+        <a href="index.html#services" class="block text-slate-300 hover:text-sky-400 py-1">Our Services</a>
+        <a href="index.html#team" class="block text-slate-300 hover:text-sky-400 py-1">Our Team</a>
+        <a href="index.html#contact" class="block text-slate-300 hover:text-sky-400 py-1">Contact & Clinic Location</a>
+        <div class="pt-2 border-t border-slate-800 flex gap-2">
+            <a href="tel:+919319933875" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold py-2 rounded-lg text-center transition-colors">Call Clinic</a>
+            <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20know%20more%20about%20your%20physiotherapy%20services." target="_blank" rel="noopener noreferrer" class="flex-1 bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-2 rounded-lg text-center transition-colors">WhatsApp</a>
+        </div>
+    </div>
+
     <!-- Content Area -->
-    <main class="flex-1 flex flex-col relative overflow-y-auto overflow-x-hidden pb-24">
+    <main class="flex-1 flex flex-col relative overflow-y-auto overflow-x-hidden pb-28">
         
         <!-- SCREEN: HOME -->
-        <section id="screen-home" class="screen active p-6">
-            <div class="flex-1 flex flex-col justify-center">
-                <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 mb-6 mx-auto">
-                    <i data-lucide="activity" class="w-8 h-8"></i>
+        <section id="screen-home" class="screen active p-4 sm:p-5 pt-4 pb-20">
+            <!-- White Main Assessment Card -->
+            <div class="bg-white rounded-[26px] p-6 sm:p-7 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-slate-100/90 mb-4">
+                <!-- Doctor Badge -->
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-10 h-10 rounded-full bg-[#e0f2fe] text-[#0284c7] flex items-center justify-center shrink-0">
+                        <i data-lucide="user" class="w-5 h-5 text-[#0284c7] stroke-[2.2]"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[11px] font-bold text-[#0284c7] tracking-wider uppercase leading-tight">DESIGNED BY</span>
+                        <span class="text-xs font-black text-[#0284c7] tracking-wider uppercase mt-0.5 leading-tight">REHAB DOCTORS</span>
+                    </div>
                 </div>
-                <h1 class="text-3xl font-bold text-center text-slate-900 mb-4 leading-tight">
-                    Understand your pain.<br>Move better.
-                </h1>
-                <p class="text-slate-500 text-center mb-10 leading-relaxed px-4">
-                    Our Pain Relief Assessment uses computer vision and dynamic symptom tracking to map your pain and recommend the right care pathway.
+
+                <!-- Headings -->
+                <h1 class="text-[32px] sm:text-[36px] font-black text-[#0f172a] tracking-tight leading-[1.12]">Free Pain Relief</h1>
+                <h2 class="text-[32px] sm:text-[36px] font-black text-[#0284c7] tracking-tight leading-[1.12] mt-0.5">Assessment</h2>
+                <div class="w-14 h-1.5 bg-[#0284c7] rounded-full mt-2.5 mb-4"></div>
+
+                <!-- Description -->
+                <p class="text-[14px] sm:text-[15px] text-[#475569] font-normal leading-relaxed mb-6">
+                    Answer a few simple questions about your pain and movement. Get personalized exercise ideas and tips to help you feel better.
                 </p>
 
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm mb-6 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="bg-brand-100 text-brand-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Pain Relief Assessment</span>
+                <!-- 3 Feature Highlight Badges with subtle vertical divider look -->
+                <div class="grid grid-cols-3 divide-x divide-slate-100 bg-[#f8fafc] rounded-2xl border border-slate-100 py-3 px-1 mb-6">
+                    <div class="flex items-center gap-2 justify-center px-1">
+                        <div class="w-7 h-7 rounded-full bg-[#e0f2fe] text-[#0284c7] flex items-center justify-center shrink-0">
+                            <i data-lucide="clock" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="text-[10px] text-slate-500 font-medium">Takes</span>
+                            <span class="text-[12px] font-bold text-slate-900 mt-0.5">3 Minutes</span>
+                        </div>
                     </div>
-                    <h2 class="text-xl font-bold mb-2">Begin Assessment</h2>
-                    <p class="text-sm text-slate-500 mb-6">Takes ~3 minutes. Includes movement screening via camera.</p>
-                    <button onclick="nav('screen-consent')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md">
-                        Start Pain Relief Assessment <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </button>
+                    <div class="flex items-center gap-2 justify-center px-1">
+                        <div class="w-7 h-7 rounded-full bg-[#e0f2fe] text-[#0284c7] flex items-center justify-center shrink-0">
+                            <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="text-[10px] text-slate-500 font-medium">100%</span>
+                            <span class="text-[12px] font-bold text-slate-900 mt-0.5">Free</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 justify-center px-1">
+                        <div class="w-7 h-7 rounded-full bg-[#e0f2fe] text-[#0284c7] flex items-center justify-center shrink-0">
+                            <i data-lucide="shield" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="text-[10px] text-slate-500 font-medium">Safe &</span>
+                            <span class="text-[12px] font-bold text-slate-900 mt-0.5">Confidential</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="text-center">
-                    <button onclick="window.location.href='index.html#contact'" class="text-slate-500 text-sm font-medium hover:text-brand-600 transition-colors flex items-center justify-center gap-1 mx-auto">
-                        <i data-lucide="calendar" class="w-4 h-4"></i> Skip & Book Professional
-                    </button>
-                </div>
+                <!-- Primary CTA Button (Black) -->
+                <button onclick="nav('screen-consent')" class="w-full bg-[#081220] hover:bg-[#121e33] text-white font-bold py-4 px-6 rounded-full flex items-center justify-between shadow-lg shadow-slate-900/10 cursor-pointer active:scale-[0.98] transition-all">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-[#38bdf8] shrink-0"></i>
+                    <span class="flex-1 text-center font-bold text-[15px] sm:text-base">Start My Free Assessment</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-white shrink-0"></i>
+                </button>
+
+                <!-- Note below button -->
+                <p class="text-xs text-slate-500 font-medium text-center mt-3.5 mb-0">No sign-up required • Get instant personalized guidance</p>
+            </div>
+
+            <!-- Secondary Pill Action Buttons -->
+            <div class="space-y-3">
+                <a href="index.html#contact" class="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-3.5 px-5 rounded-full flex items-center justify-between shadow-sm cursor-pointer active:scale-[0.98] transition-all">
+                    <div class="w-8 h-8 rounded-full bg-white text-[#0284c7] flex items-center justify-center shrink-0">
+                        <i data-lucide="calendar" class="w-4 h-4 text-[#0284c7]"></i>
+                    </div>
+                    <span class="flex-1 text-center font-bold text-[15px] sm:text-base">Book an Appointment</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-white shrink-0"></i>
+                </a>
+
+                <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20know%20more%20about%20your%20physiotherapy%20services." target="_blank" rel="noopener noreferrer" class="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-bold py-3.5 px-5 rounded-full flex items-center justify-between shadow-sm cursor-pointer active:scale-[0.98] transition-all">
+                    <div class="w-8 h-8 rounded-full bg-white text-[#16a34a] flex items-center justify-center shrink-0">
+                        <i data-lucide="message-circle" class="w-4 h-4 text-[#16a34a]"></i>
+                    </div>
+                    <span class="flex-1 text-center font-bold text-[15px] sm:text-base">WhatsApp Us</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-white shrink-0"></i>
+                </a>
             </div>
         </section>
 
@@ -578,73 +639,90 @@
                         </defs>
 
                         <!-- Ambient Floor Light / Shadow -->
-                        <ellipse cx="80" cy="208" rx="28" ry="5" fill="#fecaca" opacity="0.4" class="aura-pulse" />
-                        <ellipse cx="260" cy="208" rx="28" ry="5" fill="#bae6fd" opacity="0.5" class="aura-pulse" />
+                        <ellipse cx="80" cy="216" rx="34" ry="5.5" fill="#fecaca" opacity="0.4" class="aura-pulse" />
+                        <ellipse cx="260" cy="216" rx="34" ry="5.5" fill="#bae6fd" opacity="0.5" class="aura-pulse" />
 
                         <!-- Ambient Glow Circles -->
-                        <circle cx="80" cy="100" r="46" fill="url(#redAura)" class="aura-pulse" />
-                        <circle cx="260" cy="100" r="46" fill="url(#blueAura)" class="aura-pulse" />
+                        <circle cx="80" cy="110" r="52" fill="url(#redAura)" class="aura-pulse" />
+                        <circle cx="260" cy="110" r="52" fill="url(#blueAura)" class="aura-pulse" />
 
                         <!-- ================= LEFT FIGURE: PAIN STATE (RED) ================= -->
-                        <g transform="translate(35, 8)">
+                        <g transform="translate(35, 6)">
                             <g class="fig-float-left">
-                                <!-- Head (Sleek, refined) -->
-                                <ellipse cx="45" cy="16" rx="6.5" ry="8.8" fill="url(#painFigureGrad)" opacity="0.95" />
-                                
-                                <!-- Neck & Trapezius slope -->
-                                <path d="M42 24 C42 27.5 41 30.5 38.5 33 L51.5 33 C49 30.5 48 27.5 48 24 Z" fill="url(#painFigureGrad)" />
-                                
-                                <!-- Slim Athletic Torso & V-Taper -->
-                                <path d="M38.5 33 C33 34.5 28.5 38 27 44 C25.5 52 27.5 66 31 77 C33 83 34.5 88 34 96 C34 102 38.5 106 45 106 C51.5 106 56 102 56 96 C55.5 88 57 83 59 77 C62.5 66 64.5 52 63 44 C61.5 38 57 34.5 51.5 33 Z" fill="url(#painFigureGrad)" />
-                                
-                                <!-- Left Slender Arm -->
-                                <path d="M27 44 C23 51 21 64 21 78 C21 91 22.5 103 24.5 113 C25.5 116 28 115 28 112 C26.5 102 25.5 90 25.5 78 C25.5 66 27.5 54 29.5 46 Z" fill="url(#painFigureGrad)" opacity="0.9" />
-                                
-                                <!-- Right Slender Arm -->
-                                <path d="M63 44 C67 51 69 64 69 78 C69 91 67.5 103 65.5 113 C64.5 116 62 115 62 112 C63.5 102 64.5 90 64.5 78 C64.5 66 62.5 54 60.5 46 Z" fill="url(#painFigureGrad)" opacity="0.9" />
-                                
-                                <!-- Left Athletic Leg & Tapered Calf -->
-                                <path d="M34 104 C32 116 33 133 35 150 C36 163 34.5 176 35.5 193 C36 197 40 197 40.5 193 C41.5 176 40 163 41 150 C42 136 43.5 120 44.5 106 C40 106 36.5 105 34 104 Z" fill="url(#painFigureGrad)" opacity="0.95" />
-                                
-                                <!-- Right Athletic Leg & Tapered Calf -->
-                                <path d="M56 104 C58 116 57 133 55 150 C54 163 55.5 176 54.5 193 C54 197 50 197 49.5 193 C48.5 176 50 163 49 150 C48 136 46.5 120 45.5 106 C50 106 53.5 105 56 104 Z" fill="url(#painFigureGrad)" opacity="0.95" />
-                                
-                                <!-- Feet -->
-                                <ellipse cx="38" cy="195" rx="3.8" ry="1.6" fill="url(#painFigureGrad)" />
-                                <ellipse cx="52" cy="195" rx="3.8" ry="1.6" fill="url(#painFigureGrad)" />
+                                <!-- Realistic Anatomical Head & Occipital Region -->
+                                <ellipse cx="45" cy="17" rx="7.5" ry="9.5" fill="url(#painFigureGrad)" />
+                                <!-- Occipital Bone Highlight -->
+                                <ellipse cx="45" cy="15" rx="5" ry="6.5" fill="#ffffff" opacity="0.18" />
 
-                                <!-- Subtle 3D Anatomical Back Contours -->
-                                <path d="M45 35 L45 88" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.22" stroke-linecap="round" />
-                                <path d="M38 46 C36 53 37 62 41 66" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-opacity="0.18" stroke-linecap="round" />
-                                <path d="M52 46 C54 53 53 62 49 66" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-opacity="0.18" stroke-linecap="round" />
+                                <!-- Cervical Spine / Neck & Trapezius Muscle Span -->
+                                <path d="M41 24 C40 28 35 32 28 37 C34 38.5 45 39 51 38.5 C57 37 62 32 61 28 C61 24 57 24 49 24 Z" fill="url(#painFigureGrad)" />
 
-                                <!-- Glowing Pain Hotspots & Pulsing Rings -->
-                                <!-- 1. Cervical / Neck Hotspot -->
-                                <g transform="translate(45, 29)">
-                                    <circle cx="0" cy="0" r="10" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
-                                    <circle cx="0" cy="0" r="10" fill="none" stroke="#f87171" class="pain-hotspot-ring-delay" />
-                                    <circle cx="0" cy="0" r="5" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
-                                    <circle cx="0" cy="0" r="1.8" fill="#ffffff" />
-                                </g>
+                                <!-- Shoulders (Deltoids) & Athletic Tapered Back -->
+                                <path d="M28 37 C23 40 18 45 17 53 C16 62 17 76 19 92 C21 102 24 108 28 114 C32 118 38 120 45 120 C52 120 58 118 62 114 C66 108 69 102 71 92 C73 76 74 62 73 53 C72 45 67 40 62 37 C56 38.5 45 39 34 38.5 Z" fill="url(#painFigureGrad)" />
 
-                                <!-- 2. Thoracic / Shoulder Hotspot -->
-                                <g transform="translate(36, 52)">
-                                    <circle cx="0" cy="0" r="10" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
+                                <!-- Left Arm (Deltoid, Triceps, Forearm, Hand) -->
+                                <path d="M17 53 C13 60 11 70 11 82 C11 94 13 104 15 114 C16 118 19 118 20 114 C19 104 18 92 18 80 C18 68 20 58 22 50 Z" fill="url(#painFigureGrad)" opacity="0.9" />
+                                
+                                <!-- Right Arm (Deltoid, Triceps, Forearm, Hand) -->
+                                <path d="M73 53 C77 60 79 70 79 82 C79 94 77 104 75 114 C74 118 71 118 70 114 C71 104 72 92 72 80 C72 68 70 58 68 50 Z" fill="url(#painFigureGrad)" opacity="0.9" />
+
+                                <!-- Pelvic Girdle & Gluteal Muscle Definition -->
+                                <path d="M28 114 C27 122 29 130 33 136 C37 140 41 142 45 142 C49 142 53 140 57 136 C61 130 63 122 62 114 C55 117 45 118 35 117 Z" fill="url(#painFigureGrad)" />
+
+                                <!-- Left Leg (Hamstring, Knee Joint, Calf Musculature, Achilles) -->
+                                <path d="M33 136 C30 146 30 158 32 168 C33 174 32 180 32 188 C32 196 31 202 33 206 C34 209 38 209 39 206 C40 200 40 192 41 184 C42 176 43 168 43 158 C43 148 44 142 44 138 C40 138 36 137 33 136 Z" fill="url(#painFigureGrad)" opacity="0.95" />
+
+                                <!-- Right Leg (Hamstring, Knee Joint, Calf Musculature, Achilles) -->
+                                <path d="M57 136 C60 146 60 158 58 168 C57 174 58 180 58 188 C58 196 59 202 57 206 C56 209 52 209 51 206 C50 200 50 192 49 184 C48 176 47 168 47 158 C47 148 46 142 46 138 C50 138 54 137 57 136 Z" fill="url(#painFigureGrad)" opacity="0.95" />
+
+                                <!-- Feet / Heels -->
+                                <ellipse cx="36" cy="207" rx="4" ry="1.8" fill="url(#painFigureGrad)" />
+                                <ellipse cx="54" cy="207" rx="4" ry="1.8" fill="url(#painFigureGrad)" />
+
+                                <!-- Anatomical 3D Shading & Muscle Contours -->
+                                <!-- Scapula Left & Right Contours -->
+                                <path d="M35 48 C32 55 33 66 38 72 C39 64 38 54 36 48" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.22" stroke-linecap="round" />
+                                <path d="M55 48 C58 55 57 66 52 72 C51 64 52 54 54 48" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.22" stroke-linecap="round" />
+                                
+                                <!-- Spine Furrow (Spinal Groove) -->
+                                <path d="M45 28 L45 116" stroke="#b91c1c" stroke-width="1.2" stroke-opacity="0.35" stroke-linecap="round" />
+                                <path d="M45.6 30 L45.6 114" stroke="#ffffff" stroke-width="0.6" stroke-opacity="0.2" stroke-linecap="round" />
+
+                                <!-- Latissimus / Flank Shadow Lines -->
+                                <path d="M26 64 C28 78 32 94 36 106" fill="none" stroke="#991b1b" stroke-width="0.9" stroke-opacity="0.25" stroke-linecap="round" />
+                                <path d="M64 64 C62 78 58 94 54 106" fill="none" stroke="#991b1b" stroke-width="0.9" stroke-opacity="0.25" stroke-linecap="round" />
+
+                                <!-- Popliteal (Back of Knee) Creases -->
+                                <path d="M34 172 C36 173 39 173 41 172" stroke="#991b1b" stroke-width="0.8" stroke-opacity="0.3" stroke-linecap="round" />
+                                <path d="M49 172 C51 173 54 173 56 172" stroke="#991b1b" stroke-width="0.8" stroke-opacity="0.3" stroke-linecap="round" />
+
+                                <!-- Glowing Pain Trigger Hotspots & Pulsing Concentric Rings -->
+                                <!-- 1. Cervical / Neck C5-C7 Hotspot -->
+                                <g transform="translate(45, 30)">
+                                    <circle cx="0" cy="0" r="10.5" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
+                                    <circle cx="0" cy="0" r="10.5" fill="none" stroke="#f87171" class="pain-hotspot-ring-delay" />
                                     <circle cx="0" cy="0" r="5.5" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
                                     <circle cx="0" cy="0" r="1.8" fill="#ffffff" />
                                 </g>
 
-                                <!-- 3. Lumbar / Lower Back Hotspot -->
-                                <g transform="translate(45, 84)">
-                                    <circle cx="0" cy="0" r="12" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
-                                    <circle cx="0" cy="0" r="12" fill="none" stroke="#f87171" class="pain-hotspot-ring-delay" />
-                                    <circle cx="0" cy="0" r="6.5" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
+                                <!-- 2. Thoracic / Left Scapula Hotspot -->
+                                <g transform="translate(34, 56)">
+                                    <circle cx="0" cy="0" r="11" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
+                                    <circle cx="0" cy="0" r="6" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
+                                    <circle cx="0" cy="0" r="1.8" fill="#ffffff" />
+                                </g>
+
+                                <!-- 3. Lumbar / L4-L5 Lower Back Hotspot -->
+                                <g transform="translate(45, 96)">
+                                    <circle cx="0" cy="0" r="13" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
+                                    <circle cx="0" cy="0" r="13" fill="none" stroke="#f87171" class="pain-hotspot-ring-delay" />
+                                    <circle cx="0" cy="0" r="7" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
                                     <circle cx="0" cy="0" r="2.2" fill="#ffffff" />
                                 </g>
 
-                                <!-- 4. Knee Hotspot -->
-                                <g transform="translate(54, 150)">
-                                    <circle cx="0" cy="0" r="9" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
+                                <!-- 4. Knee Joint Popliteal Hotspot -->
+                                <g transform="translate(54, 168)">
+                                    <circle cx="0" cy="0" r="9.5" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
                                     <circle cx="0" cy="0" r="5" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
                                     <circle cx="0" cy="0" r="1.6" fill="#ffffff" />
                                 </g>
@@ -653,74 +731,85 @@
 
                         <!-- ================= CENTER: HEALING FLOW & ENERGY STREAM ================= -->
                         <!-- Ambient Soothing Wave Stream -->
-                        <path d="M 118 96 C 152 74, 182 118, 222 96" fill="none" stroke="url(#flowBeamGrad)" stroke-width="12" opacity="0.38" stroke-linecap="round" />
-                        <path d="M 118 96 C 152 74, 182 118, 222 96" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" class="energy-flow-path" filter="url(#glowBlue)" />
+                        <path d="M 120 100 C 154 76, 184 124, 220 100" fill="none" stroke="url(#flowBeamGrad)" stroke-width="12" opacity="0.38" stroke-linecap="round" />
+                        <path d="M 120 100 C 154 76, 184 124, 220 100" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" class="energy-flow-path" filter="url(#glowBlue)" />
                         
                         <!-- Flow Arrow Head -->
-                        <polygon points="220,92 230,96 220,100" fill="#0284c7" filter="url(#glowBlue)" />
+                        <polygon points="218,95 228,100 218,105" fill="#0284c7" filter="url(#glowBlue)" />
 
                         <!-- Drifting Energy Sparkles / Orbs -->
-                        <g transform="translate(115, 96)">
+                        <g transform="translate(118, 100)">
                             <circle cx="0" cy="0" r="3" fill="#ffffff" filter="url(#glowBlue)" class="energy-particle-1" />
                             <circle cx="7" cy="3" r="2.2" fill="#7dd3fc" filter="url(#glowBlue)" class="energy-particle-2" />
                             <circle cx="-3" cy="-3" r="1.8" fill="#ffffff" filter="url(#glowBlue)" class="energy-particle-3" />
                         </g>
                         
                         <!-- Floating Ambient Light Dots -->
-                        <circle cx="155" cy="68" r="1.6" fill="#38bdf8" opacity="0.75" class="aura-pulse" />
-                        <circle cx="185" cy="126" r="1.6" fill="#38bdf8" opacity="0.85" class="aura-pulse" />
-                        <circle cx="168" cy="106" r="2" fill="#ffffff" opacity="0.9" class="aura-pulse" />
-                        <circle cx="200" cy="82" r="1.8" fill="#7dd3fc" opacity="0.9" class="aura-pulse" />
+                        <circle cx="155" cy="70" r="1.6" fill="#38bdf8" opacity="0.75" class="aura-pulse" />
+                        <circle cx="185" cy="130" r="1.6" fill="#38bdf8" opacity="0.85" class="aura-pulse" />
+                        <circle cx="168" cy="110" r="2" fill="#ffffff" opacity="0.9" class="aura-pulse" />
+                        <circle cx="202" cy="85" r="1.8" fill="#7dd3fc" opacity="0.9" class="aura-pulse" />
 
                         <!-- ================= RIGHT FIGURE: RELIEF STATE (BLUE) ================= -->
-                        <g transform="translate(215, 8)">
+                        <g transform="translate(215, 6)">
                             <g class="fig-float-right">
-                                <!-- Head (Sleek, refined) -->
-                                <ellipse cx="45" cy="16" rx="6.5" ry="8.8" fill="url(#reliefFigureGrad)" opacity="0.95" />
-                                
-                                <!-- Neck & Trapezius slope -->
-                                <path d="M42 24 C42 27.5 41 30.5 38.5 33 L51.5 33 C49 30.5 48 27.5 48 24 Z" fill="url(#reliefFigureGrad)" />
-                                
-                                <!-- Slim Athletic Torso & V-Taper -->
-                                <path d="M38.5 33 C33 34.5 28.5 38 27 44 C25.5 52 27.5 66 31 77 C33 83 34.5 88 34 96 C34 102 38.5 106 45 106 C51.5 106 56 102 56 96 C55.5 88 57 83 59 77 C62.5 66 64.5 52 63 44 C61.5 38 57 34.5 51.5 33 Z" fill="url(#reliefFigureGrad)" />
-                                
-                                <!-- Left Slender Arm -->
-                                <path d="M27 44 C23 51 21 64 21 78 C21 91 22.5 103 24.5 113 C25.5 116 28 115 28 112 C26.5 102 25.5 90 25.5 78 C25.5 66 27.5 54 29.5 46 Z" fill="url(#reliefFigureGrad)" opacity="0.9" />
-                                
-                                <!-- Right Slender Arm -->
-                                <path d="M63 44 C67 51 69 64 69 78 C69 91 67.5 103 65.5 113 C64.5 116 62 115 62 112 C63.5 102 64.5 90 64.5 78 C64.5 66 62.5 54 60.5 46 Z" fill="url(#reliefFigureGrad)" opacity="0.9" />
-                                
-                                <!-- Left Athletic Leg & Tapered Calf -->
-                                <path d="M34 104 C32 116 33 133 35 150 C36 163 34.5 176 35.5 193 C36 197 40 197 40.5 193 C41.5 176 40 163 41 150 C42 136 43.5 120 44.5 106 C40 106 36.5 105 34 104 Z" fill="url(#reliefFigureGrad)" opacity="0.95" />
-                                
-                                <!-- Right Athletic Leg & Tapered Calf -->
-                                <path d="M56 104 C58 116 57 133 55 150 C54 163 55.5 176 54.5 193 C54 197 50 197 49.5 193 C48.5 176 50 163 49 150 C48 136 46.5 120 45.5 106 C50 106 53.5 105 56 104 Z" fill="url(#reliefFigureGrad)" opacity="0.95" />
-                                
-                                <!-- Feet -->
-                                <ellipse cx="38" cy="195" rx="3.8" ry="1.6" fill="url(#reliefFigureGrad)" />
-                                <ellipse cx="52" cy="195" rx="3.8" ry="1.6" fill="url(#reliefFigureGrad)" />
+                                <!-- Realistic Anatomical Head & Occipital Region -->
+                                <ellipse cx="45" cy="17" rx="7.5" ry="9.5" fill="url(#reliefFigureGrad)" />
+                                <!-- Cranial Light Reflection -->
+                                <ellipse cx="45" cy="15" rx="5" ry="6.5" fill="#ffffff" opacity="0.25" />
 
-                                <!-- Subtle 3D Anatomical Back Contours -->
-                                <path d="M38 46 C36 53 37 62 41 66" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-opacity="0.2" stroke-linecap="round" />
-                                <path d="M52 46 C54 53 53 62 49 66" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-opacity="0.2" stroke-linecap="round" />
+                                <!-- Cervical Spine / Neck & Trapezius Muscle Span -->
+                                <path d="M41 24 C40 28 35 32 28 37 C34 38.5 45 39 51 38.5 C57 37 62 32 61 28 C61 24 57 24 49 24 Z" fill="url(#reliefFigureGrad)" />
 
-                                <!-- Illuminated Aligned Spine -->
+                                <!-- Shoulders (Deltoids) & Athletic Tapered Back -->
+                                <path d="M28 37 C23 40 18 45 17 53 C16 62 17 76 19 92 C21 102 24 108 28 114 C32 118 38 120 45 120 C52 120 58 118 62 114 C66 108 69 102 71 92 C73 76 74 62 73 53 C72 45 67 40 62 37 C56 38.5 45 39 34 38.5 Z" fill="url(#reliefFigureGrad)" />
+
+                                <!-- Left Arm (Deltoid, Triceps, Forearm, Hand) -->
+                                <path d="M17 53 C13 60 11 70 11 82 C11 94 13 104 15 114 C16 118 19 118 20 114 C19 104 18 92 18 80 C18 68 20 58 22 50 Z" fill="url(#reliefFigureGrad)" opacity="0.9" />
+                                
+                                <!-- Right Arm (Deltoid, Triceps, Forearm, Hand) -->
+                                <path d="M73 53 C77 60 79 70 79 82 C79 94 77 104 75 114 C74 118 71 118 70 114 C71 104 72 92 72 80 C72 68 70 58 68 50 Z" fill="url(#reliefFigureGrad)" opacity="0.9" />
+
+                                <!-- Pelvic Girdle & Gluteal Muscle Definition -->
+                                <path d="M28 114 C27 122 29 130 33 136 C37 140 41 142 45 142 C49 142 53 140 57 136 C61 130 63 122 62 114 C55 117 45 118 35 117 Z" fill="url(#reliefFigureGrad)" />
+
+                                <!-- Left Leg (Hamstring, Knee Joint, Calf Musculature, Achilles) -->
+                                <path d="M33 136 C30 146 30 158 32 168 C33 174 32 180 32 188 C32 196 31 202 33 206 C34 209 38 209 39 206 C40 200 40 192 41 184 C42 176 43 168 43 158 C43 148 44 142 44 138 C40 138 36 137 33 136 Z" fill="url(#reliefFigureGrad)" opacity="0.95" />
+
+                                <!-- Right Leg (Hamstring, Knee Joint, Calf Musculature, Achilles) -->
+                                <path d="M57 136 C60 146 60 158 58 168 C57 174 58 180 58 188 C58 196 59 202 57 206 C56 209 52 209 51 206 C50 200 50 192 49 184 C48 176 47 168 47 158 C47 148 46 142 46 138 C50 138 54 137 57 136 Z" fill="url(#reliefFigureGrad)" opacity="0.95" />
+
+                                <!-- Feet / Heels -->
+                                <ellipse cx="36" cy="207" rx="4" ry="1.8" fill="url(#reliefFigureGrad)" />
+                                <ellipse cx="54" cy="207" rx="4" ry="1.8" fill="url(#reliefFigureGrad)" />
+
+                                <!-- Anatomical 3D Shading & Muscle Contours -->
+                                <!-- Scapula Left & Right Contours -->
+                                <path d="M35 48 C32 55 33 66 38 72 C39 64 38 54 36 48" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.25" stroke-linecap="round" />
+                                <path d="M55 48 C58 55 57 66 52 72 C51 64 52 54 54 48" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.25" stroke-linecap="round" />
+
+                                <!-- Popliteal (Back of Knee) Creases -->
+                                <path d="M34 172 C36 173 39 173 41 172" stroke="#0284c7" stroke-width="0.8" stroke-opacity="0.35" stroke-linecap="round" />
+                                <path d="M49 172 C51 173 54 173 56 172" stroke="#0284c7" stroke-width="0.8" stroke-opacity="0.35" stroke-linecap="round" />
+
+                                <!-- Restored Luminous Aligned Vertebral Column -->
                                 <g class="relief-spine-glow">
-                                    <!-- Spine Core Beam -->
-                                    <line x1="45" y1="28" x2="45" y2="104" stroke="url(#spineBeamGrad)" stroke-width="3.2" stroke-linecap="round" filter="url(#glowBlue)" />
-                                    <line x1="45" y1="28" x2="45" y2="104" stroke="#ffffff" stroke-width="1.1" stroke-linecap="round" />
+                                    <!-- Spine Glow Core Beam -->
+                                    <line x1="45" y1="26" x2="45" y2="126" stroke="url(#spineBeamGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#glowBlue)" />
+                                    <line x1="45" y1="26" x2="45" y2="126" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" />
                                     
-                                    <!-- Individual Vertebrae Illumination Discs -->
-                                    <circle cx="45" cy="30" r="2.2" fill="url(#spinePointGrad)" />
-                                    <circle cx="45" cy="38" r="2.4" fill="url(#spinePointGrad)" />
-                                    <circle cx="45" cy="46" r="2.4" fill="url(#spinePointGrad)" />
-                                    <circle cx="45" cy="54" r="2.6" fill="url(#spinePointGrad)" />
-                                    <circle cx="45" cy="62" r="2.6" fill="url(#spinePointGrad)" />
-                                    <circle cx="45" cy="70" r="2.8" fill="url(#spinePointGrad)" />
-                                    <circle cx="45" cy="78" r="2.8" fill="url(#spinePointGrad)" />
-                                    <circle cx="45" cy="86" r="2.8" fill="url(#spinePointGrad)" />
-                                    <circle cx="45" cy="94" r="2.6" fill="url(#spinePointGrad)" />
-                                    <circle cx="45" cy="102" r="2.2" fill="url(#spinePointGrad)" />
+                                    <!-- Individual Vertebrae Illumination Discs (C1-C7, T1-T12, L1-L5, Sacrum) -->
+                                    <circle cx="45" cy="28" r="2.2" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="37" r="2.4" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="46" r="2.5" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="55" r="2.6" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="65" r="2.8" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="75" r="2.9" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="85" r="3.0" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="95" r="3.1" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="105" r="3.0" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="116" r="2.6" fill="url(#spinePointGrad)" />
+                                    <circle cx="45" cy="125" r="2.0" fill="url(#spinePointGrad)" />
                                 </g>
                             </g>
                         </g>
@@ -885,31 +974,34 @@
 
     </main>
 
-    <!-- Bottom Navigation -->
-    <nav class="bg-white border-t border-slate-200 px-6 py-3 pb-8 md:pb-4 flex justify-between items-center fixed bottom-0 w-full max-w-[480px] z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
-        <button onclick="nav('screen-home')" id="nav-home" class="nav-btn active">
-            <i data-lucide="home" class="w-5 h-5"></i>
-            <span>Home</span>
-        </button>
-        <button onclick="nav('screen-body')" id="nav-assess" class="nav-btn">
-            <i data-lucide="scan-body" class="w-5 h-5"></i>
-            <span>Assess</span>
-        </button>
-        <button onclick="nav('screen-rehab')" id="nav-rehab" class="nav-btn">
-            <i data-lucide="dumbbell" class="w-5 h-5"></i>
-            <span>Rehab</span>
-        </button>
-        <button onclick="window.location.href='index.html#contact'" class="nav-btn">
-            <i data-lucide="calendar" class="w-5 h-5"></i>
-            <span>Clinic</span>
-        </button>
-    </nav>
+    <!-- Bottom Sticky Bar -->
+    <div class="bg-white border-t border-slate-200 fixed bottom-0 left-0 right-0 max-w-[440px] sm:max-w-[480px] mx-auto z-40 flex rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.06)] overflow-hidden">
+        <a href="tel:+919319933875" class="flex-1 py-3 flex flex-col items-center justify-center text-slate-900 hover:bg-slate-50 transition-colors border-r border-slate-200/80">
+            <i data-lucide="phone" class="w-5 h-5 text-slate-900 mb-1 stroke-[2.2]"></i>
+            <span class="text-[11px] font-black uppercase tracking-wider text-slate-900">CALL</span>
+        </a>
+        <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20know%20more%20about%20your%20physiotherapy%20services." target="_blank" rel="noopener noreferrer" class="flex-1 py-3 flex flex-col items-center justify-center text-[#16a34a] hover:bg-green-50/40 transition-colors border-r border-slate-200/80">
+            <i data-lucide="message-circle" class="w-5 h-5 text-[#16a34a] mb-1 stroke-[2.2]"></i>
+            <span class="text-[11px] font-black uppercase tracking-wider text-[#16a34a]">WHATSAPP</span>
+        </a>
+        <a href="index.html#contact" class="flex-1 py-3 flex flex-col items-center justify-center text-[#0284c7] hover:bg-sky-50/40 transition-colors">
+            <i data-lucide="calendar" class="w-5 h-5 text-[#0284c7] mb-1 stroke-[2.2]"></i>
+            <span class="text-[11px] font-black uppercase tracking-wider text-[#0284c7]">BOOK</span>
+        </a>
+    </div>
 
 </div>
 
 <script>
     // Initialize Icons
     lucide.createIcons();
+
+    function toggleAppMenu() {
+        const menu = document.getElementById('app-menu-dropdown');
+        if (menu) {
+            menu.classList.toggle('hidden');
+        }
+    }
 
     // State
     let state = {
@@ -918,6 +1010,12 @@
     };
 
     function nav(screenId) {
+        // Hide menu if open
+        const menu = document.getElementById('app-menu-dropdown');
+        if (menu && !menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+        }
+
         // Hide all screens
         document.querySelectorAll('.screen').forEach(el => {
             el.classList.remove('active');
@@ -933,12 +1031,6 @@
         if(screenId !== 'screen-camera-live' && state.stream) {
             stopCamera();
         }
-
-        // Update Bottom Nav active state
-        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active', 'text-brand-600'));
-        if(screenId === 'screen-home') document.getElementById('nav-home').classList.add('active', 'text-brand-600');
-        if(['screen-body', 'screen-symptoms', 'screen-duration', 'screen-camera-intro'].includes(screenId)) document.getElementById('nav-assess').classList.add('active', 'text-brand-600');
-        if(['screen-rehab', 'screen-results'].includes(screenId)) document.getElementById('nav-rehab').classList.add('active', 'text-brand-600');
 
         window.scrollTo(0, 0);
     }

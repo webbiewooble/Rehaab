@@ -33,54 +33,56 @@
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased pb-16 lg:pb-0 pt-[116px] lg:pt-[124px]">
+<body class="bg-[#eef2f6] text-slate-800 antialiased pb-20 lg:pb-0">
 
-    <!-- Top Utility Bar -->
-    <div class="fixed top-0 left-0 right-0 z-50 bg-slate-900 text-slate-300 py-2 px-6 text-xs md:text-sm border-b border-slate-800">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-6">
-                <span class="flex items-center gap-2 font-medium">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-400"></i> Shop No.1, OPD Block Nao Healthcare, opp. Fortis, Pocket 1, Sector B, Vasant Kunj, New Delhi
-                </span>
-                <span class="hidden md:flex items-center gap-2 font-medium">
-                    <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-400"></i> +91 93199 33875
-                </span>
-                <span class="hidden lg:flex items-center gap-2 font-medium text-emerald-400">
+    <!-- Top Utility Bar (Responsive: Full info on desktop, centered location on mobile) -->
+    <div class="bg-[#0b132b] text-slate-200 text-xs py-2 px-4 md:px-8 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2 text-center md:text-left">
+                <i data-lucide="map-pin" class="w-4 h-4 text-sky-400 shrink-0"></i>
+                <span class="text-[11px] sm:text-xs">Shop No.1, OPD Block Nao Healthcare, opp. Fortis, Pocket 1, Sector B, Vasant Kunj, New Delhi</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-xs text-slate-300">
+                <a href="tel:+919319933875" class="flex items-center gap-1.5 hover:text-sky-400 transition-colors">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-sky-400"></i> +91 93199 33875
+                </a>
+                <span class="flex items-center gap-1.5 text-emerald-400">
                     <i data-lucide="clock" class="w-3.5 h-3.5"></i> Open Daily · Closes 10 PM
                 </span>
-            </div>
-            <div class="flex items-center gap-4">
-                <a href="#" class="hover:text-white transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-                <a href="#" class="hover:text-white transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-                <a href="#" class="hover:text-white transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                <div class="flex items-center gap-3 border-l border-slate-700 pl-4">
+                    <a href="https://wa.me/919319933875" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 transition-colors" title="WhatsApp">
+                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Main Navigation -->
-    <nav class="fixed top-11 md:top-[36px] left-0 right-0 z-40 bg-black shadow-sm border-b border-slate-900">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 py-2 flex items-center justify-between">
-            <a href="/" class="flex items-center justify-start scale-100 origin-left transition-transform">
-                <img src="C2EB3874-13AE-4BEB-B6E9-36D8D11813AE.png" alt="RehAAB Physiotherapy & Wellness Centre" class="h-12 md:h-14 w-auto object-contain" referrerpolicy="no-referrer">
+    <!-- Main Navigation (Black Navbar) -->
+    <nav class="bg-black shadow-sm border-b border-slate-900 sticky top-[33px] z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-2.5 flex items-center justify-between">
+            <a href="/" class="flex items-center">
+                <img src="C2EB3874-13AE-4BEB-B6E9-36D8D11813AE.png" alt="RehAAB Physiotherapy & Wellness Centre" class="h-11 sm:h-12 w-auto object-contain" referrerpolicy="no-referrer">
             </a>
             
             <div class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
-                <a href="/" class="text-white">Home</a>
-                <a href="#about" class="hover:text-white transition-colors">About RehAAB</a>
-                <a href="#services" class="hover:text-white transition-colors">Our Services</a>
-                <a href="#team" class="hover:text-white transition-colors">Our Team</a>
-                <a href="ai-assessment.html" class="flex items-center gap-1.5 text-brand-400 hover:text-brand-300 transition-colors">
-                    <i data-lucide="sparkles" class="w-4 h-4"></i> Pain Relief Assessment
+                <a href="/" class="text-white hover:text-sky-400 transition-colors">Home</a>
+                <a href="#about" class="hover:text-sky-400 transition-colors">About RehAAB</a>
+                <a href="#services" class="hover:text-sky-400 transition-colors">Our Services</a>
+                <a href="#team" class="hover:text-sky-400 transition-colors">Our Team</a>
+                <a href="#conditions" class="hover:text-sky-400 transition-colors">Conditions</a>
+                <a href="ai-assessment.html" class="flex items-center gap-1.5 text-sky-400 hover:text-sky-300 transition-colors bg-sky-950/50 border border-sky-800/60 px-3.5 py-1.5 rounded-full">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-sky-400"></i> Free Assessment
                 </a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                <a href="#contact" class="hover:text-sky-400 transition-colors">Contact</a>
                 
-                <div class="flex items-center gap-3 ml-4">
-                    <a href="#contact" class="bg-brand-600 text-white px-5 py-2.5 rounded-full font-bold hover:bg-brand-700 transition-colors shadow-sm">Book Appointment</a>
+                <div class="flex items-center gap-3 ml-2">
+                    <a href="#contact" class="bg-[#0284c7] text-white px-5 py-2.5 rounded-full font-bold hover:bg-[#0369a1] transition-colors shadow-sm text-xs uppercase tracking-wider">Book Appointment</a>
                 </div>
             </div>
             
-            <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="lg:hidden text-white p-2 focus:outline-none">
-                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="lg:hidden text-white p-1.5 focus:outline-none">
+                <i data-lucide="menu" id="menu-icon" class="w-7 h-7 stroke-[2.2]"></i>
             </button>
         </div>
 
@@ -90,46 +92,190 @@
             <a href="#about" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">About RehAAB</a>
             <a href="#services" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">Our Services</a>
             <a href="#team" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">Our Team</a>
-            <a href="ai-assessment.html" class="flex items-center gap-2 text-brand-400 font-medium hover:text-brand-300">
-                <i data-lucide="sparkles" class="w-4 h-4"></i> Try Pain Relief Assessment
+            <a href="ai-assessment.html" class="flex items-center gap-2 text-sky-400 font-medium hover:text-sky-300">
+                <i data-lucide="sparkles" class="w-4 h-4"></i> Free Pain Relief Assessment
             </a>
             <a href="#conditions" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">Conditions We Treat</a>
             <a href="#contact" class="block text-slate-300 font-medium hover:text-brand-400 mobile-nav-link">Contact & Directions</a>
-            <div class="pt-2">
-                <a href="#contact" class="mobile-nav-link w-full text-center block bg-brand-600 text-white py-3 rounded-full font-bold hover:bg-brand-700">
-                    Book an Appointment
-                </a>
+            <div class="pt-2 flex gap-2">
+                <a href="tel:+919319933875" class="flex-1 text-center block bg-slate-800 text-white py-2.5 rounded-xl font-bold text-xs hover:bg-slate-700">Call Clinic</a>
+                <a href="#contact" class="mobile-nav-link flex-1 text-center block bg-brand-600 text-white py-2.5 rounded-xl font-bold text-xs hover:bg-brand-700">Book Visit</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-10 pb-20 lg:pt-16 lg:pb-32 overflow-hidden bg-slate-100">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="max-w-2xl">
-                <h1 class="text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.15]">
-                    Move Better.<br/>Recover Better.<br/><span class="text-brand-600">Live Better.</span>
-                </h1>
-                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
-                    Personalised, evidence-based physiotherapy and rehabilitation designed around your condition, your goals and your lifestyle.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 flex-wrap">
-                    <a href="#contact" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all shadow-md flex-1">
-                        Book an Appointment
-                    </a>
-                    <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20book%20a%20physiotherapy%20appointment." target="_blank" rel="noopener noreferrer" class="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all shadow-md flex-1">
-                        <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp Us
-                    </a>
+    <!-- Hero Section (Desktop Responsive & Mobile Pixel-Perfect) -->
+    <section class="pt-4 sm:pt-8 pb-12 lg:pb-20 px-4 sm:px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Grid for Desktop / Stack for Mobile -->
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Desktop Left Column: Clinic Hero Information -->
+                <div class="hidden lg:flex lg:col-span-7 flex-col justify-center">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 text-[#0284c7] font-bold text-xs uppercase tracking-wider w-max mb-6">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        Vasant Kunj • OPP. Fortis Hospital
+                    </div>
+                    
+                    <h1 class="text-4xl xl:text-5xl font-black text-slate-900 tracking-tight leading-[1.15] mb-6">
+                        Move Better.<br/>
+                        Recover Faster.<br/>
+                        <span class="text-[#0284c7]">Live Without Pain.</span>
+                    </h1>
+                    
+                    <p class="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
+                        Evidence-based physiotherapy, pain management, and specialized orthopaedic rehabilitation tailored precisely to your condition and recovery goals.
+                    </p>
+
+                    <!-- Feature Highlights Grid -->
+                    <div class="grid sm:grid-cols-2 gap-4 mb-8 max-w-xl">
+                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#0284c7] flex items-center justify-center shrink-0">
+                                <i data-lucide="user-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900">Doctor Led</h4>
+                                <p class="text-xs text-slate-500">Expert Physiotherapists</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900">Advanced Modalities</h4>
+                                <p class="text-xs text-slate-500">Laser & Ultrasound</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="activity" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900">Personal Care</h4>
+                                <p class="text-xs text-slate-500">1-on-1 Dedicated Rehab</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900">Open 7 Days</h4>
+                                <p class="text-xs text-slate-500">Until 10 PM Daily</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex items-center gap-4 flex-wrap">
+                        <a href="#contact" class="bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold px-7 py-3.5 rounded-full flex items-center gap-2 shadow-sm transition-all text-sm uppercase tracking-wider">
+                            <i data-lucide="calendar" class="w-4 h-4"></i> Book Appointment
+                        </a>
+                        <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20know%20more%20about%20your%20physiotherapy%20services." target="_blank" rel="noopener noreferrer" class="bg-[#16a34a] hover:bg-[#15803d] text-white font-bold px-7 py-3.5 rounded-full flex items-center gap-2 shadow-sm transition-all text-sm uppercase tracking-wider">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Us
+                        </a>
+                        <a href="tel:+919319933875" class="bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold px-6 py-3.5 rounded-full flex items-center gap-2 transition-all text-sm">
+                            <i data-lucide="phone" class="w-4 h-4 text-sky-400"></i> +91 93199 33875
+                        </a>
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <a href="ai-assessment.html" class="bg-slate-900 hover:bg-slate-800 text-brand-400 font-bold px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all shadow-md w-full sm:w-max border border-brand-500/30">
-                        <i data-lucide="sparkles" class="w-5 h-5 text-brand-400"></i> Try Free Pain Relief Assessment
-                    </a>
+
+                <!-- Right Column (Desktop) / Main Content (Mobile): Assessment Card -->
+                <div class="lg:col-span-5 max-w-[440px] sm:max-w-[480px] mx-auto w-full">
+                    
+                    <!-- White Main Assessment Card -->
+                    <div class="bg-white rounded-[26px] p-6 sm:p-7 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-slate-100/90 mb-4">
+                        <!-- Doctor Badge -->
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-full bg-[#e0f2fe] text-[#0284c7] flex items-center justify-center shrink-0">
+                                <i data-lucide="user" class="w-5 h-5 text-[#0284c7] stroke-[2.2]"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-[11px] font-bold text-[#0284c7] tracking-wider uppercase leading-tight">DESIGNED BY</span>
+                                <span class="text-xs font-black text-[#0284c7] tracking-wider uppercase mt-0.5 leading-tight">REHAB DOCTORS</span>
+                            </div>
+                        </div>
+
+                        <!-- Headings -->
+                        <h2 class="text-[30px] sm:text-[34px] font-black text-[#0f172a] tracking-tight leading-[1.12]">Free Pain Relief</h2>
+                        <h3 class="text-[30px] sm:text-[34px] font-black text-[#0284c7] tracking-tight leading-[1.12] mt-0.5">Assessment</h3>
+                        <div class="w-14 h-1.5 bg-[#0284c7] rounded-full mt-2.5 mb-4"></div>
+
+                        <!-- Description -->
+                        <p class="text-[14px] sm:text-[15px] text-[#475569] font-normal leading-relaxed mb-6">
+                            Answer a few simple questions about your pain and movement. Get personalized exercise ideas and tips to help you feel better.
+                        </p>
+
+                        <!-- 3 Feature Highlight Badges -->
+                        <div class="grid grid-cols-3 divide-x divide-slate-100 bg-[#f8fafc] rounded-2xl border border-slate-100 py-3 px-1 mb-6">
+                            <div class="flex items-center gap-2 justify-center px-1">
+                                <div class="w-7 h-7 rounded-full bg-[#e0f2fe] text-[#0284c7] flex items-center justify-center shrink-0">
+                                    <i data-lucide="clock" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+                                </div>
+                                <div class="flex flex-col leading-none">
+                                    <span class="text-[10px] text-slate-500 font-medium">Takes</span>
+                                    <span class="text-[12px] font-bold text-slate-900 mt-0.5">3 Minutes</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 justify-center px-1">
+                                <div class="w-7 h-7 rounded-full bg-[#e0f2fe] text-[#0284c7] flex items-center justify-center shrink-0">
+                                    <i data-lucide="check" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+                                </div>
+                                <div class="flex flex-col leading-none">
+                                    <span class="text-[10px] text-slate-500 font-medium">100%</span>
+                                    <span class="text-[12px] font-bold text-slate-900 mt-0.5">Free</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 justify-center px-1">
+                                <div class="w-7 h-7 rounded-full bg-[#e0f2fe] text-[#0284c7] flex items-center justify-center shrink-0">
+                                    <i data-lucide="shield" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+                                </div>
+                                <div class="flex flex-col leading-none">
+                                    <span class="text-[10px] text-slate-500 font-medium">Safe &</span>
+                                    <span class="text-[12px] font-bold text-slate-900 mt-0.5">Confidential</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Primary CTA Button (Black) -->
+                        <a href="ai-assessment.html" class="w-full bg-[#081220] hover:bg-[#121e33] text-white font-bold py-4 px-6 rounded-full flex items-center justify-between shadow-lg shadow-slate-900/10 cursor-pointer active:scale-[0.98] transition-all">
+                            <i data-lucide="sparkles" class="w-5 h-5 text-[#38bdf8] shrink-0"></i>
+                            <span class="flex-1 text-center font-bold text-[15px] sm:text-base">Start My Free Assessment</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 text-white shrink-0"></i>
+                        </a>
+
+                        <!-- Note below button -->
+                        <p class="text-xs text-slate-500 font-medium text-center mt-3.5 mb-0">No sign-up required • Get instant personalized guidance</p>
+                    </div>
+
+                    <!-- Secondary Pill Action Buttons (shown on mobile and available on desktop) -->
+                    <div class="space-y-3 lg:hidden">
+                        <a href="#contact" class="w-full bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold py-3.5 px-5 rounded-full flex items-center justify-between shadow-sm cursor-pointer active:scale-[0.98] transition-all">
+                            <div class="w-8 h-8 rounded-full bg-white text-[#0284c7] flex items-center justify-center shrink-0">
+                                <i data-lucide="calendar" class="w-4 h-4 text-[#0284c7]"></i>
+                            </div>
+                            <span class="flex-1 text-center font-bold text-[15px] sm:text-base">Book an Appointment</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 text-white shrink-0"></i>
+                        </a>
+
+                        <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20know%20more%20about%20your%20physiotherapy%20services." target="_blank" rel="noopener noreferrer" class="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-bold py-3.5 px-5 rounded-full flex items-center justify-between shadow-sm cursor-pointer active:scale-[0.98] transition-all">
+                            <div class="w-8 h-8 rounded-full bg-white text-[#16a34a] flex items-center justify-center shrink-0">
+                                <i data-lucide="message-circle" class="w-4 h-4 text-[#16a34a]"></i>
+                            </div>
+                            <span class="flex-1 text-center font-bold text-[15px] sm:text-base">WhatsApp Us</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 text-white shrink-0"></i>
+                        </a>
+                    </div>
+
                 </div>
+
             </div>
-            <div class="relative w-full aspect-[4/3] lg:aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white">
-                <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80" alt="Physiotherapy Treatment and Rehabilitation" class="w-full h-full object-cover" referrerpolicy="no-referrer">
-            </div>
+
         </div>
     </section>
 
@@ -980,18 +1126,18 @@
     </a>
 
     <!-- Mobile Sticky Bottom Bar -->
-    <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 flex shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
-        <a href="tel:+919319933875" class="flex-1 py-3 flex flex-col items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors border-r border-slate-200">
-            <i data-lucide="phone" class="w-5 h-5 mb-1"></i>
-            <span class="text-[10px] font-bold uppercase tracking-wider">Call</span>
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 flex shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+        <a href="tel:+919319933875" class="flex-1 py-3 flex flex-col items-center justify-center text-slate-900 hover:bg-slate-50 transition-colors border-r border-slate-200/80">
+            <i data-lucide="phone" class="w-5 h-5 text-slate-900 mb-1 stroke-[2.2]"></i>
+            <span class="text-[11px] font-black uppercase tracking-wider text-slate-900">CALL</span>
         </a>
-        <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20book%20a%20physiotherapy%20appointment." target="_blank" rel="noopener noreferrer" class="flex-1 py-3 flex flex-col items-center justify-center text-green-600 hover:bg-green-50 transition-colors border-r border-slate-200">
-            <i data-lucide="message-circle" class="w-5 h-5 mb-1"></i>
-            <span class="text-[10px] font-bold uppercase tracking-wider">WhatsApp</span>
+        <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20book%20a%20physiotherapy%20appointment." target="_blank" rel="noopener noreferrer" class="flex-1 py-3 flex flex-col items-center justify-center text-[#16a34a] hover:bg-green-50/40 transition-colors border-r border-slate-200/80">
+            <i data-lucide="message-circle" class="w-5 h-5 text-[#16a34a] mb-1 stroke-[2.2]"></i>
+            <span class="text-[11px] font-black uppercase tracking-wider text-[#16a34a]">WHATSAPP</span>
         </a>
-        <a href="#contact" class="flex-1 py-3 flex flex-col items-center justify-center text-brand-600 hover:bg-brand-50 transition-colors">
-            <i data-lucide="calendar" class="w-5 h-5 mb-1"></i>
-            <span class="text-[10px] font-bold uppercase tracking-wider">Book</span>
+        <a href="#contact" class="flex-1 py-3 flex flex-col items-center justify-center text-[#0284c7] hover:bg-sky-50/40 transition-colors">
+            <i data-lucide="calendar" class="w-5 h-5 text-[#0284c7] mb-1 stroke-[2.2]"></i>
+            <span class="text-[11px] font-black uppercase tracking-wider text-[#0284c7]">BOOK</span>
         </a>
     </div>
 
