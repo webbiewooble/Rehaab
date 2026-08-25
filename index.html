@@ -541,46 +541,94 @@
     </section>
     
     <!-- Location Section -->
-    <section class="py-24 bg-slate-50 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-3xl font-bold text-slate-900 mb-8">Visit RehAAB</h2>
-                <div class="space-y-6">
-                    <div class="flex items-start gap-4">
-                        <div class="p-3 bg-white rounded-xl shadow-sm text-brand-600 shrink-0 border border-slate-100"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
-                        <div class="pt-1">
-                            <h4 class="font-bold text-slate-900 mb-1">Clinic Address</h4>
-                            <p class="text-slate-600 text-sm leading-relaxed">Shop No.1, OPD Block Nao Healthcare, Main Road, opp. Fortis, near D-3, Pocket 1, Sector B, Vasant Kunj, New Delhi, Delhi 110070</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="p-3 bg-white rounded-xl shadow-sm text-brand-600 shrink-0 border border-slate-100"><i data-lucide="clock" class="w-6 h-6"></i></div>
-                        <div class="pt-1">
-                            <h4 class="font-bold text-slate-900 mb-1">Opening Hours</h4>
-                            <p class="text-slate-600 text-sm leading-relaxed"><span class="text-emerald-600 font-semibold">Open Daily</span> · Closes 10:00 PM</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="p-3 bg-white rounded-xl shadow-sm text-brand-600 shrink-0 border border-slate-100"><i data-lucide="phone" class="w-6 h-6"></i></div>
-                        <div class="pt-1">
-                            <h4 class="font-bold text-slate-900 mb-1">Contact</h4>
-                            <p class="text-slate-600 text-sm leading-relaxed"><a href="tel:+919319933875" class="hover:text-brand-600 font-medium">+91 93199 33875</a> / 093199 33875<br/><a href="mailto:hello@rehaab.com" class="hover:text-brand-600">hello@rehaab.com</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-8">
-                    <a href="https://share.google/Ka5a9JVr80pVR4bq1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-600 text-white font-bold px-6 py-3 rounded-full hover:bg-brand-700 transition-colors shadow-sm">
-                        Get Directions <i data-lucide="external-link" class="w-4 h-4"></i>
-                    </a>
-                </div>
+    <section id="locations" class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="inline-flex items-center gap-2 bg-brand-50 text-brand-700 border border-brand-200 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i> Our Clinics
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">Visit RehAAB</h2>
+                <p class="text-slate-600 text-base md:text-lg leading-relaxed">
+                    Find a RehAAB Physiotherapy & Wellness Centre near you for expert, personalized care.
+                </p>
             </div>
-            <div class="bg-slate-200 rounded-[2rem] overflow-hidden aspect-video border-4 border-white shadow-lg relative">
-                 <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Map View" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-50" referrerpolicy="no-referrer">
-                 <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="bg-white/80 backdrop-blur-sm p-4 rounded-full shadow-lg">
-                         <i data-lucide="map-pin" class="w-8 h-8 text-brand-600"></i>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Vasant Kunj (Main) -->
+                <div class="lg:col-span-2 bg-white rounded-[2rem] border border-slate-200 shadow-sm p-8 flex flex-col md:flex-row gap-10 items-center">
+                    <div class="flex-1 w-full">
+                        <div class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-4">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Open Now
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">RehAAB Vasant Kunj</h3>
+                        <div class="space-y-5 mb-8">
+                            <div class="flex items-start gap-4">
+                                <div class="p-2.5 bg-slate-50 rounded-xl text-brand-600 shrink-0 border border-slate-100"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                                <div class="pt-0.5">
+                                    <h4 class="font-bold text-slate-900 text-sm mb-1">Clinic Address</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed">Shop No.1, OPD Block Nao Healthcare, Main Road, opp. Fortis, near D-3, Pocket 1, Sector B, Vasant Kunj, New Delhi, Delhi 110070</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="p-2.5 bg-slate-50 rounded-xl text-brand-600 shrink-0 border border-slate-100"><i data-lucide="clock" class="w-5 h-5"></i></div>
+                                <div class="pt-0.5">
+                                    <h4 class="font-bold text-slate-900 text-sm mb-1">Opening Hours</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed"><span class="text-slate-800 font-medium">Open Daily</span> · Closes 10:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="p-2.5 bg-slate-50 rounded-xl text-brand-600 shrink-0 border border-slate-100"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                                <div class="pt-0.5">
+                                    <h4 class="font-bold text-slate-900 text-sm mb-1">Contact</h4>
+                                    <p class="text-slate-600 text-sm leading-relaxed"><a href="tel:+919319933875" class="hover:text-brand-600 font-medium">+91 93199 33875</a><br/><a href="mailto:hello@rehaab.com" class="hover:text-brand-600">hello@rehaab.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://share.google/Dg2oEjltXvzyZdi7g" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-600 text-white font-bold px-6 py-3 rounded-full hover:bg-brand-700 transition-colors shadow-sm w-full md:w-auto justify-center">
+                            Get Directions <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
                     </div>
-                 </div>
+                    <div class="w-full md:w-[45%] aspect-[4/3] bg-slate-200 rounded-2xl overflow-hidden relative border-4 border-slate-50 shadow-inner shrink-0">
+                         <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Map View" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-50" referrerpolicy="no-referrer">
+                         <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-white/90 backdrop-blur-sm p-4 rounded-full shadow-lg">
+                                 <i data-lucide="map-pin" class="w-8 h-8 text-brand-600"></i>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Locations -->
+                <div class="flex flex-col gap-6">
+                    <!-- Lajpat Nagar -->
+                    <div class="bg-white rounded-[2rem] border border-slate-200 shadow-sm p-8 flex-1 flex flex-col justify-center relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CiAgPGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNlNGE1ZTkiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPgo8L3N2Zz4=')] opacity-50"></div>
+                        <div class="relative z-10">
+                            <div class="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-4">
+                                <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> Temporarily Closed
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">RehAAB Lajpat Nagar</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Our Lajpat Nagar branch is currently undergoing renovations to serve you better. Please visit our Vasant Kunj clinic for all appointments.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Chandni Chowk -->
+                    <div class="bg-gradient-to-br from-brand-50 to-white rounded-[2rem] border border-brand-100 shadow-sm p-8 flex-1 flex flex-col justify-center relative overflow-hidden group">
+                        <div class="absolute -right-8 -top-8 w-32 h-32 bg-brand-200/50 rounded-full blur-3xl group-hover:bg-brand-300/50 transition-colors duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="inline-flex items-center gap-1.5 bg-brand-100 text-brand-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-4">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Coming Soon
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3">RehAAB Chandni Chowk</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                We are excited to announce our upcoming branch in Chandni Chowk, bringing expert physiotherapy closer to you. Stay tuned for opening details!
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
