@@ -567,76 +567,102 @@
 
             <!-- Visualization Centerpiece -->
             <div class="relative my-auto py-2 flex flex-col items-center justify-center">
-                <!-- 3D Pain-to-Relief Interactive Vector Animation Canvas -->
-                <div class="relative w-full max-w-[340px] rounded-2xl overflow-hidden shadow-sm border border-sky-100/90 bg-gradient-to-b from-sky-50/50 via-white to-sky-50/40 p-2 backdrop-blur">
-                    <svg viewBox="0 0 340 230" class="w-full h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+                <!-- 3D Realistic Bodies Centerpiece matching the reference image (Pure SVG) -->
+                <div class="relative w-full max-w-[340px] sm:max-w-[360px] rounded-2xl overflow-hidden shadow-sm bg-gradient-to-b from-sky-50/50 via-white to-sky-50/30 flex items-center justify-center p-2 border border-sky-100/60">
+                    <svg viewBox="0 0 360 270" class="w-full h-auto select-none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <!-- Gradients for Anatomical Figures -->
-                            <linearGradient id="painBodyGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+                            <!-- Linear Gradients for Figures -->
+                            <linearGradient id="painFigureGrad" x1="15%" y1="0%" x2="85%" y2="100%">
                                 <stop offset="0%" stop-color="#fca5a5" />
-                                <stop offset="25%" stop-color="#ef4444" />
-                                <stop offset="70%" stop-color="#dc2626" />
-                                <stop offset="100%" stop-color="#991b1b" />
+                                <stop offset="20%" stop-color="#f87171" />
+                                <stop offset="55%" stop-color="#ef4444" />
+                                <stop offset="85%" stop-color="#dc2626" />
+                                <stop offset="100%" stop-color="#b91c1c" />
                             </linearGradient>
-                            
-                            <linearGradient id="reliefBodyGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+
+                            <linearGradient id="painRimLight" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6" />
+                                <stop offset="25%" stop-color="#ffffff" stop-opacity="0.1" />
+                                <stop offset="75%" stop-color="#ffffff" stop-opacity="0.1" />
+                                <stop offset="100%" stop-color="#ffffff" stop-opacity="0.4" />
+                            </linearGradient>
+
+                            <linearGradient id="reliefFigureGrad" x1="15%" y1="0%" x2="85%" y2="100%">
                                 <stop offset="0%" stop-color="#bae6fd" />
-                                <stop offset="25%" stop-color="#38bdf8" />
-                                <stop offset="70%" stop-color="#0284c7" />
-                                <stop offset="100%" stop-color="#075985" />
-                            </linearGradient>
-
-                            <linearGradient id="flowBeamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stop-color="#ef4444" stop-opacity="0.15" />
-                                <stop offset="35%" stop-color="#38bdf8" stop-opacity="0.7" />
-                                <stop offset="70%" stop-color="#0284c7" stop-opacity="0.95" />
-                                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.4" />
-                            </linearGradient>
-
-                            <linearGradient id="spineBeamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#ffffff" />
-                                <stop offset="30%" stop-color="#7dd3fc" />
-                                <stop offset="70%" stop-color="#0284c7" />
+                                <stop offset="20%" stop-color="#7dd3fc" />
+                                <stop offset="55%" stop-color="#38bdf8" />
+                                <stop offset="85%" stop-color="#0284c7" />
                                 <stop offset="100%" stop-color="#0369a1" />
                             </linearGradient>
 
-                            <radialGradient id="hotspotGrad" cx="50%" cy="50%" r="50%">
+                            <linearGradient id="reliefRimLight" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75" />
+                                <stop offset="25%" stop-color="#ffffff" stop-opacity="0.15" />
+                                <stop offset="75%" stop-color="#ffffff" stop-opacity="0.15" />
+                                <stop offset="100%" stop-color="#ffffff" stop-opacity="0.5" />
+                            </linearGradient>
+
+                            <!-- Energy Ribbon Gradients -->
+                            <linearGradient id="energyBeamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15" />
+                                <stop offset="35%" stop-color="#e0f2fe" stop-opacity="0.75" />
+                                <stop offset="70%" stop-color="#38bdf8" stop-opacity="0.9" />
+                                <stop offset="100%" stop-color="#0284c7" stop-opacity="0.95" />
+                            </linearGradient>
+
+                            <linearGradient id="energyRibbonArea" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.05" />
+                                <stop offset="50%" stop-color="#7dd3fc" stop-opacity="0.35" />
+                                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.15" />
+                            </linearGradient>
+
+                            <!-- Radial Hotspot Gradients -->
+                            <radialGradient id="painHotspotGrad" cx="50%" cy="50%" r="50%">
                                 <stop offset="0%" stop-color="#ffffff" />
-                                <stop offset="25%" stop-color="#fca5a5" />
-                                <stop offset="60%" stop-color="#ef4444" stop-opacity="0.95" />
+                                <stop offset="25%" stop-color="#fecaca" />
+                                <stop offset="55%" stop-color="#ef4444" stop-opacity="0.95" />
+                                <stop offset="80%" stop-color="#dc2626" stop-opacity="0.6" />
                                 <stop offset="100%" stop-color="#dc2626" stop-opacity="0" />
                             </radialGradient>
 
-                            <radialGradient id="spinePointGrad" cx="50%" cy="50%" r="50%">
+                            <radialGradient id="spineDiscGrad" cx="50%" cy="50%" r="50%">
                                 <stop offset="0%" stop-color="#ffffff" />
-                                <stop offset="35%" stop-color="#bae6fd" />
+                                <stop offset="35%" stop-color="#e0f2fe" />
                                 <stop offset="75%" stop-color="#38bdf8" />
                                 <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
                             </radialGradient>
 
-                            <radialGradient id="redAura" cx="50%" cy="50%" r="50%">
-                                <stop offset="0%" stop-color="#fee2e2" stop-opacity="0.7" />
-                                <stop offset="60%" stop-color="#fecaca" stop-opacity="0.25" />
+                            <linearGradient id="spineCoreGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff" />
+                                <stop offset="25%" stop-color="#e0f2fe" />
+                                <stop offset="70%" stop-color="#7dd3fc" />
+                                <stop offset="100%" stop-color="#0284c7" />
+                            </linearGradient>
+
+                            <!-- Floor Shadow Radial Gradients -->
+                            <radialGradient id="floorShadowRed" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#f87171" stop-opacity="0.45" />
+                                <stop offset="50%" stop-color="#fecaca" stop-opacity="0.2" />
                                 <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
                             </radialGradient>
 
-                            <radialGradient id="blueAura" cx="50%" cy="50%" r="50%">
-                                <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.8" />
-                                <stop offset="60%" stop-color="#bae6fd" stop-opacity="0.35" />
+                            <radialGradient id="floorShadowBlue" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5" />
+                                <stop offset="50%" stop-color="#bae6fd" stop-opacity="0.25" />
                                 <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
                             </radialGradient>
 
-                            <!-- Glow Filters -->
-                            <filter id="glowRed" x="-30%" y="-30%" width="160%" height="160%">
-                                <feGaussianBlur stdDeviation="2.8" result="blur" />
+                            <!-- Filters -->
+                            <filter id="glowSoftRed" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur" />
                                 <feMerge>
                                     <feMergeNode in="blur" />
                                     <feMergeNode in="SourceGraphic" />
                                 </feMerge>
                             </filter>
 
-                            <filter id="glowBlue" x="-30%" y="-30%" width="160%" height="160%">
-                                <feGaussianBlur stdDeviation="3" result="blur" />
+                            <filter id="glowSoftBlue" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur" />
                                 <feMerge>
                                     <feMergeNode in="blur" />
                                     <feMergeNode in="SourceGraphic" />
@@ -644,264 +670,277 @@
                             </filter>
                         </defs>
 
-                        <!-- Ambient Floor Light / Reflection Shadows -->
-                        <ellipse cx="78" cy="221" rx="36" ry="5.5" fill="#fecaca" opacity="0.45" class="aura-pulse" />
-                        <ellipse cx="262" cy="221" rx="36" ry="5.5" fill="#bae6fd" opacity="0.55" class="aura-pulse" />
+                        <!-- Floor Shadows & Ambient Studio Lighting Ground Plane -->
+                        <ellipse cx="95" cy="254" rx="42" ry="7" fill="url(#floorShadowRed)" />
+                        <ellipse cx="95" cy="254" rx="26" ry="4" fill="#ef4444" opacity="0.18" />
 
-                        <!-- Ambient Radial Aura Glows -->
-                        <circle cx="78" cy="112" r="56" fill="url(#redAura)" class="aura-pulse" />
-                        <circle cx="262" cy="112" r="56" fill="url(#blueAura)" class="aura-pulse" />
+                        <ellipse cx="265" cy="254" rx="42" ry="7" fill="url(#floorShadowBlue)" />
+                        <ellipse cx="265" cy="254" rx="26" ry="4" fill="#0284c7" opacity="0.22" />
 
-                        <!-- ================= LEFT FIGURE: PAIN & STRESS STATE (RED) ================= -->
-                        <g transform="translate(30, 4)">
-                            <g class="fig-float-left">
-                                <!-- Realistic Anatomical Head & Occipital Region -->
-                                <ellipse cx="48" cy="18" rx="8" ry="11" fill="url(#painBodyGrad)" />
-                                <!-- Occipital Light Contour -->
-                                <ellipse cx="48" cy="15" rx="5" ry="7" fill="#ffffff" opacity="0.2" />
+                        <!-- ================= LEFT FIGURE (PAIN STATE - RED) ================= -->
+                        <g id="figure-left-pain" transform="translate(48, 8)">
+                            <!-- Anatomical Head / Occipital Dome -->
+                            <path d="M 47 12 C 41 12, 37 17, 37 24 C 37 31, 41 36, 47 36 C 53 36, 57 31, 57 24 C 57 17, 53 12, 47 12 Z" fill="url(#painFigureGrad)" />
+                            <path d="M 47 13 C 43 13, 40 17, 40 23 C 40 27, 42 30, 45 31 C 43 27, 44 19, 47 13 Z" fill="#ffffff" opacity="0.22" />
 
-                                <!-- Smooth Anatomical Back / Torso / Pelvis Silhouette -->
-                                <path d="M 44 27 
-                                         C 41 33, 31 38, 20 42 
-                                         C 15 44, 13 50, 15 57 
-                                         C 17 65, 23 72, 26 80 
-                                         C 28 88, 30 96, 33 104 
-                                         C 31 112, 29 122, 31 131 
-                                         C 33 137, 37 141, 41 142 
-                                         C 45 143, 47 140, 48 135 
-                                         C 49 140, 51 143, 55 142 
-                                         C 59 141, 63 137, 65 131 
-                                         C 67 122, 65 112, 63 104 
-                                         C 66 96, 68 88, 70 80 
-                                         C 73 72, 79 65, 81 57 
-                                         C 83 50, 81 44, 76 42 
-                                         C 65 38, 55 33, 52 27 Z" 
-                                      fill="url(#painBodyGrad)" />
+                            <!-- Full Anatomical Body (Trapezius, Deltoids, Scapulae, Latissimus Dorsi, Gluteus, Hamstrings, Gastrocnemius, Heels) -->
+                            <path d="
+                                M 43 35
+                                C 40 40, 31 46, 21 51
+                                C 16 54, 14 61, 16 68
+                                C 18 76, 23 83, 26 91
+                                C 28 98, 29 107, 32 115
+                                C 30 124, 27 135, 29 146
+                                C 31 154, 36 159, 41 160
+                                C 44 161, 46 158, 47 153
+                                C 48 158, 50 161, 53 160
+                                C 58 159, 63 154, 65 146
+                                C 67 135, 64 124, 62 115
+                                C 65 107, 66 98, 68 91
+                                C 71 83, 76 76, 78 68
+                                C 80 61, 78 54, 73 51
+                                C 63 46, 54 40, 51 35 Z"
+                                fill="url(#painFigureGrad)" />
 
-                                <!-- Left Arm (Deltoid, Triceps, Forearm, Hand) -->
-                                <path d="M 17 48 
-                                         C 13 53, 10 63, 9 75 
-                                         C 8 86, 10 98, 11 110 
-                                         C 12 118, 14 125, 16 128 
-                                         C 18 129, 20 127, 19 122 
-                                         C 17 114, 16 104, 17 93 
-                                         C 17 83, 20 71, 23 61 
-                                         C 24 57, 22 52, 20 49 Z" 
-                                      fill="url(#painBodyGrad)" opacity="0.95" />
-                                
-                                <!-- Right Arm (Deltoid, Triceps, Forearm, Hand) -->
-                                <path d="M 79 48 
-                                         C 83 53, 86 63, 87 75 
-                                         C 88 86, 86 98, 85 110 
-                                         C 84 118, 82 125, 80 128 
-                                         C 78 129, 76 127, 77 122 
-                                         C 79 114, 80 104, 79 93 
-                                         C 79 83, 76 71, 73 61 
-                                         C 72 57, 74 52, 76 49 Z" 
-                                      fill="url(#painBodyGrad)" opacity="0.95" />
+                            <!-- Left Arm (Deltoid to Hand) -->
+                            <path d="
+                                M 19 57
+                                C 14 63, 11 74, 10 88
+                                C 9 101, 11 114, 12 127
+                                C 13 135, 15 142, 18 145
+                                C 20 146, 22 143, 21 138
+                                C 19 129, 18 118, 19 105
+                                C 19 94, 22 81, 26 69
+                                C 27 65, 24 59, 21 57 Z"
+                                fill="url(#painFigureGrad)" opacity="0.95" />
 
-                                <!-- Left Leg (Hamstring, Knee Joint, Calf Musculature, Achilles) -->
-                                <path d="M 32 135 
-                                         C 28 147, 28 160, 30 172 
-                                         C 31 180, 29 188, 30 197 
-                                         C 30 203, 31 209, 34 212 
-                                         C 36 214, 40 214, 42 212 
-                                         C 43 207, 42 199, 42 191 
-                                         C 42 181, 43 171, 44 160 
-                                         C 44 150, 46 142, 45 136 
-                                         C 41 137, 36 136, 32 135 Z" 
-                                      fill="url(#painBodyGrad)" />
+                            <!-- Right Arm (Deltoid to Hand) -->
+                            <path d="
+                                M 75 57
+                                C 80 63, 83 74, 84 88
+                                C 85 101, 83 114, 82 127
+                                C 81 135, 79 142, 76 145
+                                C 74 146, 72 143, 73 138
+                                C 75 129, 76 118, 75 105
+                                C 75 94, 72 81, 68 69
+                                C 67 65, 70 59, 73 57 Z"
+                                fill="url(#painFigureGrad)" opacity="0.95" />
 
-                                <!-- Right Leg (Hamstring, Knee Joint, Calf Musculature, Achilles) -->
-                                <path d="M 64 135 
-                                         C 68 147, 68 160, 66 172 
-                                         C 65 180, 67 188, 66 197 
-                                         C 66 203, 65 209, 62 212 
-                                         C 60 214, 56 214, 54 212 
-                                         C 53 207, 54 199, 54 191 
-                                         C 54 181, 53 171, 52 160 
-                                         C 52 150, 50 142, 51 136 
-                                         C 55 137, 60 136, 64 135 Z" 
-                                      fill="url(#painBodyGrad)" />
+                            <!-- Left Leg (Thigh, Hamstring, Knee, Calf, Heel) -->
+                            <path d="
+                                M 31 153
+                                C 27 167, 26 182, 29 196
+                                C 30 205, 28 214, 29 224
+                                C 29 231, 30 238, 33 241
+                                C 36 244, 40 244, 42 241
+                                C 43 235, 42 226, 42 217
+                                C 42 206, 43 195, 44 182
+                                C 44 170, 46 160, 45 154
+                                C 41 155, 36 154, 31 153 Z"
+                                fill="url(#painFigureGrad)" />
 
-                                <!-- Anatomical Feet / Heels -->
-                                <ellipse cx="38" cy="214" rx="4.5" ry="2" fill="url(#painBodyGrad)" />
-                                <ellipse cx="58" cy="214" rx="4.5" ry="2" fill="url(#painBodyGrad)" />
+                            <!-- Right Leg (Thigh, Hamstring, Knee, Calf, Heel) -->
+                            <path d="
+                                M 63 153
+                                C 67 167, 68 182, 65 196
+                                C 64 205, 66 214, 65 224
+                                C 65 231, 64 238, 61 241
+                                C 58 244, 54 244, 52 241
+                                C 51 235, 52 226, 52 217
+                                C 52 206, 51 195, 50 182
+                                C 50 170, 48 160, 49 154
+                                C 53 155, 58 154, 63 153 Z"
+                                fill="url(#painFigureGrad)" />
 
-                                <!-- Musculoskeletal 3D Shading & Anatomical Lines -->
-                                <!-- Scapula Blades -->
-                                <path d="M 37 50 C 33 58, 34 68, 39 74 C 40 66, 39 56, 37 50" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.22" stroke-linecap="round" />
-                                <path d="M 59 50 C 63 58, 62 68, 57 74 C 56 66, 57 56, 59 50" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.22" stroke-linecap="round" />
-                                
-                                <!-- Spine Groove & Dorsal Column Depth -->
-                                <path d="M 48 30 L 48 126" stroke="#7f1d1d" stroke-width="1.2" stroke-opacity="0.35" stroke-linecap="round" />
-                                <path d="M 48.6 32 L 48.6 124" stroke="#ffffff" stroke-width="0.6" stroke-opacity="0.2" stroke-linecap="round" />
+                            <!-- Feet / Heels Ground Contact -->
+                            <ellipse cx="37.5" cy="243" rx="4.5" ry="2.2" fill="url(#painFigureGrad)" />
+                            <ellipse cx="56.5" cy="243" rx="4.5" ry="2.2" fill="url(#painFigureGrad)" />
 
-                                <!-- Latissimus / Flank Shading Lines -->
-                                <path d="M 28 66 C 31 80, 35 96, 39 108" fill="none" stroke="#7f1d1d" stroke-width="0.9" stroke-opacity="0.25" stroke-linecap="round" />
-                                <path d="M 68 66 C 65 80, 61 96, 57 108" fill="none" stroke="#7f1d1d" stroke-width="0.9" stroke-opacity="0.25" stroke-linecap="round" />
+                            <!-- Musculoskeletal 3D Shading & Contour Definition -->
+                            <!-- Spinal Groove Furrow -->
+                            <path d="M 47 38 L 47 142" stroke="#991b1b" stroke-width="1.3" stroke-opacity="0.3" stroke-linecap="round" />
+                            <path d="M 47.7 40 L 47.7 138" stroke="#ffffff" stroke-width="0.7" stroke-opacity="0.22" stroke-linecap="round" />
 
-                                <!-- Popliteal (Back of Knee) Creases -->
-                                <path d="M 34 173 C 37 174, 40 174, 42 173" stroke="#7f1d1d" stroke-width="0.8" stroke-opacity="0.35" stroke-linecap="round" />
-                                <path d="M 54 173 C 56 174, 59 174, 62 173" stroke="#7f1d1d" stroke-width="0.8" stroke-opacity="0.35" stroke-linecap="round" />
+                            <!-- Left & Right Scapular Contours -->
+                            <path d="M 37 60 C 33 69, 34 80, 39 87 C 40 78, 39 67, 37 60" fill="none" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.25" stroke-linecap="round" />
+                            <path d="M 57 60 C 61 69, 60 80, 55 87 C 54 78, 55 67, 57 60" fill="none" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.25" stroke-linecap="round" />
 
-                                <!-- Concentric Glowing Pain Hotspot Radar Rings -->
-                                <!-- 1. Cervical / Neck Trigger Point (C5-C7) -->
-                                <g transform="translate(48, 34)">
-                                    <circle cx="0" cy="0" r="10" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
-                                    <circle cx="0" cy="0" r="10" fill="none" stroke="#f87171" class="pain-hotspot-ring-delay" />
-                                    <circle cx="0" cy="0" r="5" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
-                                    <circle cx="0" cy="0" r="1.6" fill="#ffffff" />
-                                </g>
+                            <!-- Latissimus Flank Curves -->
+                            <path d="M 27 78 C 30 94, 34 111, 38 124" fill="none" stroke="#7f1d1d" stroke-width="1" stroke-opacity="0.25" stroke-linecap="round" />
+                            <path d="M 67 78 C 64 94, 60 111, 56 124" fill="none" stroke="#7f1d1d" stroke-width="1" stroke-opacity="0.25" stroke-linecap="round" />
 
-                                <!-- 2. Left Scapular / Rhomboid Node -->
-                                <g transform="translate(36, 62)">
-                                    <circle cx="0" cy="0" r="11" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
-                                    <circle cx="0" cy="0" r="5.5" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
-                                    <circle cx="0" cy="0" r="1.6" fill="#ffffff" />
-                                </g>
+                            <!-- Gluteal Fold Definition -->
+                            <path d="M 36 150 C 42 153, 46 151, 47 146 C 48 151, 52 153, 58 150" fill="none" stroke="#7f1d1d" stroke-width="1.1" stroke-opacity="0.3" stroke-linecap="round" />
 
-                                <!-- 3. Lumbar / L4-L5 Lower Back Hotspot -->
-                                <g transform="translate(48, 102)">
-                                    <circle cx="0" cy="0" r="13" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
-                                    <circle cx="0" cy="0" r="13" fill="none" stroke="#f87171" class="pain-hotspot-ring-delay" />
-                                    <circle cx="0" cy="0" r="6.5" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
-                                    <circle cx="0" cy="0" r="2" fill="#ffffff" />
-                                </g>
+                            <!-- Popliteal Knee Creases -->
+                            <path d="M 33 196 C 36 198, 39 198, 42 196" stroke="#7f1d1d" stroke-width="0.9" stroke-opacity="0.35" stroke-linecap="round" />
+                            <path d="M 52 196 C 55 198, 58 198, 61 196" stroke="#7f1d1d" stroke-width="0.9" stroke-opacity="0.35" stroke-linecap="round" />
 
-                                <!-- 4. Knee Joint / Popliteal Hotspot -->
-                                <g transform="translate(58, 172)">
-                                    <circle cx="0" cy="0" r="9.5" fill="none" stroke="#ef4444" class="pain-hotspot-ring" />
-                                    <circle cx="0" cy="0" r="4.5" fill="url(#hotspotGrad)" filter="url(#glowRed)" class="pain-hotspot-core" />
-                                    <circle cx="0" cy="0" r="1.5" fill="#ffffff" />
-                                </g>
+                            <!-- ================= 4 GLOWING PAIN HOTSPOTS (EXACTLY AS IN REFERENCE IMAGE) ================= -->
+                            <!-- 1. Cervical / Neck Trigger Point (C5-C7) -->
+                            <g transform="translate(47, 43)">
+                                <circle cx="0" cy="0" r="14" fill="url(#painHotspotGrad)" filter="url(#glowSoftRed)" class="aura-pulse" />
+                                <circle cx="0" cy="0" r="11" fill="none" stroke="#f87171" class="pain-hotspot-ring" />
+                                <circle cx="0" cy="0" r="6" fill="#ef4444" filter="url(#glowSoftRed)" class="pain-hotspot-core" />
+                                <circle cx="0" cy="0" r="2.2" fill="#ffffff" />
+                            </g>
+
+                            <!-- 2. Upper Left Back / Scapula Hotspot -->
+                            <g transform="translate(36, 75)">
+                                <circle cx="0" cy="0" r="13" fill="url(#painHotspotGrad)" filter="url(#glowSoftRed)" class="aura-pulse" />
+                                <circle cx="0" cy="0" r="10" fill="none" stroke="#f87171" class="pain-hotspot-ring" />
+                                <circle cx="0" cy="0" r="5.5" fill="#ef4444" filter="url(#glowSoftRed)" class="pain-hotspot-core" />
+                                <circle cx="0" cy="0" r="2" fill="#ffffff" />
+                            </g>
+
+                            <!-- 3. Lower Mid-Back / Lumbar Spine Hotspot (L4-L5) -->
+                            <g transform="translate(47, 120)">
+                                <circle cx="0" cy="0" r="15" fill="url(#painHotspotGrad)" filter="url(#glowSoftRed)" class="aura-pulse" />
+                                <circle cx="0" cy="0" r="12" fill="none" stroke="#f87171" class="pain-hotspot-ring" />
+                                <circle cx="0" cy="0" r="12" fill="none" stroke="#fca5a5" class="pain-hotspot-ring-delay" />
+                                <circle cx="0" cy="0" r="6.5" fill="#ef4444" filter="url(#glowSoftRed)" class="pain-hotspot-core" />
+                                <circle cx="0" cy="0" r="2.4" fill="#ffffff" />
+                            </g>
+
+                            <!-- 4. Back of Right Knee Popliteal Hotspot -->
+                            <g transform="translate(57, 195)">
+                                <circle cx="0" cy="0" r="13" fill="url(#painHotspotGrad)" filter="url(#glowSoftRed)" class="aura-pulse" />
+                                <circle cx="0" cy="0" r="9.5" fill="none" stroke="#f87171" class="pain-hotspot-ring" />
+                                <circle cx="0" cy="0" r="5" fill="#ef4444" filter="url(#glowSoftRed)" class="pain-hotspot-core" />
+                                <circle cx="0" cy="0" r="1.8" fill="#ffffff" />
                             </g>
                         </g>
 
-                        <!-- ================= CENTER: HEALING DATA & RECOVERY FLOW ================= -->
-                        <!-- Ambient Flow Wave Stream -->
-                        <path d="M 120 102 C 154 78, 186 126, 222 102" fill="none" stroke="url(#flowBeamGrad)" stroke-width="12" opacity="0.4" stroke-linecap="round" />
-                        <path d="M 120 102 C 154 78, 186 126, 222 102" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" class="energy-flow-path" filter="url(#glowBlue)" />
-                        
-                        <!-- Flow Arrow Directional Indicator -->
-                        <polygon points="220,97 230,102 220,107" fill="#0284c7" filter="url(#glowBlue)" />
+                        <!-- ================= CENTER: HEALING LIGHT SWEEP & PARTICLES ================= -->
+                        <g id="center-energy-stream">
+                            <!-- Soft Translucent Flow Ribbon Area -->
+                            <path d="M 132 128 C 168 100, 204 158, 240 128 C 204 148, 168 90, 132 128 Z" fill="url(#energyRibbonArea)" />
+                            
+                            <!-- Main Luminous Flow Stroke -->
+                            <path d="M 132 128 C 168 100, 204 158, 240 128" fill="none" stroke="url(#energyBeamGrad)" stroke-width="3" stroke-linecap="round" class="energy-flow-path" filter="url(#glowSoftBlue)" />
+                            
+                            <!-- Arrowhead Indicator -->
+                            <path d="M 233 122 L 243 128 L 233 134 Z" fill="#0284c7" filter="url(#glowSoftBlue)" />
 
-                        <!-- Drifting Energy Sparkles / Orbs -->
-                        <g transform="translate(118, 102)">
-                            <circle cx="0" cy="0" r="3" fill="#ffffff" filter="url(#glowBlue)" class="energy-particle-1" />
-                            <circle cx="7" cy="3" r="2.2" fill="#7dd3fc" filter="url(#glowBlue)" class="energy-particle-2" />
-                            <circle cx="-3" cy="-3" r="1.8" fill="#ffffff" filter="url(#glowBlue)" class="energy-particle-3" />
+                            <!-- Drifting Sparkle Particles -->
+                            <g transform="translate(135, 128)">
+                                <circle cx="0" cy="0" r="3.2" fill="#ffffff" filter="url(#glowSoftBlue)" class="energy-particle-1" />
+                                <circle cx="8" cy="4" r="2.2" fill="#7dd3fc" filter="url(#glowSoftBlue)" class="energy-particle-2" />
+                                <circle cx="-4" cy="-4" r="1.8" fill="#ffffff" filter="url(#glowSoftBlue)" class="energy-particle-3" />
+                            </g>
+                            
+                            <!-- Ambient Sparkle Dots -->
+                            <circle cx="168" cy="98" r="1.8" fill="#38bdf8" opacity="0.8" class="aura-pulse" />
+                            <circle cx="198" cy="158" r="1.8" fill="#38bdf8" opacity="0.8" class="aura-pulse" />
+                            <circle cx="182" cy="136" r="2.2" fill="#ffffff" opacity="0.9" class="aura-pulse" />
+                            <circle cx="216" cy="112" r="1.8" fill="#7dd3fc" opacity="0.9" class="aura-pulse" />
                         </g>
-                        
-                        <!-- Floating Ambient Light Pulses -->
-                        <circle cx="155" cy="72" r="1.6" fill="#38bdf8" opacity="0.8" class="aura-pulse" />
-                        <circle cx="185" cy="132" r="1.6" fill="#38bdf8" opacity="0.85" class="aura-pulse" />
-                        <circle cx="168" cy="112" r="2" fill="#ffffff" opacity="0.9" class="aura-pulse" />
-                        <circle cx="202" cy="87" r="1.8" fill="#7dd3fc" opacity="0.9" class="aura-pulse" />
 
-                        <!-- ================= RIGHT FIGURE: RESTORED RELIEF & ALIGNED STATE (BLUE) ================= -->
-                        <g transform="translate(214, 4)">
-                            <g class="fig-float-right">
-                                <!-- Realistic Anatomical Head & Occipital Region -->
-                                <ellipse cx="48" cy="18" rx="8" ry="11" fill="url(#reliefBodyGrad)" />
-                                <!-- Cranial Light Reflection -->
-                                <ellipse cx="48" cy="15" rx="5" ry="7" fill="#ffffff" opacity="0.28" />
+                        <!-- ================= RIGHT FIGURE (RESTORED RELIEF & ALIGNED SPINE - BLUE) ================= -->
+                        <g id="figure-right-relief" transform="translate(218, 8)">
+                            <!-- Anatomical Head / Occipital Dome -->
+                            <path d="M 47 12 C 41 12, 37 17, 37 24 C 37 31, 41 36, 47 36 C 53 36, 57 31, 57 24 C 57 17, 53 12, 47 12 Z" fill="url(#reliefFigureGrad)" />
+                            <path d="M 47 13 C 43 13, 40 17, 40 23 C 40 27, 42 30, 45 31 C 43 27, 44 19, 47 13 Z" fill="#ffffff" opacity="0.3" />
 
-                                <!-- Smooth Anatomical Back / Torso / Pelvis Silhouette -->
-                                <path d="M 44 27 
-                                         C 41 33, 31 38, 20 42 
-                                         C 15 44, 13 50, 15 57 
-                                         C 17 65, 23 72, 26 80 
-                                         C 28 88, 30 96, 33 104 
-                                         C 31 112, 29 122, 31 131 
-                                         C 33 137, 37 141, 41 142 
-                                         C 45 143, 47 140, 48 135 
-                                         C 49 140, 51 143, 55 142 
-                                         C 59 141, 63 137, 65 131 
-                                         C 67 122, 65 112, 63 104 
-                                         C 66 96, 68 88, 70 80 
-                                         C 73 72, 79 65, 81 57 
-                                         C 83 50, 81 44, 76 42 
-                                         C 65 38, 55 33, 52 27 Z" 
-                                      fill="url(#reliefBodyGrad)" />
+                            <!-- Full Anatomical Body -->
+                            <path d="
+                                M 43 35
+                                C 40 40, 31 46, 21 51
+                                C 16 54, 14 61, 16 68
+                                C 18 76, 23 83, 26 91
+                                C 28 98, 29 107, 32 115
+                                C 30 124, 27 135, 29 146
+                                C 31 154, 36 159, 41 160
+                                C 44 161, 46 158, 47 153
+                                C 48 158, 50 161, 53 160
+                                C 58 159, 63 154, 65 146
+                                C 67 135, 64 124, 62 115
+                                C 65 107, 66 98, 68 91
+                                C 71 83, 76 76, 78 68
+                                C 80 61, 78 54, 73 51
+                                C 63 46, 54 40, 51 35 Z"
+                                fill="url(#reliefFigureGrad)" />
 
-                                <!-- Left Arm (Deltoid, Triceps, Forearm, Hand) -->
-                                <path d="M 17 48 
-                                         C 13 53, 10 63, 9 75 
-                                         C 8 86, 10 98, 11 110 
-                                         C 12 118, 14 125, 16 128 
-                                         C 18 129, 20 127, 19 122 
-                                         C 17 114, 16 104, 17 93 
-                                         C 17 83, 20 71, 23 61 
-                                         C 24 57, 22 52, 20 49 Z" 
-                                      fill="url(#reliefBodyGrad)" opacity="0.95" />
-                                
-                                <!-- Right Arm (Deltoid, Triceps, Forearm, Hand) -->
-                                <path d="M 79 48 
-                                         C 83 53, 86 63, 87 75 
-                                         C 88 86, 86 98, 85 110 
-                                         C 84 118, 82 125, 80 128 
-                                         C 78 129, 76 127, 77 122 
-                                         C 79 114, 80 104, 79 93 
-                                         C 79 83, 76 71, 73 61 
-                                         C 72 57, 74 52, 76 49 Z" 
-                                      fill="url(#reliefBodyGrad)" opacity="0.95" />
+                            <!-- Left Arm (Deltoid to Hand) -->
+                            <path d="
+                                M 19 57
+                                C 14 63, 11 74, 10 88
+                                C 9 101, 11 114, 12 127
+                                C 13 135, 15 142, 18 145
+                                C 20 146, 22 143, 21 138
+                                C 19 129, 18 118, 19 105
+                                C 19 94, 22 81, 26 69
+                                C 27 65, 24 59, 21 57 Z"
+                                fill="url(#reliefFigureGrad)" opacity="0.95" />
 
-                                <!-- Left Leg (Hamstring, Knee Joint, Calf Musculature, Achilles) -->
-                                <path d="M 32 135 
-                                         C 28 147, 28 160, 30 172 
-                                         C 31 180, 29 188, 30 197 
-                                         C 30 203, 31 209, 34 212 
-                                         C 36 214, 40 214, 42 212 
-                                         C 43 207, 42 199, 42 191 
-                                         C 42 181, 43 171, 44 160 
-                                         C 44 150, 46 142, 45 136 
-                                         C 41 137, 36 136, 32 135 Z" 
-                                      fill="url(#reliefBodyGrad)" />
+                            <!-- Right Arm (Deltoid to Hand) -->
+                            <path d="
+                                M 75 57
+                                C 80 63, 83 74, 84 88
+                                C 85 101, 83 114, 82 127
+                                C 81 135, 79 142, 76 145
+                                C 74 146, 72 143, 73 138
+                                C 75 129, 76 118, 75 105
+                                C 75 94, 72 81, 68 69
+                                C 67 65, 70 59, 73 57 Z"
+                                fill="url(#reliefFigureGrad)" opacity="0.95" />
 
-                                <!-- Right Leg (Hamstring, Knee Joint, Calf Musculature, Achilles) -->
-                                <path d="M 64 135 
-                                         C 68 147, 68 160, 66 172 
-                                         C 65 180, 67 188, 66 197 
-                                         C 66 203, 65 209, 62 212 
-                                         C 60 214, 56 214, 54 212 
-                                         C 53 207, 54 199, 54 191 
-                                         C 54 181, 53 171, 52 160 
-                                         C 52 150, 50 142, 51 136 
-                                         C 55 137, 60 136, 64 135 Z" 
-                                      fill="url(#reliefBodyGrad)" />
+                            <!-- Left Leg (Thigh, Hamstring, Knee, Calf, Heel) -->
+                            <path d="
+                                M 31 153
+                                C 27 167, 26 182, 29 196
+                                C 30 205, 28 214, 29 224
+                                C 29 231, 30 238, 33 241
+                                C 36 244, 40 244, 42 241
+                                C 43 235, 42 226, 42 217
+                                C 42 206, 43 195, 44 182
+                                C 44 170, 46 160, 45 154
+                                C 41 155, 36 154, 31 153 Z"
+                                fill="url(#reliefFigureGrad)" />
 
-                                <!-- Anatomical Feet / Heels -->
-                                <ellipse cx="38" cy="214" rx="4.5" ry="2" fill="url(#reliefBodyGrad)" />
-                                <ellipse cx="58" cy="214" rx="4.5" ry="2" fill="url(#reliefBodyGrad)" />
+                            <!-- Right Leg (Thigh, Hamstring, Knee, Calf, Heel) -->
+                            <path d="
+                                M 63 153
+                                C 67 167, 68 182, 65 196
+                                C 64 205, 66 214, 65 224
+                                C 65 231, 64 238, 61 241
+                                C 58 244, 54 244, 52 241
+                                C 51 235, 52 226, 52 217
+                                C 52 206, 51 195, 50 182
+                                C 50 170, 48 160, 49 154
+                                C 53 155, 58 154, 63 153 Z"
+                                fill="url(#reliefFigureGrad)" />
 
-                                <!-- Musculoskeletal 3D Shading & Anatomical Highlights -->
-                                <path d="M 37 50 C 33 58, 34 68, 39 74 C 40 66, 39 56, 37 50" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.25" stroke-linecap="round" />
-                                <path d="M 59 50 C 63 58, 62 68, 57 74 C 56 66, 57 56, 59 50" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.25" stroke-linecap="round" />
+                            <!-- Feet / Heels Ground Contact -->
+                            <ellipse cx="37.5" cy="243" rx="4.5" ry="2.2" fill="url(#reliefFigureGrad)" />
+                            <ellipse cx="56.5" cy="243" rx="4.5" ry="2.2" fill="url(#reliefFigureGrad)" />
 
-                                <!-- Popliteal (Back of Knee) Creases -->
-                                <path d="M 34 173 C 37 174, 40 174, 42 173" stroke="#0369a1" stroke-width="0.8" stroke-opacity="0.35" stroke-linecap="round" />
-                                <path d="M 54 173 C 56 174, 59 174, 62 173" stroke="#0369a1" stroke-width="0.8" stroke-opacity="0.35" stroke-linecap="round" />
+                            <!-- Scapular & Latissimus Highlights -->
+                            <path d="M 37 60 C 33 69, 34 80, 39 87 C 40 78, 39 67, 37 60" fill="none" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.3" stroke-linecap="round" />
+                            <path d="M 57 60 C 61 69, 60 80, 55 87 C 54 78, 55 67, 57 60" fill="none" stroke="#ffffff" stroke-width="0.9" stroke-opacity="0.3" stroke-linecap="round" />
 
-                                <!-- Restored Luminous Aligned Vertebral Column & Posture Axis -->
-                                <g class="relief-spine-glow">
-                                    <!-- Spine Glow Core Beam -->
-                                    <line x1="48" y1="28" x2="48" y2="130" stroke="url(#spineBeamGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#glowBlue)" />
-                                    <line x1="48" y1="28" x2="48" y2="130" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" />
-                                    
-                                    <!-- Individual Vertebrae Articulations (Cervical, Thoracic, Lumbar, Sacrum) -->
-                                    <circle cx="48" cy="30" r="2.2" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="39" r="2.4" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="48" r="2.5" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="58" r="2.7" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="68" r="2.8" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="78" r="2.9" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="88" r="3.0" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="98" r="3.1" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="108" r="3.0" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="118" r="2.6" fill="url(#spinePointGrad)" />
-                                    <circle cx="48" cy="128" r="2.0" fill="url(#spinePointGrad)" />
-                                </g>
+                            <!-- Popliteal Knee Creases -->
+                            <path d="M 33 196 C 36 198, 39 198, 42 196" stroke="#0369a1" stroke-width="0.9" stroke-opacity="0.35" stroke-linecap="round" />
+                            <path d="M 52 196 C 55 198, 58 198, 61 196" stroke="#0369a1" stroke-width="0.9" stroke-opacity="0.35" stroke-linecap="round" />
+
+                            <!-- ================= LUMINOUS ALIGNED SPINAL COLUMN (AS IN REFERENCE IMAGE) ================= -->
+                            <g class="relief-spine-glow">
+                                <!-- Core Spine Light Beam -->
+                                <line x1="47" y1="36" x2="47" y2="150" stroke="url(#spineCoreGrad)" stroke-width="3" stroke-linecap="round" filter="url(#glowSoftBlue)" />
+                                <line x1="47" y1="36" x2="47" y2="150" stroke="#ffffff" stroke-width="1.1" stroke-linecap="round" />
+
+                                <!-- Individual Vertebrae Articulation Discs (C1-C7, T1-T12, L1-L5, Sacrum) -->
+                                <circle cx="47" cy="38" r="2.2" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="48" r="2.4" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="58" r="2.6" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="69" r="2.8" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="80" r="2.9" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="91" r="3.0" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="103" r="3.1" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="115" r="3.0" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="127" r="2.8" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="139" r="2.5" fill="url(#spineDiscGrad)" />
+                                <circle cx="47" cy="148" r="2.0" fill="url(#spineDiscGrad)" />
                             </g>
                         </g>
                     </svg>
@@ -917,7 +956,7 @@
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="w-9 h-9 rounded-full bg-sky-50 flex items-center justify-center text-sky-600 shadow-inner">
-                                <i data-lucide="leaf" class="w-4 h-4 text-sky-600 animate-pulse-slow"></i>
+                                <i data-lucide="leaf" class="w-4.5 h-4.5 text-sky-600 animate-pulse-slow"></i>
                             </div>
                         </div>
                     </div>
@@ -933,7 +972,7 @@
             </div>
 
             <!-- Trust Badge Card -->
-            <div class="bg-white/90 backdrop-blur border border-sky-100/90 rounded-2xl p-3.5 shadow-sm mb-2">
+            <div class="bg-white/95 backdrop-blur border border-sky-100/90 rounded-2xl p-3.5 shadow-sm mb-2">
                 <div class="grid grid-cols-3 gap-2 text-center">
                     <div class="flex flex-col items-center justify-center p-1">
                         <div class="w-7 h-7 rounded-full bg-sky-50 flex items-center justify-center text-sky-600 mb-1">
@@ -943,7 +982,7 @@
                     </div>
                     <div class="flex flex-col items-center justify-center p-1 border-x border-slate-100">
                         <div class="w-7 h-7 rounded-full bg-rose-50 flex items-center justify-center text-rose-500 mb-1">
-                            <i data-lucide="heart" class="w-4 h-4"></i>
+                            <i data-lucide="heart-handshake" class="w-4 h-4"></i>
                         </div>
                         <span class="text-[10px] sm:text-[11px] font-semibold text-slate-700 leading-tight">Designed by Rehab Experts</span>
                     </div>
