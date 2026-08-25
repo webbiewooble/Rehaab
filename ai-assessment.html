@@ -187,31 +187,22 @@
                 <!-- Grid background -->
                 <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 20px 20px;"></div>
                 
-                <!-- Body SVG (Inline to guarantee visibility on GitHub Pages) -->
-                <div class="relative w-full max-w-[200px] aspect-[1/2.2]">
-                    <svg viewBox="0 0 100 220" class="w-full h-full drop-shadow-xl" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Head -->
-                        <path d="M50 0C41.7 0 35 6.7 35 15C35 23.3 41.7 30 50 30C58.3 30 65 23.3 65 15C65 6.7 58.3 0 50 0Z" fill="#e2e8f0"/>
-                        <!-- Torso & Arms -->
-                        <path d="M72 35H28C18 35 10 43 10 53V110C10 115.5 14.5 120 20 120C25.5 120 30 115.5 30 110V55H70V110C70 115.5 74.5 120 80 120C85.5 120 90 115.5 90 110V53C90 43 82 35 72 35Z" fill="#e2e8f0"/>
-                        <!-- Right Leg -->
-                        <path d="M35 55V125C35 130 31 135 25 135V205C25 213.3 31.7 220 40 220C48.3 220 55 213.3 55 205V135C49 135 45 130 45 125V55H35Z" fill="#cbd5e1"/>
-                        <!-- Left Leg -->
-                        <path d="M65 55V125C65 130 69 135 75 135V205C75 213.3 68.3 220 60 220C51.7 220 45 213.3 45 205V135C51 135 55 130 55 125V55H65Z" fill="#cbd5e1"/>
-                    </svg>
+                <!-- Realistic Body Map Image -->
+                <div class="relative w-full max-w-[280px] aspect-[3/4]">
+                    <img src="./body-map.jpg" alt="Body Map" class="w-full h-full object-cover rounded-xl shadow-inner mix-blend-multiply opacity-90">
 
                     <!-- Interactive Hotspots -->
                     <div class="absolute inset-0">
                         <!-- Shoulders -->
-                        <div onclick="selectBodyPart('Right Shoulder')" class="absolute top-[20%] left-[10%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
-                        <div onclick="selectBodyPart('Left Shoulder')" class="absolute top-[20%] right-[10%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                        <div onclick="selectBodyPart('Right Shoulder')" class="absolute top-[22%] left-[25%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                        <div onclick="selectBodyPart('Left Shoulder')" class="absolute top-[22%] right-[25%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
                         <!-- Lower Back (Center) -->
-                        <div onclick="selectBodyPart('Lower Back')" class="absolute top-[45%] left-[45%] w-8 h-8 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-2 h-2 bg-brand-600 rounded-full"></div></div>
+                        <div onclick="selectBodyPart('Lower Back')" class="absolute top-[52%] left-[46%] w-8 h-8 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-2 h-2 bg-brand-600 rounded-full"></div></div>
                         <!-- Knees -->
-                        <div onclick="selectBodyPart('Right Knee')" class="absolute bottom-[25%] left-[25%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
-                        <div onclick="selectBodyPart('Left Knee')" class="absolute bottom-[25%] right-[25%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                        <div onclick="selectBodyPart('Right Knee')" class="absolute bottom-[20%] left-[35%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                        <div onclick="selectBodyPart('Left Knee')" class="absolute bottom-[20%] right-[35%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
                         <!-- Neck -->
-                        <div onclick="selectBodyPart('Neck')" class="absolute top-[14%] left-[44%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                        <div onclick="selectBodyPart('Neck')" class="absolute top-[12%] left-[46%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
                     </div>
                 </div>
             </div>
