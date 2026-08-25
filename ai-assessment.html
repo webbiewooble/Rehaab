@@ -1,1362 +1,708 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth bg-slate-900">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RehAAB AI — Physiotherapy Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scan': 'scan 2s linear infinite',
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(100%)' },
+                            '100%': { transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .app-container { max-width: 480px; margin: 0 auto; min-height: 100vh; background-color: #ffffff; box-shadow: 0 0 40px rgba(0,0,0,0.05); position: relative; display: flex; flex-direction: column; }
+        .screen { display: none; flex: 1; flex-direction: column; opacity: 0; transition: opacity 0.3s ease-in-out; }
+        .screen.active { display: flex; opacity: 1; animation: fadeIn 0.4s ease-out forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-<title>RehAAB AI — Physiotherapy Assessment</title>
+        /* Hide scrollbar for clean app feel */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-<style>
-:root{
-    --primary:#2F746E;
-    --primary-light:#E8F3F1;
-    --text:#183332;
-    --muted:#687876;
-    --background:#F4F8F7;
-    --white:#FFFFFF;
-    --border:#DCE7E4;
-    --danger:#B33A3A;
-    --warning:#C58A28;
-}
+        .svg-human { filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05)); }
+        .hotspot-pulse { animation: pulse 2s infinite; cursor: pointer; }
+        .hotspot-pulse:hover { fill: #0ea5e9; transform: scale(1.2); transition: all 0.2s; }
 
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    background:var(--background);
-    color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-}
-
-.app{
-    width:100%;
-    max-width:430px;
-    min-height:100vh;
-    margin:auto;
-    background:var(--white);
-    position:relative;
-    box-shadow: 0 0 20px rgba(0,0,0,0.05);
-}
-
-header{
-    padding:20px 22px;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    font-size:21px;
-    font-weight:800;
-}
-
-.logo span{
-    font-weight:400;
-}
-
-.prototype{
-    font-size:12px;
-    color:var(--muted);
-}
-
-main{
-    padding:22px;
-    padding-bottom:80px; /* Add extra padding so bottom nav doesn't overlap */
-}
-
-.screen{
-    display:none;
-}
-
-.screen.active{
-    display:block;
-}
-
-h1{
-    font-size:30px;
-    line-height:1.1;
-    margin:18px 0 12px;
-    letter-spacing:-0.7px;
-}
-
-h2{
-    font-size:21px;
-    margin:12px 0;
-}
-
-p{
-    line-height:1.55;
-    color:var(--muted);
-}
-
-.card{
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:18px;
-    margin:15px 0;
-}
-
-.badge{
-    display:inline-block;
-    background:var(--primary-light);
-    color:var(--primary);
-    border-radius:20px;
-    padding:7px 11px;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:.3px;
-}
-
-.btn{
-    width:100%;
-    padding:16px;
-    margin-top:12px;
-    border:0;
-    border-radius:15px;
-    background:var(--primary);
-    color:white;
-    font-size:16px;
-    font-weight:700;
-    cursor:pointer;
-    transition: opacity 0.2s;
-}
-
-.btn:hover {
-    opacity: 0.9;
-}
-
-.btn.secondary{
-    background:white;
-    color:var(--primary);
-    border:1px solid var(--primary);
-}
-
-.back{
-    border:0;
-    background:none;
-    color:var(--primary);
-    font-weight:700;
-    cursor:pointer;
-    padding:4px 0;
-}
-
-.option{
-    display:block;
-    width:100%;
-    padding:15px;
-    margin:9px 0;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
-    text-align:left;
-    font-size:15px;
-    cursor:pointer;
-    transition: all 0.2s;
-}
-
-.option:hover,
-.option.selected{
-    background:var(--primary-light);
-    border-color:var(--primary);
-}
-
-.progress{
-    height:7px;
-    background:#E8EFED;
-    border-radius:20px;
-    margin:15px 0 25px;
-    overflow:hidden;
-}
-
-.progress-bar{
-    height:100%;
-    background:var(--primary);
-    width:40%;
-}
-
-.checkbox{
-    display:flex;
-    gap:10px;
-    line-height:1.5;
-    cursor:pointer;
-}
-
-/* BODY MAP */
-
-.body-map{
-    height:390px;
-    border-radius:22px;
-    background:linear-gradient(
-        180deg,
-        #F3F9F7,
-        #EAF4F1
-    );
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-}
-
-.body{
-    position:relative;
-    width:150px;
-    height:340px;
-}
-
-.head{
-    position:absolute;
-    width:58px;
-    height:58px;
-    background:#C7D8D5;
-    border-radius:50%;
-    left:46px;
-    top:0;
-}
-
-.torso{
-    position:absolute;
-    width:80px;
-    height:130px;
-    background:#C7D8D5;
-    border-radius:35px 35px 25px 25px;
-    left:35px;
-    top:68px;
-}
-
-.arm{
-    position:absolute;
-    width:25px;
-    height:135px;
-    background:#C7D8D5;
-    border-radius:20px;
-    top:75px;
-}
-
-.left-arm{
-    left:8px;
-    transform:rotate(5deg);
-}
-
-.right-arm{
-    right:8px;
-    transform:rotate(-5deg);
-}
-
-.leg{
-    position:absolute;
-    width:28px;
-    height:150px;
-    background:#C7D8D5;
-    border-radius:20px;
-    top:190px;
-}
-
-.left-leg{
-    left:42px;
-}
-
-.right-leg{
-    right:42px;
-}
-
-.hotspot{
-    position:absolute;
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    border:3px solid var(--primary);
-    background:#76AAA466;
-    cursor:pointer;
-    z-index:5;
-    transition: transform 0.2s;
-}
-
-.hotspot:hover {
-    transform: scale(1.1);
-}
-
-.hotspot.knee-right{
-    right:30px;
-    top:242px;
-}
-
-.hotspot.knee-left{
-    left:30px;
-    top:242px;
-}
-
-.hotspot.shoulder{
-    right:0;
-    top:88px;
-}
-
-.hotspot.back{
-    left:55px;
-    top:145px;
-}
-
-.selected-region{
-    display:none;
-}
-
-/* RESULTS */
-
-.result-low{
-    border-left:5px solid #4C967D;
-}
-
-.result-warning{
-    border-left:5px solid var(--warning);
-}
-
-.result-danger{
-    border-left:5px solid var(--danger);
-}
-
-.result-number{
-    font-size:30px;
-    font-weight:800;
-}
-
-/* REHAB */
-
-.exercise-video{
-    height:170px;
-    background:#EDF5F3;
-    border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:60px;
-}
-
-/* NAV */
-
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    width:100%;
-    max-width:430px;
-    background:white;
-    border-top:1px solid var(--border);
-    display:flex;
-    justify-content:space-around;
-    padding:12px 5px;
-    z-index:10;
-}
-
-.bottom-nav button{
-    border:0;
-    background:none;
-    color:var(--muted);
-    font-size:12px;
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-}
-
-.bottom-nav button:hover{
-    color:var(--primary);
-}
-
-.small{
-    font-size:13px;
-}
-
-/* Back to site banner */
-.return-banner {
-    background: #1e293b;
-    color: white;
-    text-align: center;
-    padding: 8px;
-    font-size: 13px;
-    font-weight: 500;
-}
-
-.return-banner a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-}
-
-.return-banner a:hover {
-    color: #e2e8f0;
-}
-</style>
+        #camera-view { object-fit: cover; width: 100%; height: 100%; border-radius: 1.5rem; }
+        .scanner-line { width: 100%; height: 2px; background: #0ea5e9; box-shadow: 0 0 10px #0ea5e9; position: absolute; top: 0; animation: scan 2s linear infinite; }
+        
+        .option-card { transition: all 0.2s ease; border: 2px solid transparent; }
+        .option-card.selected { border-color: #0ea5e9; background-color: #f0f9ff; }
+        
+        .nav-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #64748b; font-size: 0.75rem; font-weight: 500; transition: color 0.2s; }
+        .nav-btn.active { color: #0284c7; }
+        .nav-btn:hover { color: #0284c7; }
+        
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #0ea5e9; cursor: pointer; margin-top: -10px; box-shadow: 0 2px 6px rgba(14, 165, 233, 0.4); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #e2e8f0; border-radius: 2px; }
+    </style>
 </head>
+<body class="text-slate-800 antialiased bg-slate-100">
 
+<div class="app-container">
 
-<body>
-
-<div class="app">
-
-<div class="return-banner">
-    <a href="index.html">← Back to RehAAB Clinic Website</a>
-</div>
-
-<header>
-    <a href="index.html" style="text-decoration:none; color:inherit;">
-        <div class="logo">
-            RehAAB <span>AI</span>
+    <!-- Return Banner -->
+    <div class="bg-slate-900 text-white text-xs font-medium py-2 px-4 flex justify-between items-center z-50">
+        <a href="index.html" class="flex items-center gap-2 hover:text-brand-400 transition-colors">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Return to Clinic
+        </a>
+        <div class="flex items-center gap-1 text-brand-400 text-[10px] tracking-wider uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span> AI Active
         </div>
-    </a>
-
-    <div class="prototype">
-        Prototype
     </div>
-</header>
 
+    <!-- Main Header -->
+    <header class="px-6 py-4 border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-40 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </div>
+            <h1 class="font-bold text-lg text-slate-900">RehAAB <span class="font-normal text-slate-500">AI</span></h1>
+        </div>
+        <button class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200">
+            <i data-lucide="user" class="w-4 h-4"></i>
+        </button>
+    </header>
 
-<main>
+    <!-- Content Area -->
+    <main class="flex-1 flex flex-col relative overflow-y-auto overflow-x-hidden pb-24">
+        
+        <!-- SCREEN: HOME -->
+        <section id="screen-home" class="screen active p-6">
+            <div class="flex-1 flex flex-col justify-center">
+                <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 mb-6 mx-auto">
+                    <i data-lucide="activity" class="w-8 h-8"></i>
+                </div>
+                <h1 class="text-3xl font-bold text-center text-slate-900 mb-4 leading-tight">
+                    Understand your pain.<br>Move better.
+                </h1>
+                <p class="text-slate-500 text-center mb-10 leading-relaxed px-4">
+                    Our AI-guided clinical assessment uses computer vision and dynamic symptom tracking to map your pain and recommend the right care pathway.
+                </p>
 
-<!-- HOME -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm mb-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-brand-100 text-brand-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Smart Assessment</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-2">Begin AI Analysis</h2>
+                    <p class="text-sm text-slate-500 mb-6">Takes ~3 minutes. Includes movement screening via camera.</p>
+                    <button onclick="nav('screen-consent')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md">
+                        Start Assessment <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
 
-<section id="home" class="screen active">
+                <div class="text-center">
+                    <button onclick="window.location.href='index.html#contact'" class="text-slate-500 text-sm font-medium hover:text-brand-600 transition-colors flex items-center justify-center gap-1 mx-auto">
+                        <i data-lucide="calendar" class="w-4 h-4"></i> Skip & Book Professional
+                    </button>
+                </div>
+            </div>
+        </section>
 
-<h1>
-    Understand your pain.<br>
-    Move better.
-</h1>
+        <!-- SCREEN: CONSENT -->
+        <section id="screen-consent" class="screen p-6">
+            <button onclick="nav('screen-home')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 mb-6 hover:bg-slate-200 transition-colors">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+            <h2 class="text-2xl font-bold text-slate-900 mb-3">Clinical Disclaimer</h2>
+            <p class="text-slate-600 mb-8 leading-relaxed">
+                RehAAB AI provides educational guidance based on your inputs and movement patterns. <strong class="text-slate-900">It does not replace a physical examination, medical diagnosis, or professional clinical judgement.</strong>
+            </p>
 
-<p>
-    AI-guided physiotherapy assessment with
-    a pathway to professional care.
-</p>
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 mb-8">
+                <label class="flex items-start gap-4 cursor-pointer group">
+                    <div class="relative flex items-center mt-1">
+                        <input type="checkbox" id="consent-check" class="peer sr-only">
+                        <div class="w-6 h-6 border-2 border-slate-300 rounded-md peer-checked:bg-brand-600 peer-checked:border-brand-600 transition-colors flex items-center justify-center">
+                            <i data-lucide="check" class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100"></i>
+                        </div>
+                    </div>
+                    <span class="text-sm text-slate-700 group-hover:text-slate-900 transition-colors">
+                        I understand this is an AI screening tool, not a medical diagnosis, and I agree to proceed with the assessment.
+                    </span>
+                </label>
+            </div>
 
-<div class="card">
+            <div class="mt-auto">
+                <button onclick="checkConsent()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all shadow-md">
+                    I Agree, Continue
+                </button>
+            </div>
+        </section>
 
-<span class="badge">
-    AI-GUIDED ASSESSMENT
-</span>
+        <!-- SCREEN: BODY MAP -->
+        <section id="screen-body" class="screen p-6">
+            <div class="flex items-center justify-between mb-6">
+                <button onclick="nav('screen-consent')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                <div class="flex gap-1">
+                    <div class="w-6 h-1.5 bg-brand-600 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                </div>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Where is your pain?</h2>
+            <p class="text-slate-500 mb-8">Tap the primary area causing you discomfort.</p>
 
-<h2>
-    Start an assessment
-</h2>
+            <div class="flex-1 relative bg-slate-50 rounded-[2rem] border border-slate-100 p-8 flex items-center justify-center overflow-hidden">
+                <!-- Grid background -->
+                <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 20px 20px;"></div>
+                
+                <!-- Realistic Body Map Image -->
+                <div class="relative w-full max-w-[280px] aspect-[3/4]">
+                    <img src="body-map.jpg" alt="Body Map" class="w-full h-full object-cover rounded-xl shadow-inner mix-blend-multiply opacity-90">
 
-<p>
-    Locate your pain, answer adaptive questions
-    and receive an appropriate next-step recommendation.
-</p>
+                    <!-- Interactive Hotspots -->
+                    <div class="absolute inset-0">
+                        <!-- Shoulders -->
+                        <div onclick="selectBodyPart('Right Shoulder')" class="absolute top-[22%] left-[25%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                        <div onclick="selectBodyPart('Left Shoulder')" class="absolute top-[22%] right-[25%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                        <!-- Lower Back (Center) -->
+                        <div onclick="selectBodyPart('Lower Back')" class="absolute top-[52%] left-[46%] w-8 h-8 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-2 h-2 bg-brand-600 rounded-full"></div></div>
+                        <!-- Knees -->
+                        <div onclick="selectBodyPart('Right Knee')" class="absolute bottom-[20%] left-[35%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                        <div onclick="selectBodyPart('Left Knee')" class="absolute bottom-[20%] right-[35%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                        <!-- Neck -->
+                        <div onclick="selectBodyPart('Neck')" class="absolute top-[12%] left-[46%] w-6 h-6 bg-brand-500/20 border-2 border-brand-500 rounded-full flex items-center justify-center hotspot-pulse"><div class="w-1.5 h-1.5 bg-brand-600 rounded-full"></div></div>
+                    </div>
+                </div>
+            </div>
 
-<button class="btn"
-onclick="showScreen('consent')">
-    START ASSESSMENT
-</button>
+            <!-- Selection popover -->
+            <div id="selection-popover" class="fixed bottom-24 left-1/2 -translate-x-1/2 w-11/12 max-w-sm bg-slate-900 text-white rounded-2xl p-4 shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-1">Selected Region</p>
+                    <p id="selected-part-name" class="font-bold text-lg">Right Knee</p>
+                </div>
+                <button onclick="nav('screen-symptoms')" class="bg-brand-600 hover:bg-brand-500 text-white font-bold px-6 py-3 rounded-xl pointer-events-auto shadow-md transition-colors">
+                    Next <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN: SYMPTOMS -->
+        <section id="screen-symptoms" class="screen p-6">
+            <div class="flex items-center justify-between mb-6">
+                <button onclick="nav('screen-body')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                <div class="flex gap-1">
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-6 h-1.5 bg-brand-600 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">What are you feeling?</h2>
+            <p class="text-slate-500 mb-8">Select all symptoms you are experiencing in your <span id="symptom-region-label" class="font-bold text-slate-700">selected area</span>.</p>
+
+            <div class="grid grid-cols-2 gap-3 mb-8">
+                <div onclick="toggleOpt(this)" class="option-card bg-white rounded-xl p-4 shadow-sm flex flex-col items-center justify-center gap-3 cursor-pointer text-center h-28">
+                    <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center"><i data-lucide="flame" class="w-5 h-5"></i></div>
+                    <span class="font-medium text-sm text-slate-700">Sharp Pain</span>
+                </div>
+                <div onclick="toggleOpt(this)" class="option-card bg-white rounded-xl p-4 shadow-sm flex flex-col items-center justify-center gap-3 cursor-pointer text-center h-28">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><i data-lucide="activity" class="w-5 h-5"></i></div>
+                    <span class="font-medium text-sm text-slate-700">Stiffness</span>
+                </div>
+                <div onclick="toggleOpt(this)" class="option-card bg-white rounded-xl p-4 shadow-sm flex flex-col items-center justify-center gap-3 cursor-pointer text-center h-28">
+                    <div class="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><i data-lucide="zap" class="w-5 h-5"></i></div>
+                    <span class="font-medium text-sm text-slate-700">Tingling / Numb</span>
+                </div>
+                <div onclick="toggleOpt(this)" class="option-card bg-white rounded-xl p-4 shadow-sm flex flex-col items-center justify-center gap-3 cursor-pointer text-center h-28">
+                    <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center"><i data-lucide="droplet" class="w-5 h-5"></i></div>
+                    <span class="font-medium text-sm text-slate-700">Swelling</span>
+                </div>
+            </div>
+            
+            <h3 class="font-bold text-slate-900 mb-4">Pain Intensity (0-10)</h3>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-8">
+                <div class="flex justify-between items-end mb-6">
+                    <span class="text-sm text-slate-500 font-medium">Mild</span>
+                    <span id="pain-val" class="text-4xl font-bold text-brand-600">5</span>
+                    <span class="text-sm text-slate-500 font-medium">Severe</span>
+                </div>
+                <input type="range" min="0" max="10" value="5" id="pain-slider" oninput="document.getElementById('pain-val').innerText = this.value">
+            </div>
+
+            <div class="mt-auto">
+                <button onclick="nav('screen-duration')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all shadow-md">
+                    Continue
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN: DURATION / SAFETY -->
+        <section id="screen-duration" class="screen p-6">
+            <div class="flex items-center justify-between mb-6">
+                <button onclick="nav('screen-symptoms')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                <div class="flex gap-1">
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-6 h-1.5 bg-brand-600 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">How long has this been happening?</h2>
+            <p class="text-slate-500 mb-6">This helps us understand the chronicity of your condition.</p>
+
+            <div class="space-y-3 mb-8">
+                <button onclick="selectSingleOpt(this, 'duration')" class="duration-opt w-full text-left px-5 py-4 bg-white border border-slate-200 rounded-xl font-medium text-slate-700 hover:border-brand-500 transition-colors">Less than 1 week</button>
+                <button onclick="selectSingleOpt(this, 'duration')" class="duration-opt w-full text-left px-5 py-4 bg-white border border-slate-200 rounded-xl font-medium text-slate-700 hover:border-brand-500 transition-colors">1 - 4 weeks</button>
+                <button onclick="selectSingleOpt(this, 'duration')" class="duration-opt w-full text-left px-5 py-4 bg-white border border-slate-200 rounded-xl font-medium text-slate-700 hover:border-brand-500 transition-colors">1 - 3 months</button>
+                <button onclick="selectSingleOpt(this, 'duration')" class="duration-opt w-full text-left px-5 py-4 bg-white border border-slate-200 rounded-xl font-medium text-slate-700 hover:border-brand-500 transition-colors">Over 3 months</button>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8">
+                <div class="flex items-center gap-2 mb-2 text-amber-800">
+                    <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                    <h3 class="font-bold">Safety Check</h3>
+                </div>
+                <p class="text-sm text-amber-700 mb-4">Have you experienced sudden, unexplained weight loss, changes in bowel/bladder control, or severe night pain?</p>
+                <div class="flex gap-3">
+                    <button onclick="nav('screen-redflag')" class="flex-1 bg-white text-amber-700 border border-amber-300 py-2 rounded-lg font-semibold hover:bg-amber-100 transition-colors">Yes</button>
+                    <button onclick="nav('screen-camera-intro')" class="flex-1 bg-amber-600 text-white py-2 rounded-lg font-semibold hover:bg-amber-700 transition-colors">No</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN: RED FLAG (Safety Pathway) -->
+        <section id="screen-redflag" class="screen p-6">
+            <div class="flex-1 flex flex-col items-center justify-center text-center">
+                <div class="w-20 h-20 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mb-6">
+                    <i data-lucide="shield-alert" class="w-10 h-10"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">Professional Assessment Required</h2>
+                <p class="text-slate-600 mb-8">
+                    Based on your responses, we strongly recommend an in-person evaluation by a healthcare professional before beginning any exercise or automated rehabilitation program.
+                </p>
+                <div class="w-full space-y-3">
+                    <button onclick="window.location.href='index.html#contact'" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 rounded-xl shadow-md transition-all">
+                        Book Clinic Appointment
+                    </button>
+                    <button onclick="window.location.href='index.html'" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-4 rounded-xl transition-all">
+                        Return to Homepage
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN: CAMERA INTRO -->
+        <section id="screen-camera-intro" class="screen p-6">
+            <div class="flex items-center justify-between mb-6">
+                <button onclick="nav('screen-duration')" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                <div class="flex gap-1">
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                    <div class="w-6 h-1.5 bg-brand-600 rounded-full"></div>
+                    <div class="w-2 h-1.5 bg-slate-200 rounded-full"></div>
+                </div>
+            </div>
+
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">AI Movement Scan</h2>
+            <p class="text-slate-600 mb-8 leading-relaxed">
+                RehAAB AI will use your device camera to analyze your joint angles, symmetry, and mobility while you perform a simple movement.
+            </p>
+
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm mb-8">
+                <h3 class="font-bold text-slate-900 mb-4">For best results:</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center shrink-0"><i data-lucide="smartphone" class="w-4 h-4"></i></div>
+                        <p class="text-sm text-slate-600">Prop your phone up securely on a table.</p>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center shrink-0"><i data-lucide="sun" class="w-4 h-4"></i></div>
+                        <p class="text-sm text-slate-600">Ensure the room is well lit.</p>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center shrink-0"><i data-lucide="scan" class="w-4 h-4"></i></div>
+                        <p class="text-sm text-slate-600">Stand 6 feet back so your full body is visible.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mt-auto">
+                <button onclick="startCamera()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                    <i data-lucide="camera" class="w-5 h-5"></i> Enable Camera
+                </button>
+                <button onclick="nav('screen-analyzing')" class="w-full mt-3 text-slate-500 font-medium py-3 hover:text-slate-700 transition-colors">
+                    Skip Camera Step
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN: CAMERA LIVE -->
+        <section id="screen-camera-live" class="screen p-0 bg-black relative">
+            <video id="camera-feed" class="w-full h-full object-cover opacity-80" autoplay playsinline muted></video>
+            
+            <!-- AI Scanner Overlay -->
+            <div class="absolute inset-0 z-10 flex flex-col">
+                <div class="p-6 flex justify-between items-start">
+                    <div class="bg-black/50 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-2">
+                        <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Recording
+                    </div>
+                    <button onclick="stopCameraAndProceed()" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <div class="flex-1 flex items-center justify-center p-8">
+                    <!-- Tracking Box -->
+                    <div class="w-full max-w-[280px] aspect-[1/1.5] border-2 border-brand-400 border-dashed rounded-xl relative overflow-hidden">
+                        <div class="scanner-line"></div>
+                        <div class="absolute top-2 left-2 text-brand-400 text-[10px] font-mono">POSE_ESTIMATION_ACTIVE</div>
+                        <!-- Corner markers -->
+                        <div class="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-brand-400"></div>
+                        <div class="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-brand-400"></div>
+                        <div class="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-brand-400"></div>
+                        <div class="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-brand-400"></div>
+                    </div>
+                </div>
+
+                <div class="p-8 pb-12 text-center bg-gradient-to-t from-black/80 to-transparent">
+                    <p class="text-white font-medium mb-1 text-lg">Perform 3 Squats</p>
+                    <p class="text-white/70 text-sm mb-6">Stay inside the frame</p>
+                    
+                    <button id="capture-btn" onclick="stopCameraAndProceed()" class="w-16 h-16 rounded-full border-4 border-white/30 flex items-center justify-center mx-auto transition-transform active:scale-95">
+                        <div class="w-12 h-12 bg-white rounded-full"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN: ANALYZING -->
+        <section id="screen-analyzing" class="screen p-6 bg-brand-950 text-white">
+            <div class="flex-1 flex flex-col items-center justify-center text-center">
+                <div class="relative w-24 h-24 mb-8">
+                    <div class="absolute inset-0 border-4 border-brand-800 rounded-full"></div>
+                    <div class="absolute inset-0 border-4 border-t-brand-400 border-r-brand-400 rounded-full animate-spin"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i data-lucide="cpu" class="w-8 h-8 text-brand-400"></i>
+                    </div>
+                </div>
+                
+                <h2 class="text-2xl font-bold mb-2">Analyzing Data</h2>
+                <div id="loading-text" class="text-brand-300 text-sm font-mono h-6 transition-all duration-300">Correlating symptom patterns...</div>
+                
+                <!-- Progress bar -->
+                <div class="w-full max-w-[200px] h-1 bg-brand-900 rounded-full mt-8 overflow-hidden">
+                    <div id="loading-progress" class="h-full bg-brand-400 w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN: RESULTS -->
+        <section id="screen-results" class="screen p-6">
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-3">
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Analysis Complete
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">Your RehAAB Report</h2>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-6 relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-24 h-24 bg-brand-50 rounded-bl-full -z-10"></div>
+                <h3 class="text-slate-500 text-sm font-medium mb-1">Primary Region</h3>
+                <p id="result-region" class="text-xl font-bold text-slate-900 mb-6">Right Knee</p>
+                
+                <h3 class="text-slate-500 text-sm font-medium mb-2">Clinical Indication</h3>
+                <p class="text-slate-700 font-medium leading-relaxed mb-4">
+                    Your responses and movement patterns suggest an <strong class="text-brand-600">overuse mechanical strain</strong>, likely related to patellofemoral tracking. 
+                </p>
+                <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                    <i data-lucide="info" class="w-4 h-4 text-slate-400 shrink-0 mt-0.5"></i>
+                    <p class="text-xs text-slate-500 leading-relaxed">This AI screening is not a confirmed medical diagnosis. A professional physical exam is recommended to validate these findings.</p>
+                </div>
+            </div>
+
+            <h3 class="font-bold text-slate-900 mb-3 px-1">Recommended Pathway</h3>
+            <div class="space-y-3 mb-8">
+                <div class="bg-white rounded-xl p-4 border border-brand-200 shadow-sm shadow-brand-100 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center">
+                            <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-slate-900">Phase 1 Rehab Plan</p>
+                            <p class="text-xs text-slate-500">3 exercises • 10 mins/day</p>
+                        </div>
+                    </div>
+                    <button onclick="nav('screen-rehab')" class="text-brand-600 font-semibold text-sm hover:text-brand-700">Start</button>
+                </div>
+                
+                <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center">
+                            <i data-lucide="calendar" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-slate-900">Book Professional</p>
+                            <p class="text-xs text-slate-500">In-clinic validation</p>
+                        </div>
+                    </div>
+                    <button onclick="window.location.href='index.html#contact'" class="text-brand-600 font-semibold text-sm hover:text-brand-700">Book</button>
+                </div>
+            </div>
+            
+            <button onclick="window.location.href='index.html#contact'" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all shadow-md">
+                Connect with RehAAB Clinic
+            </button>
+        </section>
+
+        <!-- SCREEN: REHAB -->
+        <section id="screen-rehab" class="screen p-6 bg-slate-50">
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Phase 1 Plan</h2>
+            <p class="text-slate-500 mb-6">Gentle mobility and pain management.</p>
+
+            <div class="space-y-4">
+                <!-- Exercise 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div class="aspect-video bg-slate-100 relative group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80" alt="Exercise" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-slate-900">
+                                <i data-lucide="play" class="w-5 h-5 ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-slate-900">Isometric Holds</h3>
+                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded">2 x 10 reps</span>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-4">Hold muscle contraction without joint movement to build initial strength safely.</p>
+                        <button onclick="markDone(this)" class="w-full py-2.5 rounded-lg border-2 border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-colors">Mark Complete</button>
+                    </div>
+                </div>
+
+                <!-- Exercise 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div class="aspect-video bg-slate-100 relative group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80" alt="Exercise" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-slate-900">
+                                <i data-lucide="play" class="w-5 h-5 ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-slate-900">Gentle Range of Motion</h3>
+                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded">30 seconds</span>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-4">Slow, controlled movements within your pain-free range.</p>
+                        <button onclick="markDone(this)" class="w-full py-2.5 rounded-lg border-2 border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-colors">Mark Complete</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bg-white border-t border-slate-200 px-6 py-3 pb-8 md:pb-4 flex justify-between items-center fixed bottom-0 w-full max-w-[480px] z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+        <button onclick="nav('screen-home')" id="nav-home" class="nav-btn active">
+            <i data-lucide="home" class="w-5 h-5"></i>
+            <span>Home</span>
+        </button>
+        <button onclick="nav('screen-body')" id="nav-assess" class="nav-btn">
+            <i data-lucide="scan-body" class="w-5 h-5"></i>
+            <span>Assess</span>
+        </button>
+        <button onclick="nav('screen-rehab')" id="nav-rehab" class="nav-btn">
+            <i data-lucide="dumbbell" class="w-5 h-5"></i>
+            <span>Rehab</span>
+        </button>
+        <button onclick="window.location.href='index.html#contact'" class="nav-btn">
+            <i data-lucide="calendar" class="w-5 h-5"></i>
+            <span>Clinic</span>
+        </button>
+    </nav>
 
 </div>
-
-<button class="btn secondary"
-onclick="booking()">
-
-BOOK A PHYSIOTHERAPIST
-
-</button>
-
-</section>
-
-
-<!-- CONSENT -->
-
-<section id="consent" class="screen">
-
-<button class="back"
-onclick="showScreen('home')">
-← Back
-</button>
-
-<h1>
-Before we begin
-</h1>
-
-<p>
-RehAAB AI provides guidance based on the
-information you provide. It does not replace
-a physical examination or confirmed diagnosis.
-</p>
-
-<div class="card">
-
-<label class="checkbox">
-
-<input
-type="checkbox"
-id="consentCheck">
-
-<span>
-I understand and agree to continue
-with the assessment.
-</span>
-
-</label>
-
-</div>
-
-<button class="btn"
-onclick="continueConsent()">
-
-CONTINUE
-
-</button>
-
-</section>
-
-
-<!-- BODY MAP -->
-
-<section id="body" class="screen">
-
-<button class="back"
-onclick="showScreen('consent')">
-← Back
-</button>
-
-<h1>
-Where does it hurt?
-</h1>
-
-<p>
-Tap the area where you are experiencing
-the problem.
-</p>
-
-<div class="body-map">
-
-<div class="body">
-
-<div class="head"></div>
-
-<div class="torso"></div>
-
-<div class="arm left-arm"></div>
-
-<div class="arm right-arm"></div>
-
-<div class="leg left-leg"></div>
-
-<div class="leg right-leg"></div>
-
-<button
-class="hotspot knee-right"
-onclick="selectRegion('Right Knee')">
-</button>
-
-<button
-class="hotspot knee-left"
-onclick="selectRegion('Left Knee')">
-</button>
-
-<button
-class="hotspot shoulder"
-onclick="selectRegion('Right Shoulder')">
-</button>
-
-<button
-class="hotspot back"
-onclick="selectRegion('Lower Back')">
-</button>
-
-</div>
-
-</div>
-
-
-<div
-id="selectedRegion"
-class="card selected-region">
-
-<strong id="regionName">
-</strong>
-
-<p>
-Selected body region.
-</p>
-
-<button
-class="btn"
-onclick="continueRegion()">
-
-CONTINUE
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- SYMPTOMS -->
-
-<section id="symptoms" class="screen">
-
-<button class="back"
-onclick="showScreen('body')">
-← Back
-</button>
-
-<h1>
-What are you experiencing?
-</h1>
-
-<p id="symptomRegion"></p>
-
-<button class="option"
-onclick="toggleOption(this)">
-Pain
-</button>
-
-<button class="option"
-onclick="toggleOption(this)">
-Stiffness
-</button>
-
-<button class="option"
-onclick="toggleOption(this)">
-Weakness
-</button>
-
-<button class="option"
-onclick="toggleOption(this)">
-Swelling
-</button>
-
-<button class="option"
-onclick="toggleOption(this)">
-Numbness / tingling
-</button>
-
-<button class="option"
-onclick="toggleOption(this)">
-Movement difficulty
-</button>
-
-<button class="btn"
-onclick="showScreen('pain')">
-
-CONTINUE
-
-</button>
-
-</section>
-
-
-<!-- PAIN -->
-
-<section id="pain" class="screen">
-
-<button class="back"
-onclick="showScreen('symptoms')">
-← Back
-</button>
-
-<h1>
-How painful is it right now?
-</h1>
-
-<p>
-0 = no pain<br>
-10 = worst pain imaginable
-</p>
-
-<input
-type="range"
-min="0"
-max="10"
-value="5"
-id="painSlider"
-style="width:100%"
-oninput="updatePain()">
-
-<div
-style="text-align:center;font-size:35px;font-weight:800"
-id="painValue">
-5
-</div>
-
-<button
-class="btn"
-onclick="showScreen('question')">
-
-CONTINUE
-
-</button>
-
-</section>
-
-
-<!-- QUESTION -->
-
-<section id="question" class="screen">
-
-<button class="back"
-onclick="showScreen('pain')">
-← Back
-</button>
-
-<div class="progress">
-<div
-class="progress-bar"
-style="width:45%">
-</div>
-</div>
-
-<h1>
-When did your problem begin?
-</h1>
-
-<p>
-We're narrowing this down.
-</p>
-
-<button class="option"
-onclick="answerDuration('Today')">
-Today
-</button>
-
-<button class="option"
-onclick="answerDuration('Less than a week')">
-Less than a week
-</button>
-
-<button class="option"
-onclick="answerDuration('1–4 weeks')">
-1–4 weeks
-</button>
-
-<button class="option"
-onclick="answerDuration('1–3 months')">
-1–3 months
-</button>
-
-<button class="option"
-onclick="answerDuration('More than 3 months')">
-More than 3 months
-</button>
-
-</section>
-
-
-<!-- SAFETY -->
-
-<section id="safety" class="screen">
-
-<button class="back"
-onclick="showScreen('question')">
-← Back
-</button>
-
-<div class="progress">
-<div
-class="progress-bar"
-style="width:70%">
-</div>
-</div>
-
-<h1>
-Important safety question
-</h1>
-
-<p>
-Have you developed sudden new weakness
-in the affected area?
-</p>
-
-<button class="option"
-onclick="redFlag()">
-Yes
-</button>
-
-<button class="option"
-onclick="continueSafe()">
-No
-</button>
-
-<button class="option"
-onclick="continueSafe()">
-Not sure
-</button>
-
-</section>
-
-
-<!-- RED FLAG -->
-
-<section id="redflag" class="screen">
-
-<h1>
-Professional assessment recommended
-</h1>
-
-<div class="card result-warning">
-
-<span class="badge">
-SAFETY PATHWAY
-</span>
-
-<p>
-Some symptoms should be assessed by a
-healthcare professional before automated
-rehabilitation is started.
-</p>
-
-<p>
-<strong>
-Automated exercise prescription is blocked
-in this pathway.
-</strong>
-</p>
-
-</div>
-
-<button
-class="btn"
-onclick="booking()">
-
-CONTACT REHAAB
-
-</button>
-
-<button
-class="btn secondary"
-onclick="showScreen('home')">
-
-RETURN HOME
-
-</button>
-
-</section>
-
-
-<!-- CAMERA -->
-
-<section id="camera" class="screen">
-
-<button class="back"
-onclick="showScreen('safety')">
-← Back
-</button>
-
-<div class="progress">
-<div
-class="progress-bar"
-style="width:90%">
-</div>
-</div>
-
-<h1>
-Let's look at how you move.
-</h1>
-
-<p>
-This optional movement assessment observes
-movement. It does not independently diagnose
-an injury.
-</p>
-
-<div class="card">
-
-<strong>
-Good capture needs:
-</strong>
-
-<p>
-📱 Stable phone<br>
-💡 Good lighting<br>
-🧍 Full body visible
-</p>
-
-</div>
-
-<button
-class="btn"
-onclick="startMovement()">
-
-START MOVEMENT ASSESSMENT
-
-</button>
-
-</section>
-
-
-<!-- CAMERA CAPTURE -->
-
-<section id="capture" class="screen">
-
-<h1>
-Movement assessment
-</h1>
-
-<div class="body-map">
-
-<div style="font-size:120px">
-🧍
-</div>
-
-</div>
-
-<p>
-Perform the requested movement
-comfortably three times.
-</p>
-
-<button
-class="btn"
-onclick="finishMovement()">
-
-MOVEMENT CAPTURED
-
-</button>
-
-</section>
-
-
-<!-- RESULTS -->
-
-<section id="results" class="screen">
-
-<h1>
-Your RehAAB Assessment
-</h1>
-
-<p>
-<strong id="resultRegion">
-Right Knee
-</strong>
-</p>
-
-<div class="card result-low">
-
-<span class="badge">
-LOW RISK
-</span>
-
-<h2>
-What your answers suggest
-</h2>
-
-<p>
-Your responses show a pattern that may be
-compatible with a common mechanical
-musculoskeletal presentation.
-</p>
-
-<p>
-<strong>
-This is not a confirmed diagnosis.
-</strong>
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h2>
-What we observed
-</h2>
-
-<p>
-Your movement recording can be reviewed
-for symmetry and movement strategy.
-</p>
-
-<p class="small">
-Movement observations help personalise
-rehabilitation but do not independently
-identify the cause of pain.
-</p>
-
-</div>
-
-
-<h2>
-What could be contributing?
-</h2>
-
-<div class="card">
-
-<strong>
-Pattern 1
-</strong>
-
-<p>
-Symptoms compatible with a mechanical
-musculoskeletal presentation.
-</p>
-
-</div>
-
-<div class="card">
-
-<strong>
-Pattern 2
-</strong>
-
-<p>
-Another local soft-tissue or movement-related
-contributor may also be possible.
-</p>
-
-</div>
-
-<button
-class="btn"
-onclick="showScreen('rehab')">
-
-START MY 7-DAY PLAN
-
-</button>
-
-<button
-class="btn secondary"
-onclick="booking()">
-
-I WANT A PROFESSIONAL ASSESSMENT
-
-</button>
-
-</section>
-
-
-<!-- REHAB -->
-
-<section id="rehab" class="screen">
-
-<h1>
-Your Week 1 Plan
-</h1>
-
-<p>
-Your production programme will use only
-clinically approved exercises from the
-RehAAB exercise library.
-</p>
-
-
-<div class="card">
-
-<div class="exercise-video">
-▶️
-</div>
-
-<h2>
-Exercise 1
-</h2>
-
-<p>
-Controlled movement
-</p>
-
-<strong>
-2 × 8 repetitions
-</strong>
-
-<button
-class="btn"
-onclick="completeExercise(this)">
-
-START
-
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="exercise-video">
-▶️
-</div>
-
-<h2>
-Exercise 2
-</h2>
-
-<p>
-Strengthening exercise
-</p>
-
-<strong>
-2 × 10 repetitions
-</strong>
-
-<button
-class="btn"
-onclick="completeExercise(this)">
-
-START
-
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="exercise-video">
-▶️
-</div>
-
-<h2>
-Exercise 3
-</h2>
-
-<p>
-Mobility exercise
-</p>
-
-<strong>
-30 seconds × 2
-</strong>
-
-<button
-class="btn"
-onclick="completeExercise(this)">
-
-START
-
-</button>
-
-</div>
-
-
-<button
-class="btn secondary"
-onclick="showScreen('progress')">
-
-VIEW MY PROGRESS
-
-</button>
-
-</section>
-
-
-<!-- PROGRESS -->
-
-<section id="progress" class="screen">
-
-<h1>
-Your Recovery
-</h1>
-
-<div class="card">
-
-<span class="badge">
-WEEK 1
-</span>
-
-<h2>
-Pain
-</h2>
-
-<div class="result-number">
-6 → 3
-</div>
-
-<p>
-Illustrative prototype data.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h2>
-Programme adherence
-</h2>
-
-<div class="result-number">
-86%
-</div>
-
-<p>
-5 of 7 days completed.
-</p>
-
-</div>
-
-
-<button
-class="btn"
-onclick="showScreen('body')">
-
-REASSESS
-
-</button>
-
-<button
-class="btn secondary"
-onclick="booking()">
-
-VISIT REHAAB
-
-</button>
-
-</section>
-
-</main>
-
-
-<div class="bottom-nav">
-
-<button onclick="showScreen('home')">
-<span style="font-size: 18px;">🏠</span>
-Home
-</button>
-
-<button onclick="showScreen('body')">
-<span style="font-size: 18px;">🔍</span>
-Assess
-</button>
-
-<button onclick="showScreen('rehab')">
-<span style="font-size: 18px;">🏃‍♂️</span>
-Rehab
-</button>
-
-<button onclick="showScreen('progress')">
-<span style="font-size: 18px;">📈</span>
-Progress
-</button>
-
-</div>
-
-</div>
-
 
 <script>
+    // Initialize Icons
+    lucide.createIcons();
 
-let selectedRegion = "Right Knee";
+    // State
+    let state = {
+        region: 'Right Knee',
+        stream: null
+    };
 
-function showScreen(id){
+    function nav(screenId) {
+        // Hide all screens
+        document.querySelectorAll('.screen').forEach(el => {
+            el.classList.remove('active');
+        });
+        
+        // Show target
+        const target = document.getElementById(screenId);
+        if(target) {
+            target.classList.add('active');
+        }
+        
+        // Stop camera if navigating away from live view
+        if(screenId !== 'screen-camera-live' && state.stream) {
+            stopCamera();
+        }
 
-    document
-    .querySelectorAll(".screen")
-    .forEach(screen => {
-        screen.classList.remove("active");
-    });
+        // Update Bottom Nav active state
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active', 'text-brand-600'));
+        if(screenId === 'screen-home') document.getElementById('nav-home').classList.add('active', 'text-brand-600');
+        if(['screen-body', 'screen-symptoms', 'screen-duration', 'screen-camera-intro'].includes(screenId)) document.getElementById('nav-assess').classList.add('active', 'text-brand-600');
+        if(['screen-rehab', 'screen-results'].includes(screenId)) document.getElementById('nav-rehab').classList.add('active', 'text-brand-600');
 
-    document
-    .getElementById(id)
-    .classList.add("active");
-
-    window.scrollTo(0,0);
-}
-
-
-function continueConsent(){
-
-    const checkbox =
-        document.getElementById("consentCheck");
-
-    if(!checkbox.checked){
-        alert("Please confirm the consent checkbox to continue.");
-        return;
+        window.scrollTo(0, 0);
     }
 
-    showScreen("body");
-}
+    function checkConsent() {
+        const check = document.getElementById('consent-check');
+        if(!check.checked) {
+            // Simple shake animation or alert
+            alert("Please acknowledge the clinical disclaimer to proceed.");
+            return;
+        }
+        nav('screen-body');
+    }
 
+    function selectBodyPart(name) {
+        state.region = name;
+        document.getElementById('selected-part-name').innerText = name;
+        document.getElementById('symptom-region-label').innerText = name.toLowerCase();
+        document.getElementById('result-region').innerText = name;
+        
+        const popover = document.getElementById('selection-popover');
+        popover.classList.remove('translate-y-20', 'opacity-0');
+        popover.classList.add('translate-y-0', 'opacity-100');
+    }
 
-function selectRegion(region){
+    function toggleOpt(el) {
+        el.classList.toggle('selected');
+    }
 
-    selectedRegion = region;
+    function selectSingleOpt(el, groupClass) {
+        document.querySelectorAll('.' + groupClass).forEach(item => {
+            item.classList.remove('border-brand-500', 'bg-brand-50');
+        });
+        el.classList.add('border-brand-500', 'bg-brand-50');
+    }
 
-    document
-    .getElementById("selectedRegion")
-    .style.display = "block";
+    // Camera Logic
+    async function startCamera() {
+        nav('screen-camera-live');
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+            const video = document.getElementById('camera-feed');
+            video.srcObject = stream;
+            state.stream = stream;
+        } catch (err) {
+            console.error("Camera access denied or error:", err);
+            // Fallback immediately if camera fails
+            nav('screen-analyzing');
+            startAnalyzingSequence();
+        }
+    }
 
-    document
-    .getElementById("regionName")
-    .innerText = region;
-}
+    function stopCamera() {
+        if (state.stream) {
+            state.stream.getTracks().forEach(track => track.stop());
+            state.stream = null;
+        }
+    }
 
+    function stopCameraAndProceed() {
+        stopCamera();
+        nav('screen-analyzing');
+        startAnalyzingSequence();
+    }
 
-function continueRegion(){
+    function startAnalyzingSequence() {
+        const textEl = document.getElementById('loading-text');
+        const progEl = document.getElementById('loading-progress');
+        
+        const phases = [
+            "Processing 3D pose estimation...",
+            "Correlating movement kinematics...",
+            "Analyzing symptom presentation...",
+            "Generating clinical pathway..."
+        ];
+        
+        let step = 0;
+        progEl.style.width = '0%';
+        
+        const interval = setInterval(() => {
+            step++;
+            progEl.style.width = `${(step / phases.length) * 100}%`;
+            
+            if (step < phases.length) {
+                textEl.innerText = phases[step];
+            } else {
+                clearInterval(interval);
+                setTimeout(() => {
+                    nav('screen-results');
+                }, 500);
+            }
+        }, 1200);
+    }
 
-    document
-    .getElementById("symptomRegion")
-    .innerText =
-        "Selected area: " + selectedRegion;
-
-    showScreen("symptoms");
-}
-
-
-function toggleOption(button){
-    button.classList.toggle("selected");
-}
-
-
-function updatePain(){
-
-    const value =
-        document.getElementById("painSlider").value;
-
-    document
-    .getElementById("painValue")
-    .innerText = value;
-
-}
-
-
-function answerDuration(duration){
-    showScreen("safety");
-}
-
-
-function redFlag(){
-    showScreen("redflag");
-}
-
-
-function continueSafe(){
-    showScreen("camera");
-}
-
-
-function startMovement(){
-    showScreen("capture");
-}
-
-
-function finishMovement(){
-
-    document
-    .getElementById("resultRegion")
-    .innerText = selectedRegion;
-
-    showScreen("results");
-
-}
-
-
-function completeExercise(button){
-
-    button.innerText = "COMPLETED ✓";
-
-    button.disabled = true;
-
-    button.style.opacity = "0.65";
-
-}
-
-
-function booking(){
-    // Connect back to the main website booking section
-    window.location.href = "index.html#contact";
-}
+    function markDone(btn) {
+        btn.innerHTML = '<i data-lucide="check" class="w-4 h-4 inline mr-1"></i> Completed';
+        btn.classList.remove('border-slate-200', 'text-slate-600', 'hover:bg-slate-50');
+        btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+        lucide.createIcons();
+    }
 
 </script>
-
 </body>
 </html>
