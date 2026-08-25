@@ -142,34 +142,37 @@
 
 <div class="app-container">
 
-    <!-- Top Location Banner (Navy Bar) -->
-    <div class="bg-[#0b132b] text-slate-200 text-[11px] sm:text-xs py-2 px-4 flex items-center justify-center gap-2 text-center leading-snug border-b border-slate-800">
-        <i data-lucide="map-pin" class="w-4 h-4 text-sky-400 shrink-0"></i>
-        <span class="leading-tight">Shop No.1, OPD Block Nao Healthcare, opp. Fortis,<br class="hidden sm:inline"> Pocket 1, Sector B, Vasant Kunj, New Delhi</span>
-    </div>
-
-    <!-- Main Header (Black Navbar with Logo and Hamburger Menu) -->
-    <header class="bg-black px-4 sm:px-5 py-3 flex items-center justify-between sticky top-0 z-40 border-b border-slate-900 shadow-sm">
-        <a href="index.html" class="flex items-center">
-            <img src="C2EB3874-13AE-4BEB-B6E9-36D8D11813AE.png" alt="RehAAB Physiotherapy & Wellness Centre" class="h-11 sm:h-12 w-auto object-contain" referrerpolicy="no-referrer">
-        </a>
-        <button id="app-menu-btn" onclick="toggleAppMenu()" class="text-white p-1.5 hover:bg-slate-900 rounded-lg transition-colors cursor-pointer" aria-label="Toggle navigation menu">
-            <i data-lucide="menu" class="w-7 h-7 stroke-[2.2]"></i>
-        </button>
-    </header>
-
-    <!-- Mobile Dropdown Navigation Drawer -->
-    <div id="app-menu-dropdown" class="hidden bg-black border-b border-slate-800 px-5 py-3 space-y-2.5 text-sm z-30 transition-all">
-        <a href="index.html" class="block text-white hover:text-sky-400 font-semibold py-1">Home</a>
-        <a href="index.html#about" class="block text-slate-300 hover:text-sky-400 py-1">About RehAAB</a>
-        <a href="index.html#services" class="block text-slate-300 hover:text-sky-400 py-1">Our Services</a>
-        <a href="index.html#team" class="block text-slate-300 hover:text-sky-400 py-1">Our Team</a>
-        <a href="index.html#contact" class="block text-slate-300 hover:text-sky-400 py-1">Contact & Clinic Location</a>
-        <div class="pt-2 border-t border-slate-800 flex gap-2">
-            <a href="tel:+919319933875" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold py-2 rounded-lg text-center transition-colors">Call Clinic</a>
-            <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20know%20more%20about%20your%20physiotherapy%20services." target="_blank" rel="noopener noreferrer" class="flex-1 bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-2 rounded-lg text-center transition-colors">WhatsApp</a>
+    <!-- Unified Sticky Header (Navy Location Strip + Black Navbar) -->
+    <header class="sticky top-0 z-40 w-full shadow-sm bg-black">
+        <!-- Top Location Banner (Navy Bar) -->
+        <div class="bg-[#0b132b] text-slate-200 text-[11px] sm:text-xs py-1.5 sm:py-2 px-4 flex items-center justify-center gap-2 text-center leading-snug border-b border-slate-800/80">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-400 shrink-0"></i>
+            <span class="leading-tight text-slate-200">Shop No.1, OPD Block Nao Healthcare, opp. Fortis, Pocket 1, Sector B, Vasant Kunj, New Delhi</span>
         </div>
-    </div>
+
+        <!-- Main Header (Black Navbar with Logo and Hamburger Menu) -->
+        <div class="bg-black px-4 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between border-b border-slate-900">
+            <a href="index.html" class="flex items-center">
+                <img src="C2EB3874-13AE-4BEB-B6E9-36D8D11813AE.png" alt="RehAAB Physiotherapy & Wellness Centre" class="h-10 sm:h-11 w-auto object-contain" referrerpolicy="no-referrer">
+            </a>
+            <button id="app-menu-btn" onclick="toggleAppMenu()" class="text-white p-1.5 hover:bg-slate-900 rounded-lg transition-colors cursor-pointer" aria-label="Toggle navigation menu">
+                <i data-lucide="menu" class="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.2]"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Navigation Drawer -->
+        <div id="app-menu-dropdown" class="hidden bg-[#0a0f1d] border-b border-slate-800 px-5 py-3.5 space-y-2.5 text-sm z-30 transition-all shadow-xl">
+            <a href="index.html" class="block text-white hover:text-sky-400 font-semibold py-1">Home</a>
+            <a href="index.html#about" class="block text-slate-300 hover:text-sky-400 py-1">About RehAAB</a>
+            <a href="index.html#services" class="block text-slate-300 hover:text-sky-400 py-1">Our Services</a>
+            <a href="index.html#team" class="block text-slate-300 hover:text-sky-400 py-1">Our Team</a>
+            <a href="index.html#contact" class="block text-slate-300 hover:text-sky-400 py-1">Contact & Clinic Location</a>
+            <div class="pt-2 border-t border-slate-800 flex gap-2">
+                <a href="tel:+919319933875" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold py-2 rounded-lg text-center transition-colors">Call Clinic</a>
+                <a href="https://wa.me/919319933875?text=Hi%20RehAAB%20Team%2C%20I%20would%20like%20to%20know%20more%20about%20your%20physiotherapy%20services." target="_blank" rel="noopener noreferrer" class="flex-1 bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-2 rounded-lg text-center transition-colors">WhatsApp</a>
+            </div>
+        </div>
+    </header>
 
     <!-- Content Area -->
     <main class="flex-1 flex flex-col relative overflow-y-auto overflow-x-hidden pb-28">
