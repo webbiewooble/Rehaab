@@ -896,14 +896,11 @@
                                     <i data-lucide="check" class="w-5 h-5"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <h4 class="text-lg font-bold text-emerald-900 mb-1">Appointment Request Received!</h4>
+                                    <h4 class="text-lg font-bold text-emerald-900 mb-1">Thank you, we will contact you soon</h4>
                                     <p class="text-sm text-emerald-800 mb-4 leading-relaxed">
-                                        Thank you, <strong id="summary-name"></strong>. We have logged your request for <strong id="summary-service"></strong> on <strong id="summary-date"></strong> (<span id="summary-time"></span>).
+                                        Your appointment request has been successfully submitted. We will be in touch shortly to confirm your booking.
                                     </p>
                                     <div class="flex flex-wrap gap-3">
-                                        <a id="whatsapp-confirm-btn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold text-sm px-5 py-2.5 rounded-full transition-all shadow-sm">
-                                            <i data-lucide="message-circle" class="w-4 h-4"></i> Confirm via WhatsApp Instantly
-                                        </a>
                                         <button id="book-another-btn" type="button" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-sm px-4 py-2.5 rounded-full transition-all">
                                             Book Another
                                         </button>
@@ -913,7 +910,7 @@
                         </div>
 
                         <!-- Booking Form -->
-                        <form id="appointment-form" class="space-y-6">
+                        <form id="appointment-form" action="https://script.google.com/macros/s/AKfycbzsDS8uN9gRj-1VISTV5TY0CAFm4mD-_HsL6x0_a7p42gASpB6onVSx9rkygQJVsDsu/exec" method="POST" class="space-y-6">
                             <!-- Consultation Type Selector -->
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Consultation Type</label>
@@ -937,7 +934,7 @@
                                     </label>
                                     <div class="relative">
                                         <i data-lucide="user" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-                                        <input type="text" id="client-name" name="clientName" required placeholder="e.g. Rahul Sharma" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all">
+                                        <input type="text" id="client-name" name="name" required placeholder="e.g. Rahul Sharma" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all">
                                     </div>
                                 </div>
 
@@ -947,7 +944,7 @@
                                     </label>
                                     <div class="relative">
                                         <i data-lucide="phone" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-                                        <input type="tel" id="client-phone" name="clientPhone" required placeholder="e.g. +91 98765 43210" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all">
+                                        <input type="tel" id="client-phone" name="phone" required placeholder="e.g. +91 98765 43210" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all">
                                     </div>
                                 </div>
                             </div>
@@ -960,7 +957,7 @@
                                     </label>
                                     <div class="relative">
                                         <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-                                        <input type="email" id="client-email" name="clientEmail" placeholder="e.g. rahul@example.com" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all">
+                                        <input type="email" id="client-email" name="email" placeholder="e.g. rahul@example.com" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all">
                                     </div>
                                 </div>
 
@@ -1021,7 +1018,7 @@
                                 <label for="client-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                                     Describe Your Symptoms or Goals <span class="text-xs font-normal text-slate-400">(Optional)</span>
                                 </label>
-                                <textarea id="client-notes" name="clientNotes" rows="3" placeholder="Tell us about your pain area, recent injury, duration of discomfort, or doctor's recommendation..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all resize-none"></textarea>
+                                <textarea id="client-notes" name="message" rows="3" placeholder="Tell us about your pain area, recent injury, duration of discomfort, or doctor's recommendation..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all resize-none"></textarea>
                             </div>
 
                             <!-- Submit Buttons -->
@@ -1191,15 +1188,11 @@
             });
         });
 
-        // Booking form submission & WhatsApp formatting
+        // Booking form submission & Apps Script integration
         const appointmentForm = document.getElementById('appointment-form');
         const bookingSuccess = document.getElementById('booking-success');
-        const summaryName = document.getElementById('summary-name');
-        const summaryService = document.getElementById('summary-service');
-        const summaryDate = document.getElementById('summary-date');
-        const summaryTime = document.getElementById('summary-time');
-        const whatsappConfirmBtn = document.getElementById('whatsapp-confirm-btn');
         const bookAnotherBtn = document.getElementById('book-another-btn');
+        const submitBtn = document.getElementById('submit-booking-btn');
 
         if (appointmentForm) {
             appointmentForm.addEventListener('submit', (e) => {
@@ -1219,33 +1212,47 @@
                     return;
                 }
 
-                // Update summary UI
-                summaryName.textContent = name;
-                summaryService.textContent = service;
-                summaryDate.textContent = date;
-                summaryTime.textContent = time;
+                // Combine additional fields into the message field
+                let combinedMessage = `Consultation Type: ${consultationType}\n`;
+                combinedMessage += `Service: ${service}\n`;
+                combinedMessage += `Preferred Date: ${date}\n`;
+                combinedMessage += `Time Slot: ${time}\n`;
+                if (notes) combinedMessage += `\nSymptoms/Notes:\n${notes}`;
 
-                // Format WhatsApp Message
-                let message = `*New Appointment Request - RehAAB Physiotherapy*\n\n`;
-                message += `*Patient Name:* ${name}\n`;
-                message += `*Phone:* ${phone}\n`;
-                if (email) message += `*Email:* ${email}\n`;
-                message += `*Consultation Type:* ${consultationType}\n`;
-                message += `*Service:* ${service}\n`;
-                message += `*Preferred Date:* ${date}\n`;
-                message += `*Time Slot:* ${time}\n`;
-                if (notes) message += `*Symptoms/Notes:* ${notes}\n`;
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('phone', phone);
+                formData.append('email', email);
+                formData.append('message', combinedMessage);
 
-                const waUrl = `https://wa.me/919319933875?text=${encodeURIComponent(message)}`;
-                whatsappConfirmBtn.href = waUrl;
+                // UI loading state
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Submitting...';
+                    lucide.createIcons();
+                }
 
-                // Show success, hide form
-                bookingSuccess.classList.remove('hidden');
-                appointmentForm.classList.add('hidden');
-                lucide.createIcons();
-
-                // Smooth scroll to top of booking card
-                bookingSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                fetch('https://script.google.com/macros/s/AKfycbzsDS8uN9gRj-1VISTV5TY0CAFm4mD-_HsL6x0_a7p42gASpB6onVSx9rkygQJVsDsu/exec', {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                }).then(() => {
+                    // Show success, hide form
+                    bookingSuccess.classList.remove('hidden');
+                    appointmentForm.classList.add('hidden');
+                    
+                    // Smooth scroll to top of booking card
+                    bookingSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }).catch(err => {
+                    console.error('Error submitting form', err);
+                    alert('There was a problem submitting your request. Please try again.');
+                }).finally(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i data-lucide="calendar-plus" class="w-5 h-5"></i> Confirm Appointment Request';
+                        lucide.createIcons();
+                    }
+                });
             });
         }
 
